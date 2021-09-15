@@ -1,13 +1,11 @@
 package com.hero.witchery_rewitched.item;
 
-import com.hero.witchery_rewitched.api.Util.PlayerUtils;
+import com.hero.witchery_rewitched.api.util.PlayerUtils;
 import com.hero.witchery_rewitched.api.capabilities.player.IPlayer;
 import com.hero.witchery_rewitched.api.capabilities.player.PlayerCapability;
 import com.hero.witchery_rewitched.init.ModItems;
 import net.minecraft.block.BedBlock;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,7 +15,6 @@ import net.minecraft.state.properties.BedPart;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.math.vector.Vector3d;
@@ -27,9 +24,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import java.util.Random;
 import java.util.UUID;
-
-import net.minecraft.item.Item.Properties;
-import org.lwjgl.system.CallbackI;
 
 public class TaglockKit extends Item {
     public TaglockKit(Properties properties) {

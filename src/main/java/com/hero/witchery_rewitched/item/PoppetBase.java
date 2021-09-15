@@ -1,6 +1,6 @@
 package com.hero.witchery_rewitched.item;
 
-import com.hero.witchery_rewitched.api.Util.PlayerUtils;
+import com.hero.witchery_rewitched.api.util.PlayerUtils;
 import com.hero.witchery_rewitched.api.capabilities.poppet_shelf.PoppetShelfCapability;
 import com.hero.witchery_rewitched.api.capabilities.poppet_worlds.PoppetWorldCapability;
 import com.hero.witchery_rewitched.block.poppet_shelf.PoppetShelfTileEntity;
@@ -35,8 +35,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import net.minecraft.item.Item.Properties;
 
 public class PoppetBase extends Item{
 

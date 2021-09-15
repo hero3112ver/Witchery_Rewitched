@@ -1,4 +1,4 @@
-package com.hero.witchery_rewitched.api.Util;
+package com.hero.witchery_rewitched.api.util;
 
 import com.google.common.base.Preconditions;
 import net.minecraft.item.ItemStack;

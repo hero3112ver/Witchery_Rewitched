@@ -1,16 +1,14 @@
 package com.hero.witchery_rewitched.api.rituals;
 
-import com.hero.witchery_rewitched.api.Util.DimPos;
-import com.hero.witchery_rewitched.api.Util.TeleportUtils;
-import com.hero.witchery_rewitched.api.Util.WorldUtils;
+import com.hero.witchery_rewitched.api.util.DimPos;
+import com.hero.witchery_rewitched.api.util.TeleportUtils;
+import com.hero.witchery_rewitched.api.util.WorldUtils;
 import com.hero.witchery_rewitched.block.glyph.GlyphBlock;
 import com.hero.witchery_rewitched.init.ModBlocks;
 import com.hero.witchery_rewitched.init.ModItems;
 import com.hero.witchery_rewitched.item.BoundWaystone;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;

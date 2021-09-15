@@ -1,13 +1,10 @@
 package com.hero.witchery_rewitched.api.rituals;
 
-import com.hero.witchery_rewitched.api.Util.WorldUtils;
 import com.hero.witchery_rewitched.block.altar.AltarTileEntity;
-import com.hero.witchery_rewitched.block.distillery.DistilleryTileEntity;
 import com.hero.witchery_rewitched.block.glyph.GlyphBlock;
 import com.hero.witchery_rewitched.init.ModBlocks;
 import com.hero.witchery_rewitched.init.ModItems;
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;

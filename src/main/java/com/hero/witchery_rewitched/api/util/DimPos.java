@@ -1,4 +1,4 @@
-package com.hero.witchery_rewitched.api.Util;
+package com.hero.witchery_rewitched.api.util;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.CompoundNBT;

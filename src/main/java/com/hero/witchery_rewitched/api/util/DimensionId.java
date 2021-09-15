@@ -1,4 +1,4 @@
-package com.hero.witchery_rewitched.api.Util;
+package com.hero.witchery_rewitched.api.util;
 
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.server.MinecraftServer;

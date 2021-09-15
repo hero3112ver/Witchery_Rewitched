@@ -9,7 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
-import com.hero.witchery_rewitched.api.Util.NameUtils;
+import com.hero.witchery_rewitched.api.util.NameUtils;
 
 import javax.annotation.Nullable;
 import java.util.List;

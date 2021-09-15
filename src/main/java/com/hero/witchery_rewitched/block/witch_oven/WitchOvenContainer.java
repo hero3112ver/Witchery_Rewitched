@@ -1,6 +1,6 @@
 package com.hero.witchery_rewitched.block.witch_oven;
 
-import com.hero.witchery_rewitched.api.Util.SlotUtils;
+import com.hero.witchery_rewitched.api.util.SlotUtils;
 import com.hero.witchery_rewitched.init.ModContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.IntArray;
-import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

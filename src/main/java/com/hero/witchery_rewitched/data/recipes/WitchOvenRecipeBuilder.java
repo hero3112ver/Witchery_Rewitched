@@ -2,7 +2,7 @@ package com.hero.witchery_rewitched.data.recipes;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.hero.witchery_rewitched.api.Util.NameUtils;
+import com.hero.witchery_rewitched.api.util.NameUtils;
 import com.hero.witchery_rewitched.crafting.recipe.ModRecipes;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Item;

@@ -1,13 +1,10 @@
 package com.hero.witchery_rewitched.block.distillery;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
-import com.hero.witchery_rewitched.api.Util.WorldUtils;
-import com.hero.witchery_rewitched.api.capabilities.altar.AltarLocationCapability;
 import com.hero.witchery_rewitched.block.INamedContainerExtraData;
 import com.hero.witchery_rewitched.block.altar.AltarTileEntity;
 import com.hero.witchery_rewitched.crafting.recipe.DistilleryRecipe;
 import com.hero.witchery_rewitched.crafting.recipe.ModRecipes;
-import com.hero.witchery_rewitched.init.ModBlocks;
 import com.hero.witchery_rewitched.init.ModItems;
 import com.hero.witchery_rewitched.init.ModTileEntities;
 import net.minecraft.block.Block;
@@ -17,7 +14,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
@@ -33,7 +29,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -45,7 +40,6 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class DistilleryTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerExtraData, ISidedInventory {
     public static final float WORKTIME = WitcheryRewitched.DEBUG ?  2*20 : 150;

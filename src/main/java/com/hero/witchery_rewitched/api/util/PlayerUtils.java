@@ -1,4 +1,4 @@
-package com.hero.witchery_rewitched.api.Util;
+package com.hero.witchery_rewitched.api.util;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.entity.item.ItemEntity;

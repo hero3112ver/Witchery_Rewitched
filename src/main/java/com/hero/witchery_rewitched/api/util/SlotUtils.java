@@ -1,4 +1,4 @@
-package com.hero.witchery_rewitched.api.Util;
+package com.hero.witchery_rewitched.api.util;
 
 import com.hero.witchery_rewitched.init.ModItems;
 import net.minecraft.inventory.IInventory;

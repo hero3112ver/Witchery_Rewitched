@@ -11,14 +11,12 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import com.hero.witchery_rewitched.api.Util.NameUtils;
-import net.minecraftforge.api.distmarker.Dist;
+import com.hero.witchery_rewitched.api.util.NameUtils;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 public class DistilleryRecipeBuilder {
     private final IRecipeSerializer<?> serializer;

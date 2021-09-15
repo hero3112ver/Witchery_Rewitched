@@ -2,7 +2,6 @@ package com.hero.witchery_rewitched.data.recipes;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.hero.witchery_rewitched.block.witch_cauldron.WitchCauldronTileEntity;
 import com.hero.witchery_rewitched.crafting.recipe.ModRecipes;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Item;
@@ -11,7 +10,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import com.hero.witchery_rewitched.api.Util.NameUtils;
+import com.hero.witchery_rewitched.api.util.NameUtils;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

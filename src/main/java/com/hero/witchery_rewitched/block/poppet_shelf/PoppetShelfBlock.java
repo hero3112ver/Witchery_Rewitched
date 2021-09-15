@@ -1,7 +1,7 @@
 package com.hero.witchery_rewitched.block.poppet_shelf;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
-import com.hero.witchery_rewitched.api.Util.PlayerUtils;
+import com.hero.witchery_rewitched.api.util.PlayerUtils;
 import com.hero.witchery_rewitched.api.capabilities.poppet_shelf.PoppetShelfCapability;
 import com.hero.witchery_rewitched.api.capabilities.poppet_worlds.PoppetWorldCapability;
 import com.hero.witchery_rewitched.block.INamedContainerExtraData;
