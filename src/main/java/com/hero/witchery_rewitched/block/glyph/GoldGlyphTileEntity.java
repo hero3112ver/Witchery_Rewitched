@@ -242,6 +242,7 @@ public class GoldGlyphTileEntity extends TileEntity implements INamedContainerEx
         }
     }
 
+    // TODO: I need to load and save active rituals eventually
     @Override
     public void load(@Nonnull BlockState state,@Nonnull  CompoundNBT nbt) {
         super.load(state, nbt);
