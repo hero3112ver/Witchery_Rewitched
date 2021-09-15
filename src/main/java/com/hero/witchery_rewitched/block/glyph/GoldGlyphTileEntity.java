@@ -28,7 +28,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
-public class GoldGlyphTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerExtraData, IInventory {
+public class GoldGlyphTileEntity extends TileEntity implements INamedContainerExtraData, ITickableTileEntity, IInventory {
     public final static int GATHER_TIME = WitcheryRewitched.DEBUG ? 1 : 20;
     private boolean gathering = false;
     private UUID caster = null;
@@ -52,25 +51,9 @@ public class GoldGlyphTileEntity extends TileEntity implements ITickableTileEnti
         super(ModTileEntities.GOLD_GLYPH.get());
     }
 
-    @Override
-    public void encodeExtraData(PacketBuffer buffer) {
-
-    }
-
     public void startGather(PlayerEntity player){
         gathering = true;
-        caster = player.getUUID();
-    }
-
-    @Override
-    public ITextComponent getDisplayName() {
-        return new TranslationTextComponent("tileentity.witcheryrewtiched.goldglyph");
-    }
-
-    @Nullable
-    @Override
-    public Container createMenu(int p_createMenu_1_, PlayerInventory p_createMenu_2_, PlayerEntity p_createMenu_3_) {
-        return null;
+        caster = player != null ? player.getUUID() : null;
     }
 
     @Override
@@ -78,11 +61,55 @@ public class GoldGlyphTileEntity extends TileEntity implements ITickableTileEnti
         if(level == null || level.isClientSide)
             return;
 
-        if(activeRituals.size() > 0 && gathering)
-            gathering = false;
+        /*
+            The flow around here gets kinda funky so let me explain this up front
+            The gatherQueue and ritualQueue are together at the hip, add to one add to the other
+            they correspond to each other.
+            You can't start a new ritual if you already have one active
+            You can start multiple rituals at one time
+         */
 
-        // this.ritual should be null if the ritual is finished
-        if(!gathering && activeRituals.size() != 0){
+        // If you have an active ritual, you can't start initializing new rituals
+        if(activeRituals.size() > 0 && gathering) gathering = false;
+
+        // Stop initializing new rituals find the possible rituals with those item combinations
+        if(gathering && gatherQueue.size() == 0) {
+            if(!findRitual()) caster = null;
+            gathering = false;
+        }
+
+        if(gatherQueue.size() > 0 && level.getGameTime() % GATHER_TIME == 0) {
+            if(gather()){
+                if(gatherQueue.get(0).size() == 0) {
+
+                    gatherQueue.remove(0);
+                    RitualRecipe rec = ritualQueue.remove(0);
+
+                    // Create a new ritual of the current ritual in queue and get er goin
+                    AbstractRitual ritual = rec.getRitual()
+                            .createRite(worldPosition, level, caster, rec.getIngredientItems().contains(ModItems.CHARGED_ATTUNED_STONE.get()));
+                    // If a ritual succeeds its start checks, gun it and start running it
+                    if(ritual.checkStartConditions(items)) {
+                        ritual.start(items);
+                        activeRituals.add(ritual);
+                    }
+                    // If a ritual fails it's start checks dump it's items
+                    else spitItems(rec, new ArrayList<>());
+
+                    items.clear();
+                    caster = null;
+                }
+            }
+            // if you fail to gather the items for a ritual just dump it
+            else{
+                spitItems(ritualQueue.get(0), gatherQueue.remove(0));
+                items.clear();
+                caster = null;
+            }
+        };
+
+        // Tick active rituals and remove dead rituals
+        if(activeRituals.size() > 0){
             for(int i = 0; i < activeRituals.size(); i++){
                 if(!activeRituals.get(i).active){
                     activeRituals.remove(i);
@@ -93,42 +120,13 @@ public class GoldGlyphTileEntity extends TileEntity implements ITickableTileEnti
             }
         }
 
-        if(gathering && gatherQueue.size() == 0) {
-            findRitual();
-        }
-        if(gathering && level.getGameTime() % GATHER_TIME == 0){
-            gathering = gather();
-        }
-        if(!gathering && ritualQueue.size() > 0 && gatherQueue.size() > 0 && gatherQueue.get(0).size() == 0){
-            //check for valid recipe and altar power here
-            gathering = false;
-            gatherQueue.remove(0);
-            RitualRecipe rec = ritualQueue.remove(0);
-            AbstractRitual ritual = rec.getRitual().createRite(worldPosition, level, caster, rec.getIngredientItems().contains(ModItems.CHARGED_ATTUNED_STONE.get()));
-            if(ritual.checkStartConditions(items))
-            {
-                ritual.start(items);
-                activeRituals.add(ritual);
-                items.clear();
-                caster = null;
-            }
-            else {
-                spitItems(rec, new ArrayList<>());
-                items.clear();
-                caster = null;
-            }
-        }
-        else if(!gathering && ritualQueue.size() > 0 && gatherQueue.size() > 0){
-            RitualRecipe rec = ritualQueue.remove(0);
-            spitItems(rec, gatherQueue.get(0));
-            gatherQueue.remove(0);
-            items.clear();
-            caster = null;
-        }
+
     }
 
     private boolean findRitual(){
         AtomicBoolean flag = new AtomicBoolean(false);
+
+        // This right here just grabs all the items in the radius in grasspers and dropped on the ground
         VoxelShape area = VoxelShapes.box(worldPosition.getX() - 3, worldPosition.getY() - 3, worldPosition.getZ() -3, worldPosition.getX() + 3, worldPosition.getY() + 3, worldPosition.getZ() +3);
         List<ItemStack> itemEntities = level.getEntities(EntityType.ITEM, area.bounds(), (item) ->  true).stream().map(ItemEntity::getItem).collect(Collectors.toList());
         List<ItemStack> itemStacks = new ArrayList<>();
@@ -195,17 +193,16 @@ public class GoldGlyphTileEntity extends TileEntity implements ITickableTileEnti
     }
 
 
+    // Honestly kinda spaghetti but this function first checks for entities in range and yoinks them, then checks grasspers on ground level around it for items in queue
+    // then it returns true if it takes an item, false if it does not take an item
     private boolean gather(){
         VoxelShape area = VoxelShapes.box(worldPosition.getX() - 3, worldPosition.getY() - 3, worldPosition.getZ() -3, worldPosition.getX() + 3, worldPosition.getY() + 3, worldPosition.getZ() +3);
         assert level != null;
         ItemEntity entity = level.getEntities(EntityType.ITEM, area.bounds(), (item) -> gatherQueue.size() > 0 && gatherQueue.get(0).contains(item.getItem().getItem())).stream().findFirst().orElse(null);
         if(entity != null ){
-            insert(new ItemStack(entity.getItem().getItem()));
-            if(entity.getItem().hasTag()){
-                items.add(entity.getItem().copy());
-            }
+            items.add(entity.getItem().copy());
             gatherQueue.get(0).remove(entity.getItem().getItem());
-            ((ServerWorld)level).playSound(null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), SoundEvents.ITEM_FRAME_ADD_ITEM, SoundCategory.BLOCKS, .5f, .3f);
+            ((ServerWorld)level).playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ITEM_FRAME_ADD_ITEM, SoundCategory.BLOCKS, .5f, .3f);
             ((ServerWorld)level).sendParticles(ParticleTypes.POOF, entity.getX(), entity.getY() +.3, entity.getZ(), 5,0,0,0, .01);
             entity.getItem().setCount(entity.getItem().getCount()-1);
             return true;
@@ -230,6 +227,7 @@ public class GoldGlyphTileEntity extends TileEntity implements ITickableTileEnti
         return false;
     }
 
+    // Drops items in world based on the current recipe sans the items in the given list
     private void spitItems(RitualRecipe recipe, List<Item> list){
         List<ItemStack> rec = recipe.getIngredientItems().stream().map(ItemStack::new).collect(Collectors.toList());
         for(int i = 0; i < rec.size(); i++){
@@ -237,15 +235,6 @@ public class GoldGlyphTileEntity extends TileEntity implements ITickableTileEnti
                 InventoryHelper.dropItemStack(level, getBlockPos().getX() + .5,getBlockPos().getY() + .5, getBlockPos().getZ() + .5, rec.get(i));
                 rec.set(i, ItemStack.EMPTY);
                 ((ServerWorld)level).playSound(null, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, .3f, .3f);
-            }
-        }
-    }
-
-    private void insert(ItemStack stack){
-        for(int i = 0; i < items.size(); i++){
-            if(items.get(i) == ItemStack.EMPTY) {
-                items.set(i, stack);
-                return;
             }
         }
     }
@@ -304,4 +293,19 @@ public class GoldGlyphTileEntity extends TileEntity implements ITickableTileEnti
     }
 
 
+    @Override
+    public void encodeExtraData(PacketBuffer buffer) {
+
+    }
+
+    @Override
+    public ITextComponent getDisplayName() {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public Container createMenu(int p_createMenu_1_, PlayerInventory p_createMenu_2_, PlayerEntity p_createMenu_3_) {
+        return null;
+    }
 }
