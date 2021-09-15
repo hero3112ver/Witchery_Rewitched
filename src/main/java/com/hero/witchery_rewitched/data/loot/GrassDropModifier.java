@@ -29,7 +29,6 @@ import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-@Mod.EventBusSubscriber(modid = WitcheryRewitched.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GrassDropModifier {
         public static class SeedDropModifier extends LootModifier{
 

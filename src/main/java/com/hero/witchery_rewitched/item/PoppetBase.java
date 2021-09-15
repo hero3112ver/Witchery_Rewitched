@@ -138,7 +138,6 @@ public class PoppetBase extends Item{
     }
 
 
-    @SubscribeEvent
     public static void onDeath(LivingDeathEvent event){
         if(event.getEntity() instanceof PlayerEntity){
             PlayerEntity player = ((PlayerEntity)event.getEntity());
@@ -190,7 +189,6 @@ public class PoppetBase extends Item{
         }
     }
 
-    @SubscribeEvent
     public static void onItemDestroy(PlayerDestroyItemEvent event){
         if(event.getOriginal().getItem() instanceof ToolItem){
             PlayerEntity player = ((PlayerEntity)event.getEntity());
@@ -210,7 +208,6 @@ public class PoppetBase extends Item{
         }
     }
 
-    @SubscribeEvent
     public static void onArmorBreak(LivingEquipmentChangeEvent event){
         if(event.getEntity() instanceof PlayerEntity){
             boolean broke = event.getFrom().getDamageValue() + 1 >= event.getFrom().getMaxDamage();

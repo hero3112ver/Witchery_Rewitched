@@ -100,7 +100,6 @@ public class PlayerCapability implements IPlayer, ICapabilitySerializable<Compou
         }
     }
 
-    @SubscribeEvent
     public static void playerSleepInBed(PlayerSleepInBedEvent event){
         BlockPos pos = event.getPos();
         PlayerEntity player = event.getPlayer();

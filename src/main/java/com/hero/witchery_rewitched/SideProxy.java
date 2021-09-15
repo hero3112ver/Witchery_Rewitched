@@ -44,18 +44,19 @@ public class SideProxy implements IProxy{
 
         registerEvent(SideProxy::serverStarted);
         registerEvent(SideProxy::serverStopping);
-        registerGenericEvent(Entity.class, WitcheryDataCapability::onAttachEntityCapabilities);
-        registerGenericEvent(TileEntity.class, PlayerCapability::onAttachTileEntityCapabilities);
-        registerGenericEvent(World.class, PoppetShelfCapability::onAttachWorldCapabilities);
-        registerGenericEvent(Chunk.class, AltarLocationCapability::onAttachChunkCapabilities);
         registerEvent(PlayerCapability::playerSleepInBed);
         registerEvent(WitcheryDataCapability::cloneEvent);
         registerEvent(MandrakeBlock::onBroken);
         registerEvent(PoppetBase::onDeath);
         registerEvent(PoppetBase::onItemDestroy);
         registerEvent(PoppetBase::onArmorBreak);
-        registerGenericEvent(GlobalLootModifierSerializer.class, GrassDropModifier.SeedDropModifier::registerModifiers);
         registerEvent(ModEntities::registerAttributes);
+
+        registerGenericEvent(Entity.class, WitcheryDataCapability::onAttachEntityCapabilities);
+        registerGenericEvent(TileEntity.class, PlayerCapability::onAttachTileEntityCapabilities);
+        registerGenericEvent(World.class, PoppetShelfCapability::onAttachWorldCapabilities);
+        registerGenericEvent(Chunk.class, AltarLocationCapability::onAttachChunkCapabilities);
+        registerGenericEvent(GlobalLootModifierSerializer.class, GrassDropModifier.SeedDropModifier::registerModifiers);
 
         RegistryHandler.init();
         Network.init();

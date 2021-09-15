@@ -18,7 +18,6 @@ public class MandrakeBlock extends ModCropBase{
         super(ModItems.MANDRAKE_SEEDS, Blocks.FARMLAND);
     }
 
-    @SubscribeEvent
     public static void onBroken(BlockEvent.BreakEvent event){
         IWorld worldIn = event.getWorld();
         BlockPos pos = event.getPos();
