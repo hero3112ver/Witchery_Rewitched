@@ -28,7 +28,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
+
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,9 +43,9 @@ public class GoldGlyphTileEntity extends TileEntity implements INamedContainerEx
     public final static int GATHER_TIME = WitcheryRewitched.DEBUG ? 1 : 20;
     private boolean gathering = false;
     private UUID caster = null;
-    private List<List<Item>> gatherQueue = new ArrayList<>();
-    private List<RitualRecipe> ritualQueue = new ArrayList<>();
-    private List<AbstractRitual> activeRituals = new ArrayList<>();
+    private final List<List<Item>> gatherQueue = new ArrayList<>();
+    private final List<RitualRecipe> ritualQueue = new ArrayList<>();
+    private final List<AbstractRitual> activeRituals = new ArrayList<>();
 
 
     public ArrayList<ItemStack> items = new ArrayList<>();
@@ -240,12 +243,13 @@ public class GoldGlyphTileEntity extends TileEntity implements INamedContainerEx
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT nbt) {
+    public void load(@Nonnull BlockState state,@Nonnull  CompoundNBT nbt) {
         super.load(state, nbt);
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT compound) {
+    @Nonnull
+    public CompoundNBT save(@Nonnull CompoundNBT compound) {
         super.save(compound);
         return compound;
     }
@@ -261,16 +265,24 @@ public class GoldGlyphTileEntity extends TileEntity implements INamedContainerEx
     }
 
     @Override
+    @Nonnull
     public ItemStack getItem(int index) {
         return items.get(index);
     }
 
     @Override
+    @Nonnull
     public ItemStack removeItem(int index, int count) {
-        return null;
+        int itemCount = items.get(index).getCount();
+        boolean flag = itemCount - count >= 0;
+
+        ItemStack temp = new ItemStack(items.get(index).getItem(), flag ? count : itemCount);
+        items.set(index, new ItemStack(items.get(index).getItem(), flag ? itemCount - count : 0));
+        return temp;
     }
 
     @Override
+    @Nonnull
     public ItemStack removeItemNoUpdate(int index) {
         ItemStack stack = items.get(index);
         items.set(index, ItemStack.EMPTY);
@@ -278,12 +290,12 @@ public class GoldGlyphTileEntity extends TileEntity implements INamedContainerEx
     }
 
     @Override
-    public void setItem(int index, ItemStack stack) {
+    public void setItem(int index,@Nonnull ItemStack stack) {
         items.set(index, stack);
     }
 
     @Override
-    public boolean stillValid(PlayerEntity player) {
+    public boolean stillValid(@Nonnull PlayerEntity player) {
         return false;
     }
 
@@ -294,18 +306,19 @@ public class GoldGlyphTileEntity extends TileEntity implements INamedContainerEx
 
 
     @Override
-    public void encodeExtraData(PacketBuffer buffer) {
+    public void encodeExtraData(@Nonnull PacketBuffer buffer) {
 
     }
 
+    @Nonnull
     @Override
     public ITextComponent getDisplayName() {
-        return null;
+        return new StringTextComponent("Pretty sure I don't need this");
     }
 
     @Nullable
     @Override
-    public Container createMenu(int p_createMenu_1_, PlayerInventory p_createMenu_2_, PlayerEntity p_createMenu_3_) {
+    public Container createMenu(int p_createMenu_1_, @Nonnull PlayerInventory p_createMenu_2_, @Nonnull PlayerEntity p_createMenu_3_) {
         return null;
     }
 }
