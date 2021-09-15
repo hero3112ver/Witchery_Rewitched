@@ -1,4 +1,4 @@
-package com.hero.witchery_rewitched.block.plants.water_artichoke;
+package com.hero.witchery_rewitched.block.plants;
 
 import com.hero.witchery_rewitched.block.plants.ModCropBase;
 import net.minecraft.block.Block;
@@ -12,8 +12,8 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.fml.RegistryObject;
 
-public class WaterArtichoke extends ModCropBase {
-    public WaterArtichoke(RegistryObject<Item> seed, Block farmland) {
+public class WaterArtichokeBlock extends ModCropBase {
+    public WaterArtichokeBlock(RegistryObject<Item> seed, Block farmland) {
         super(seed, farmland);
     }
 

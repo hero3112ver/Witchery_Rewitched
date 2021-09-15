@@ -20,8 +20,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.function.BiFunction;
 
-public class Grassper extends Block {
-    public Grassper(Properties p_i48440_1_) {
+public class GrassperBlock extends Block {
+    public GrassperBlock(Properties p_i48440_1_) {
         super(p_i48440_1_);
     }
 

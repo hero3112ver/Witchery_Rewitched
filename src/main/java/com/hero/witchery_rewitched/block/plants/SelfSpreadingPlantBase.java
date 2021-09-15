@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class SelfSpreadingPlant extends BushBlock implements IGrowable {
+public class SelfSpreadingPlantBase extends BushBlock implements IGrowable {
     final boolean CAN_GROW_ON_CEILING;
 
-    public SelfSpreadingPlant(boolean plantOnCeiling, boolean emitsLight){
+    public SelfSpreadingPlantBase(boolean plantOnCeiling, boolean emitsLight){
         super(AbstractBlock.Properties.of(Material.PLANT)
                 .noOcclusion()
                 .noCollission()

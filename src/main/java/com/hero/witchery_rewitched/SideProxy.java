@@ -5,7 +5,7 @@ import com.hero.witchery_rewitched.api.capabilities.coven.WitcheryDataCapability
 import com.hero.witchery_rewitched.api.capabilities.player.PlayerCapability;
 import com.hero.witchery_rewitched.api.capabilities.poppet_shelf.PoppetShelfCapability;
 import com.hero.witchery_rewitched.api.capabilities.poppet_worlds.PoppetWorldCapability;
-import com.hero.witchery_rewitched.block.plants.Mandrake;
+import com.hero.witchery_rewitched.block.plants.MandrakeBlock;
 import com.hero.witchery_rewitched.data.DataGenerators;
 import com.hero.witchery_rewitched.data.loot.GrassDropModifier;
 import com.hero.witchery_rewitched.init.*;
@@ -50,7 +50,7 @@ public class SideProxy implements IProxy{
         registerGenericEvent(Chunk.class, AltarLocationCapability::onAttachChunkCapabilities);
         registerEvent(PlayerCapability::playerSleepInBed);
         registerEvent(WitcheryDataCapability::cloneEvent);
-        registerEvent(Mandrake::onBroken);
+        registerEvent(MandrakeBlock::onBroken);
         registerEvent(PoppetBase::onDeath);
         registerEvent(PoppetBase::onItemDestroy);
         registerEvent(PoppetBase::onArmorBreak);

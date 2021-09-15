@@ -13,8 +13,8 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.network.FMLPlayMessages;
 
-public class Mandrake extends ModCropBase{
-    public Mandrake() {
+public class MandrakeBlock extends ModCropBase{
+    public MandrakeBlock() {
         super(ModItems.MANDRAKE_SEEDS, Blocks.FARMLAND);
     }
 

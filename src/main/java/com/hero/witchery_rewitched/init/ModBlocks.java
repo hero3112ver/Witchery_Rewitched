@@ -10,8 +10,8 @@ import com.hero.witchery_rewitched.block.distillery.DistilleryBlock;
 import com.hero.witchery_rewitched.block.distillery.DistilleryTileEntity;
 import com.hero.witchery_rewitched.block.glyph.*;
 import com.hero.witchery_rewitched.block.plants.*;
-import com.hero.witchery_rewitched.block.plants.grassper.Grassper;
-import com.hero.witchery_rewitched.block.plants.water_artichoke.WaterArtichoke;
+import com.hero.witchery_rewitched.block.plants.grassper.GrassperBlock;
+import com.hero.witchery_rewitched.block.plants.WaterArtichokeBlock;
 import com.hero.witchery_rewitched.block.poppet_shelf.PoppetShelfBlock;
 import com.hero.witchery_rewitched.block.poppet_shelf.PoppetShelfTileEntity;
 import com.hero.witchery_rewitched.block.witch_cauldron.WitchCauldronBlock;
@@ -82,12 +82,12 @@ public class ModBlocks {
     public static RegistryObject<Block> BELLADONNA = register("belladonna_crop", () -> new ModCropBase(ModItems.BELLADONNA_SEEDS,Blocks.FARMLAND));
     public static RegistryObject<Block> GARLIC = register("garlic_crop", () -> new ModCropBase(ModItems.GARLIC, Blocks.FARMLAND));
     public static RegistryObject<Block> SNOWBELL = register("snowbell_crop", () -> new ModCropBase(ModItems.SNOWBELL_SEEDS, Blocks.FARMLAND));
-    public static RegistryObject<Block> WATER_ARTICHOKE = register("water_artichoke_crop", () -> new WaterArtichoke(ModItems.WATER_ARTICHOKE_SEEDS, Blocks.WATER));
+    public static RegistryObject<Block> WATER_ARTICHOKE = register("water_artichoke_crop", () -> new WaterArtichokeBlock(ModItems.WATER_ARTICHOKE_SEEDS, Blocks.WATER));
     public static RegistryObject<Block> WOLFSBANE = register("wolfsbane_crop", () -> new ModCropBase(ModItems.WOLFSBANE_SEEDS, Blocks.FARMLAND));
-    public static RegistryObject<Block> MANDRAKE = register("mandrake_crop", Mandrake::new);
+    public static RegistryObject<Block> MANDRAKE = register("mandrake_crop", MandrakeBlock::new);
     public static RegistryObject<Block> SPANISH_MOSS = register("spanish_moss", () -> new VineBlock(AbstractBlock.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
-    public static RegistryObject<Block> EMBER_MOSS = register("ember_moss", EmberMoss::new);
-    public static RegistryObject<Block> GLINTWEED = register("glintweed", GlintWeed::new);
+    public static RegistryObject<Block> EMBER_MOSS = register("ember_moss", EmberMossBlock::new);
+    public static RegistryObject<Block> GLINTWEED = register("glintweed", GlintWeedBlock::new);
 
     public static RegistryObject<Block> WITCH_CAULDRON = register("witch_cauldron", () ->
             new WitchCauldronBlock( (state, world) -> new WitchCauldronTileEntity(), AbstractBlock.Properties
@@ -118,7 +118,7 @@ public class ModBlocks {
 
     public static RegistryObject<Block> ARTHANA = registerNoItem("arthana", () -> new ArthanaBlock(AbstractBlock.Properties.copy(Blocks.BLACK_CARPET).noOcclusion()));
 
-    public static RegistryObject<Block> GRASSPER = register("grassper", () -> new Grassper(AbstractBlock.Properties.copy(Blocks.WHEAT)));
+    public static RegistryObject<Block> GRASSPER = register("grassper", () -> new GrassperBlock(AbstractBlock.Properties.copy(Blocks.WHEAT)));
 
     public static void reigster(){}
 

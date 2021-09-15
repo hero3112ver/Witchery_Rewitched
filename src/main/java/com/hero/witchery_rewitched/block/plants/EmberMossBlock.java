@@ -5,9 +5,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class EmberMoss extends SelfSpreadingPlant{
+public class EmberMossBlock extends SelfSpreadingPlantBase {
 
-    public EmberMoss() {
+    public EmberMossBlock() {
         super(false, false);
     }
 
