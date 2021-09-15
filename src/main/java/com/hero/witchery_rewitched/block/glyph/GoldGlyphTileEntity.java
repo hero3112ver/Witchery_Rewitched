@@ -2,7 +2,6 @@ package com.hero.witchery_rewitched.block.glyph;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
 import com.hero.witchery_rewitched.api.rituals.AbstractRitual;
-import com.hero.witchery_rewitched.block.INamedContainerExtraData;
 import com.hero.witchery_rewitched.block.plants.grassper.GrassperTileEntity;
 import com.hero.witchery_rewitched.crafting.recipe.ModRecipes;
 import com.hero.witchery_rewitched.crafting.recipe.RitualRecipe;
@@ -12,14 +11,11 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -27,19 +23,16 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
-public class GoldGlyphTileEntity extends TileEntity implements INamedContainerExtraData, ITickableTileEntity, IInventory {
+public class GoldGlyphTileEntity extends TileEntity implements  ITickableTileEntity{
     public final static int GATHER_TIME = WitcheryRewitched.DEBUG ? 1 : 20;
     private boolean gathering = false;
     private UUID caster = null;
@@ -255,71 +248,5 @@ public class GoldGlyphTileEntity extends TileEntity implements INamedContainerEx
         return compound;
     }
 
-    @Override
-    public int getContainerSize() {
-        return 0;
-    }
 
-    @Override
-    public boolean isEmpty() {
-        return true;
-    }
-
-    @Override
-    @Nonnull
-    public ItemStack getItem(int index) {
-        return items.get(index);
-    }
-
-    @Override
-    @Nonnull
-    public ItemStack removeItem(int index, int count) {
-        int itemCount = items.get(index).getCount();
-        boolean flag = itemCount - count >= 0;
-
-        ItemStack temp = new ItemStack(items.get(index).getItem(), flag ? count : itemCount);
-        items.set(index, new ItemStack(items.get(index).getItem(), flag ? itemCount - count : 0));
-        return temp;
-    }
-
-    @Override
-    @Nonnull
-    public ItemStack removeItemNoUpdate(int index) {
-        ItemStack stack = items.get(index);
-        items.set(index, ItemStack.EMPTY);
-        return stack;
-    }
-
-    @Override
-    public void setItem(int index,@Nonnull ItemStack stack) {
-        items.set(index, stack);
-    }
-
-    @Override
-    public boolean stillValid(@Nonnull PlayerEntity player) {
-        return false;
-    }
-
-    @Override
-    public void clearContent() {
-        items.clear();
-    }
-
-
-    @Override
-    public void encodeExtraData(@Nonnull PacketBuffer buffer) {
-
-    }
-
-    @Nonnull
-    @Override
-    public ITextComponent getDisplayName() {
-        return new StringTextComponent("Pretty sure I don't need this");
-    }
-
-    @Nullable
-    @Override
-    public Container createMenu(int p_createMenu_1_, @Nonnull PlayerInventory p_createMenu_2_, @Nonnull PlayerEntity p_createMenu_3_) {
-        return null;
-    }
 }

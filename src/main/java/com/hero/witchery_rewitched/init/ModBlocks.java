@@ -105,7 +105,7 @@ public class ModBlocks {
 
     public static RegistryObject<Block> ALTAR = register("altar", AltarBlock::new);
 
-    public static RegistryObject<Block> GOLD_GLYPH = registerNoItem("gold_glyph", () -> new GoldGlyphBlock((state, world) -> new GoldGlyphTileEntity()));
+    public static RegistryObject<Block> GOLD_GLYPH = registerNoItem("gold_glyph", GoldGlyphBlock::new);
     public static RegistryObject<Block> RITUAL_GLYPH = registerNoItem("ritual_glyph", GlyphBlock::new);
     public static RegistryObject<Block> OTHERWHERE_GLYPH = registerNoItem("otherwhere_glyph", OtherewhereGlyphBlock::new);
     public static RegistryObject<Block> INFERNAL_GLYPH = registerNoItem("infernal_glyph", InfernalGlyphBlock::new);
