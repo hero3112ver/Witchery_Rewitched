@@ -8,7 +8,7 @@ import net.minecraft.entity.monster.SilverfishEntity;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.passive.BatEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
@@ -23,12 +23,12 @@ import javax.annotation.Nullable;
 
 
 public class CritterSnareBlock extends Block{
-    public static IntegerProperty HAS_ENTITY = IntegerProperty.create("has_entity", 0, 3);
+    public static EnumProperty<CritterEnum> HAS_ENTITY = EnumProperty.create("has_entity", CritterEnum.class);
 
     public CritterSnareBlock(Properties p_i48440_1_) {
         super(p_i48440_1_);
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(HAS_ENTITY, 0));
+                .setValue(HAS_ENTITY, CritterEnum.NONE));
     }
 
     @Override
@@ -43,7 +43,7 @@ public class CritterSnareBlock extends Block{
     }
 
     private boolean hasEntity(BlockState state){
-        return state.getValue(HAS_ENTITY) != 0;
+        return state.getValue(HAS_ENTITY) != CritterEnum.NONE;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class CritterSnareBlock extends Block{
             if(pLevel.getBlockEntity(pPos) instanceof CritterSnareTileEntity){
                 CritterSnareTileEntity te = (CritterSnareTileEntity) pLevel.getBlockEntity(pPos);
                 te.releaseEntity();
-                pLevel.setBlockAndUpdate(pPos, pState.setValue(HAS_ENTITY, 0));
+                pLevel.setBlockAndUpdate(pPos, pState.setValue(HAS_ENTITY, CritterEnum.NONE));
             }
         }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
@@ -69,15 +69,15 @@ public class CritterSnareBlock extends Block{
         }
         if(te != null && (te.lastReleaseTime == -1 || pLevel.getDayTime() - te.lastReleaseTime > te.CAPTURE_CD)) {
             if (!hasEntity(pState) && pEntity instanceof BatEntity ) {
-                pLevel.setBlockAndUpdate(pPos, pState.setValue(HAS_ENTITY, 1));
+                pLevel.setBlockAndUpdate(pPos, pState.setValue(HAS_ENTITY, CritterEnum.BAT));
                 te.putEntity(pEntity);
                 pEntity.remove();
             } else if (!hasEntity(pState) && pEntity instanceof SlimeEntity && ((SlimeEntity) pEntity).isTiny()) {
-                pLevel.setBlockAndUpdate(pPos, pState.setValue(HAS_ENTITY, 3));
+                pLevel.setBlockAndUpdate(pPos, pState.setValue(HAS_ENTITY, CritterEnum.SLIME));
                 te.putEntity(pEntity);
                 pEntity.remove();
             } else if (!hasEntity(pState) && pEntity instanceof SilverfishEntity) {
-                pLevel.setBlockAndUpdate(pPos, pState.setValue(HAS_ENTITY, 2));
+                pLevel.setBlockAndUpdate(pPos, pState.setValue(HAS_ENTITY, CritterEnum.SILVERFISH));
                 te.putEntity(pEntity);
                 pEntity.remove();
             }
