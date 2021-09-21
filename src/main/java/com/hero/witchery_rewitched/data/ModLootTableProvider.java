@@ -98,6 +98,8 @@ public class ModLootTableProvider extends LootTableProvider {
             dropSelf(ModBlocks.DISTILLERY.get());
             dropSelf(ModBlocks.POPPET_SHELF.get());
             dropOther(ModBlocks.ARTHANA.get(), ModItems.ARTHANA.get());
+            // TODO: this needs to be fixed
+            dropSelf(ModBlocks.CRITTER_SNARE.get());
         }
 
 

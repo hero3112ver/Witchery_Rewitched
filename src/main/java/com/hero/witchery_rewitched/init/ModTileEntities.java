@@ -1,6 +1,7 @@
 package com.hero.witchery_rewitched.init;
 
 import com.hero.witchery_rewitched.block.altar.AltarTileEntity;
+import com.hero.witchery_rewitched.block.critter_snare.CritterSnareTileEntity;
 import com.hero.witchery_rewitched.block.distillery.DistilleryTileEntity;
 import com.hero.witchery_rewitched.block.glyph.GoldGlyphTileEntity;
 import com.hero.witchery_rewitched.block.plants.grassper.GrassperRenderer;
@@ -62,6 +63,12 @@ public class ModTileEntities {
             "grassper",
             GrassperTileEntity::new,
             ModBlocks.GRASSPER
+    );
+
+    public static RegistryObject<TileEntityType<CritterSnareTileEntity>> CRITTER_SNARE = register(
+            "critter_snare",
+            CritterSnareTileEntity::new,
+            ModBlocks.CRITTER_SNARE
     );
 
     static void register(){}

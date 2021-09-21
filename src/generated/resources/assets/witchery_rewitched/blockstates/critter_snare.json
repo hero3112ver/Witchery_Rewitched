@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "has_entity=0": {
+      "model": "witchery_rewitched:block/critter_snare"
+    },
+    "has_entity=1": {
+      "model": "witchery_rewitched:block/critter_snare_bat"
+    },
+    "has_entity=2": {
+      "model": "witchery_rewitched:block/critter_snare_silverfish"
+    },
+    "has_entity=3": {
+      "model": "witchery_rewitched:block/critter_snare_slime"
+    }
+  }
+}

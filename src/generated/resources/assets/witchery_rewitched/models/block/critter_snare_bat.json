@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "witchery_rewitched:block/critter_snare_bat"
+  }
+}

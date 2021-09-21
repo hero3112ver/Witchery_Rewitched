@@ -6,6 +6,7 @@ import com.hero.witchery_rewitched.block.ModFlammableBlock;
 import com.hero.witchery_rewitched.block.ModSaplings;
 import com.hero.witchery_rewitched.block.FumeFunnelBlock;
 import com.hero.witchery_rewitched.block.altar.AltarBlock;
+import com.hero.witchery_rewitched.block.critter_snare.CritterSnareBlock;
 import com.hero.witchery_rewitched.block.distillery.DistilleryBlock;
 import com.hero.witchery_rewitched.block.distillery.DistilleryTileEntity;
 import com.hero.witchery_rewitched.block.glyph.*;
@@ -120,6 +121,8 @@ public class ModBlocks {
 
     public static RegistryObject<Block> GRASSPER = register("grassper", () -> new GrassperBlock(AbstractBlock.Properties.copy(Blocks.WHEAT)));
 
+    public static RegistryObject<Block> CRITTER_SNARE = register("critter_snare", () -> new CritterSnareBlock(AbstractBlock.Properties.copy(Blocks.VINE)));
+
     public static void reigster(){}
 
     private static <T extends Block>RegistryObject<T> registerFuel(String name, Supplier<T> block, int burnTime)
@@ -167,6 +170,7 @@ public class ModBlocks {
         setRenderLayer(ModBlocks.DISTILLERY.get(), cutoutMipped);
         setRenderLayer(ModBlocks.ARTHANA.get(), cutout);
         setRenderLayer(ModBlocks.GRASSPER.get(), cutout);
+        setRenderLayer(ModBlocks.CRITTER_SNARE.get(), cutout);
     }
 
     public static void registerBlockColors(ColorHandlerEvent.Block event){

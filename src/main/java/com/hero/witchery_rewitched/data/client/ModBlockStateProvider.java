@@ -1,6 +1,7 @@
 package com.hero.witchery_rewitched.data.client;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
+import com.hero.witchery_rewitched.block.critter_snare.CritterSnareBlock;
 import com.hero.witchery_rewitched.block.glyph.GlyphBlock;
 import com.hero.witchery_rewitched.block.plants.EnumPlantAge;
 import com.hero.witchery_rewitched.block.plants.ModCropBase;
@@ -48,6 +49,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         chalkBlock(ModBlocks.INFERNAL_GLYPH.get(), "infernal_glyph");
         chalkBlock(ModBlocks.OTHERWHERE_GLYPH.get(), "otherwhere_glyph");
         createArthana();
+        createSnare();
     }
 
     private void createPlant(Block plant, String name, boolean cross){
@@ -65,6 +67,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
             }
             builder.partialState().with(ModCropBase.AGE, stage).setModels(new ConfiguredModel(model));
         }
+    }
+
+    private void createSnare(){
+        VariantBlockStateBuilder builder = getVariantBuilder(ModBlocks.CRITTER_SNARE.get());
+        ModelFile file = models().cross("block/critter_snare", new ResourceLocation(WitcheryRewitched.MODID, "block/critter_snare"));
+        builder.partialState().with(CritterSnareBlock.HAS_ENTITY, 0).setModels(new ConfiguredModel(file));
+        file = models().cross("block/critter_snare_bat", new ResourceLocation(WitcheryRewitched.MODID, "block/critter_snare_bat"));
+        builder.partialState().with(CritterSnareBlock.HAS_ENTITY, 1).setModels(new ConfiguredModel(file));
+        file = models().cross("block/critter_snare_silverfish", new ResourceLocation(WitcheryRewitched.MODID, "block/critter_snare_silverfish"));
+        builder.partialState().with(CritterSnareBlock.HAS_ENTITY, 2).setModels(new ConfiguredModel(file));
+        file = models().cross("block/critter_snare_slime", new ResourceLocation(WitcheryRewitched.MODID, "block/critter_snare_slime"));
+        builder.partialState().with(CritterSnareBlock.HAS_ENTITY, 3).setModels(new ConfiguredModel(file));
     }
 
     private void createArthana(){
