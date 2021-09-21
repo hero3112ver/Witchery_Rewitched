@@ -37,6 +37,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent("altar", modLoc("block/altar"));
         withExistingParent("distillery", modLoc("block/distillery"));
         withExistingParent("poppet_shelf", modLoc("block/poppet_shelf"));
+        withExistingParent("grassper", modLoc("block/grassper"));
 
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));

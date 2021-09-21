@@ -94,6 +94,7 @@ public class ModLootTableProvider extends LootTableProvider {
             add(ModBlocks.GLINTWEED.get(), createShearsOnlyDrop(ModBlocks.GLINTWEED.get()));
             add(ModBlocks.EMBER_MOSS.get(), createShearsOnlyDrop(ModBlocks.EMBER_MOSS.get()));
             add(ModBlocks.SPANISH_MOSS.get(), createShearsOnlyDrop(ModBlocks.SPANISH_MOSS.get()));
+            add(ModBlocks.GRASSPER.get(), createShearsOnlyDrop(ModBlocks.GRASSPER.get()));
             dropSelf(ModBlocks.DISTILLERY.get());
             dropSelf(ModBlocks.POPPET_SHELF.get());
             dropOther(ModBlocks.ARTHANA.get(), ModItems.ARTHANA.get());
@@ -173,6 +174,8 @@ public class ModLootTableProvider extends LootTableProvider {
         @Override
         protected void addTables() {
             add(ModEntities.MANDRAKE.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(3)).add(ItemLootEntry.lootTableItem(ModItems.MANDRAKE_ROOT.get())).add(ItemLootEntry.lootTableItem(ModItems.MANDRAKE_SEEDS.get()))));
+            add(ModEntities.ENT.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(3)).add(ItemLootEntry.lootTableItem(Items.STICK))));
+            add(ModEntities.TOAD.get(), LootTable.lootTable());
         }
     }
 }
