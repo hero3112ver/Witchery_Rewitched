@@ -1,4 +1,5 @@
 {
+	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "witchery_rewitched:block/witch_cauldron",
 		"particle": "witchery_rewitched:block/witch_cauldron"
@@ -355,30 +356,33 @@
 	],
 	"display": {
 		"gui": {
-			"rotation": [15, 24, 0],
-			"translation": [0, 1, 0],
-			"scale": [0.9, 0.9, 0.9]
+			"rotation": [30, 225, 0],
+			"scale": [0.625, 0.625, 0.625]
 		}
 	},
 	"groups": [
 		{
 			"name": "group",
 			"origin": [8, 8, 8],
+			"color": 0,
 			"children": [0, 1, 2, 3]
 		},
 		{
 			"name": "group",
 			"origin": [8, 8, 8],
+			"color": 0,
 			"children": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 		},
 		{
 			"name": "group",
 			"origin": [8, 8, 8],
+			"color": 0,
 			"children": [17, 18, 19, 20, 21, 22, 23, 24]
 		},
 		{
 			"name": "group",
 			"origin": [8, 8, 8],
+			"color": 0,
 			"children": [25, 26, 27, 28]
 		}
 	]
