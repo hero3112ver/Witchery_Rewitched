@@ -1,16 +1,23 @@
 package com.hero.witchery_rewitched.block.critter_snare;
 
 
+import com.hero.witchery_rewitched.init.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.SilverfishEntity;
 import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.entity.passive.BatEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.tileentity.ShulkerBoxTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
@@ -84,6 +91,43 @@ public class CritterSnareBlock extends Block{
         }
 
         super.entityInside(pState, pLevel, pPos, pEntity);
+    }
+
+    @Override
+    public void setPlacedBy(World pLevel, BlockPos pPos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
+        TileEntity tileentity = pLevel.getBlockEntity(pPos);
+        if (!pLevel.isClientSide &&tileentity instanceof CritterSnareTileEntity && pStack.hasTag() && pStack.getTag().contains("BlockEntityTag")) {
+            CompoundNBT nbt = pStack.getTagElement("BlockEntityTag");
+            ((CritterSnareTileEntity)tileentity).loadData(nbt);
+            String id = ((CompoundNBT)nbt.get("entityData")).getString("id");
+            CritterEnum critter = CritterEnum.NONE;
+            if(id.contains("bat"))
+                critter = CritterEnum.BAT;
+            else if(id.contains("silver"))
+                critter = CritterEnum.SILVERFISH;
+            else if(id.contains("slime"))
+                critter = CritterEnum.SLIME;
+            pLevel.setBlockAndUpdate(pPos, pState.setValue(CritterSnareBlock.HAS_ENTITY, critter));
+        }
+        super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);
+    }
+
+    @Override
+    public void playerWillDestroy(World pLevel, BlockPos pPos, BlockState pState, PlayerEntity pPlayer) {
+        TileEntity tileEntity = pLevel.getBlockEntity(pPos);
+        if (tileEntity instanceof CritterSnareTileEntity && !pLevel.isClientSide) {
+            ItemStack stack = new ItemStack(ModBlocks.CRITTER_SNARE.get());
+            CritterSnareTileEntity te = (CritterSnareTileEntity) tileEntity;
+            CompoundNBT nbt = te.saveData(new CompoundNBT());
+
+            if(!nbt.isEmpty()){
+                stack.addTagElement("BlockEntityTag", nbt);
+            }
+            ItemEntity itementity = new ItemEntity(pLevel, (double)pPos.getX() + 0.5D, (double)pPos.getY() + 0.5D, (double)pPos.getZ() + 0.5D, stack);
+            itementity.setDefaultPickUpDelay();
+            pLevel.addFreshEntity(itementity);
+        }
+        super.playerWillDestroy(pLevel, pPos, pState, pPlayer);
     }
 
     @Override

@@ -72,7 +72,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void createSnare(){
         VariantBlockStateBuilder builder = getVariantBuilder(ModBlocks.CRITTER_SNARE.get());
-        ModelFile file = models().cross("block/critter_snare", new ResourceLocation(WitcheryRewitched.MODID, "block/critter_snare"));
+        ModelFile file = models().cross("block/critter_snare_none", new ResourceLocation(WitcheryRewitched.MODID, "block/critter_snare_none"));
         builder.partialState().with(CritterSnareBlock.HAS_ENTITY, CritterEnum.NONE).setModels(new ConfiguredModel(file));
         file = models().cross("block/critter_snare_bat", new ResourceLocation(WitcheryRewitched.MODID, "block/critter_snare_bat"));
         builder.partialState().with(CritterSnareBlock.HAS_ENTITY, CritterEnum.BAT).setModels(new ConfiguredModel(file));

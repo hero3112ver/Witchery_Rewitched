@@ -50,6 +50,16 @@ public class CritterSnareTileEntity extends TileEntity {
         }
     }
 
+    public CompoundNBT saveData(CompoundNBT nbt){
+        if(!entityData.isEmpty())
+            nbt.put("entityData", entityData);
+        return nbt;
+    }
+
+    public void loadData(CompoundNBT nbt){
+        entityData = (CompoundNBT) nbt.get("entityData");
+    }
+
     @Override
     public CompoundNBT save(CompoundNBT pCompound) {
         pCompound.put("entityData", entityData);

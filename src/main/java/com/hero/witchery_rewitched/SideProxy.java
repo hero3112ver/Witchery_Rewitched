@@ -111,6 +111,7 @@ public class SideProxy implements IProxy{
             ModEntities.registerRenderers(event);
             ModTileEntities.registerRenderers(event);
             ModContainers.registerScreens(event);
+            ModItemModelProperties.register();
             //ModItemModelProperties.register(event);
         }
 

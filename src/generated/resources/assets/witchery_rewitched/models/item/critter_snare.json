@@ -1,3 +1,32 @@
 {
-  "parent": "witchery_rewitched:block/critter_snare"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "witchery_rewitched:block/critter_snare_none"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "minecraft:critter": 0.0
+      },
+      "model": "witchery_rewitched:item/critter_snare_none"
+    },
+    {
+      "predicate": {
+        "minecraft:critter": 1.0
+      },
+      "model": "witchery_rewitched:item/critter_snare_bat"
+    },
+    {
+      "predicate": {
+        "minecraft:critter": 2.0
+      },
+      "model": "witchery_rewitched:item/critter_snare_silverfish"
+    },
+    {
+      "predicate": {
+        "minecraft:critter": 3.0
+      },
+      "model": "witchery_rewitched:item/critter_snare_slime"
+    }
+  ]
 }

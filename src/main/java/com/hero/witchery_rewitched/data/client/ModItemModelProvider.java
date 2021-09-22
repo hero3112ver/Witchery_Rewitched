@@ -2,6 +2,7 @@ package com.hero.witchery_rewitched.data.client;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -38,17 +39,22 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent("distillery", modLoc("block/distillery"));
         withExistingParent("poppet_shelf", modLoc("block/poppet_shelf"));
         withExistingParent("grassper", modLoc("block/grassper"));
-        withExistingParent("critter_snare", modLoc("block/critter_snare"));
 
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
 
+        builderBlock(itemGenerated, "critter_snare_none");
+        builderBlock(itemGenerated, "critter_snare_bat");
+        builderBlock(itemGenerated, "critter_snare_slime");
+        builderBlock(itemGenerated, "critter_snare_silverfish");
+        buildCritterSnare(itemGenerated);
+
         builder(itemGenerated, "uncooked_clay_pot");
         builder(itemGenerated, "cooked_clay_pot");
         builder(itemGenerated, "rowan_berries");
-        builderSap(itemGenerated,"rowan_sapling");
-        builderSap(itemGenerated,"alder_sapling");
-        builderSap(itemGenerated,"hawthorn_sapling");
+        builderBlock(itemGenerated,"rowan_sapling");
+        builderBlock(itemGenerated,"alder_sapling");
+        builderBlock(itemGenerated,"hawthorn_sapling");
 
         builder(itemGenerated, "breath_of_the_goddess");
         builder(itemGenerated, "exhale_of_the_horned_one");
@@ -104,9 +110,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated, "drop_of_luck");
         builder(itemGenerated, "wool_of_bat");
 
-        builderSap(itemGenerated,"ember_moss");
-        builderSap(itemGenerated,"spanish_moss");
-        builderSap(itemGenerated,"glintweed");
+        builderBlock(itemGenerated,"ember_moss");
+        builderBlock(itemGenerated,"spanish_moss");
+        builderBlock(itemGenerated,"glintweed");
 
         builder(itemGenerated, "arthana");
         builder(itemGenerated, "waystone");
@@ -117,7 +123,16 @@ public class ModItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder builder(ModelFile itemGenerated, String name) {
         return getBuilder(name).parent(itemGenerated).texture("layer0", "item/" + name);
     }
-    private ItemModelBuilder builderSap(ModelFile itemGenerated, String name) {
+    private ItemModelBuilder builderBlock(ModelFile itemGenerated, String name) {
         return getBuilder(name).parent(itemGenerated).texture("layer0", "block/" + name);
+    }
+
+    private ItemModelBuilder buildCritterSnare(ModelFile itemGenerated){
+        ItemModelBuilder modelBuilder = getBuilder("critter_snare").parent(itemGenerated).texture("layer0", "block/critter_snare_none");
+        return modelBuilder
+                .override().predicate(new ResourceLocation("critter"), 0).model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/critter_snare_none"), existingFileHelper)).end()
+                .override().predicate(new ResourceLocation("critter"), 1).model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/critter_snare_bat"), existingFileHelper)).end()
+                .override().predicate(new ResourceLocation("critter"), 2).model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/critter_snare_silverfish"), existingFileHelper)).end()
+                .override().predicate(new ResourceLocation("critter"), 3).model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/critter_snare_slime"), existingFileHelper)).end();
     }
 }

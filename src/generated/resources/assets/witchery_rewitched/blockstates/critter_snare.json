@@ -1,7 +1,7 @@
 {
   "variants": {
     "has_entity=none": {
-      "model": "witchery_rewitched:block/critter_snare"
+      "model": "witchery_rewitched:block/critter_snare_none"
     },
     "has_entity=silverfish": {
       "model": "witchery_rewitched:block/critter_snare_silverfish"
