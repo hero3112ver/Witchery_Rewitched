@@ -112,7 +112,6 @@ public class SideProxy implements IProxy{
             ModTileEntities.registerRenderers(event);
             ModContainers.registerScreens(event);
             ModItemModelProperties.register();
-            //ModItemModelProperties.register(event);
         }
 
         private static void blockColorSetup(ColorHandlerEvent.Block event){

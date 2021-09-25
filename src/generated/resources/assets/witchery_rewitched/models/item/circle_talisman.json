@@ -1,0 +1,392 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "witchery_rewitched:item/circle_talisman/base"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 0.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xxx"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 1.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rxx"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 2.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_ixx"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 3.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_oxx"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 10.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xrx"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 11.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rrx"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 12.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_irx"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 13.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_orx"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 20.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xix"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 21.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rix"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 22.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_iix"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 23.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_oix"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 30.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xox"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 31.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rox"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 32.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_iox"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 33.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_oox"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 100.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xxr"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 101.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rxr"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 102.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_ixr"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 103.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_oxr"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 110.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xrr"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 111.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rrr"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 112.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_irr"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 113.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_orr"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 120.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xir"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 121.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rir"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 122.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_iir"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 123.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_oir"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 130.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xor"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 131.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_ror"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 132.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_ior"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 133.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_oor"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 200.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xxi"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 201.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rxi"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 202.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_ixi"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 203.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_oxi"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 210.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xri"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 211.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rri"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 212.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_iri"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 213.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_ori"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 220.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xii"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 221.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rii"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 222.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_iii"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 223.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_oii"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 230.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xoi"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 231.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_roi"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 232.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_ioi"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 233.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_ooi"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 300.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xxo"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 301.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rxo"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 302.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_ixo"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 303.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_oxo"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 310.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xro"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 311.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rro"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 312.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_iro"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 313.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_oro"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 320.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xio"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 321.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_rio"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 322.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_iio"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 323.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_oio"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 330.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_xoo"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 331.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_roo"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 332.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_ioo"
+    },
+    {
+      "predicate": {
+        "witchery_rewitched:circle": 333.0
+      },
+      "model": "witchery_rewitched:item/circle_talisman_ooo"
+    }
+  ]
+}

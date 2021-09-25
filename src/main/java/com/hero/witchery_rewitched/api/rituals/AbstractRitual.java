@@ -54,7 +54,7 @@ public class AbstractRitual extends ForgeRegistryEntry<AbstractRitual> {
                 "0         0",
                 " 0       0 ",
                 "  0     0  ",
-                "   OO0O0   "});
+                "   00000   "});
         circleShapes.put(3, new String[]{
                 "    0000000    ",
                 "   0       0   ",
@@ -102,8 +102,6 @@ public class AbstractRitual extends ForgeRegistryEntry<AbstractRitual> {
                 used.add(circle.getFirst());
             }
         }
-        if(circles.size() < 1)
-            return def;
 
         return circles;
     }

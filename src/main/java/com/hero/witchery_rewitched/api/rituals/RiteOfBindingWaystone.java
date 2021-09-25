@@ -38,6 +38,7 @@ public class RiteOfBindingWaystone extends AbstractRitual{
     public void start(ArrayList<ItemStack> items) {
         super.start(items);
         InventoryHelper.dropItemStack(world, pos.getX(),pos.getY(), pos.getZ(), BoundWaystone.updateStackWithPos(new ItemStack(ModItems.BOUND_WAYSTONE.get()), pos, world.dimension().location().toString()));
+        active = false;
     }
 
     @Override

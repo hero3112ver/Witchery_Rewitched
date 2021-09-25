@@ -6,25 +6,25 @@
   "overrides": [
     {
       "predicate": {
-        "minecraft:critter": 0.0
+        "witchery_rewitched:critter": 0.0
       },
       "model": "witchery_rewitched:item/critter_snare_none"
     },
     {
       "predicate": {
-        "minecraft:critter": 1.0
+        "witchery_rewitched:critter": 1.0
       },
       "model": "witchery_rewitched:item/critter_snare_bat"
     },
     {
       "predicate": {
-        "minecraft:critter": 2.0
+        "witchery_rewitched:critter": 2.0
       },
       "model": "witchery_rewitched:item/critter_snare_silverfish"
     },
     {
       "predicate": {
-        "minecraft:critter": 3.0
+        "witchery_rewitched:critter": 3.0
       },
       "model": "witchery_rewitched:item/critter_snare_slime"
     }

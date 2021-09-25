@@ -1,6 +1,7 @@
 package com.hero.witchery_rewitched.data.client;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
+import com.hero.witchery_rewitched.init.ModItemModelProperties;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
@@ -48,6 +49,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         builderBlock(itemGenerated, "critter_snare_slime");
         builderBlock(itemGenerated, "critter_snare_silverfish");
         buildCritterSnare(itemGenerated);
+        buildCircleTalisman(itemGenerated);
 
         builder(itemGenerated, "uncooked_clay_pot");
         builder(itemGenerated, "cooked_clay_pot");
@@ -130,9 +132,47 @@ public class ModItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder buildCritterSnare(ModelFile itemGenerated){
         ItemModelBuilder modelBuilder = getBuilder("critter_snare").parent(itemGenerated).texture("layer0", "block/critter_snare_none");
         return modelBuilder
-                .override().predicate(new ResourceLocation("critter"), 0).model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/critter_snare_none"), existingFileHelper)).end()
-                .override().predicate(new ResourceLocation("critter"), 1).model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/critter_snare_bat"), existingFileHelper)).end()
-                .override().predicate(new ResourceLocation("critter"), 2).model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/critter_snare_silverfish"), existingFileHelper)).end()
-                .override().predicate(new ResourceLocation("critter"), 3).model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/critter_snare_slime"), existingFileHelper)).end();
+                .override().predicate(new ResourceLocation(WitcheryRewitched.MODID, "critter"), 0).model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/critter_snare_none"), existingFileHelper)).end()
+                .override().predicate(new ResourceLocation(WitcheryRewitched.MODID, "critter"), 1).model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/critter_snare_bat"), existingFileHelper)).end()
+                .override().predicate(new ResourceLocation(WitcheryRewitched.MODID, "critter"), 2).model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/critter_snare_silverfish"), existingFileHelper)).end()
+                .override().predicate(new ResourceLocation(WitcheryRewitched.MODID, "critter"), 3).model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/critter_snare_slime"), existingFileHelper)).end();
+    }
+
+    private ItemModelBuilder buildCircleTalisman(ModelFile itemGenerated){
+        char[] circles = {'x','r','i','o'};
+        for(int i = 0; i < 4; i++){
+            for(int x = 0; x < 4; x++){
+                for(int z = 0; z < 4; z++){
+                    ItemModelBuilder builder = getBuilder("circle_talisman_" + circles[i] + circles[x] + circles[z]).parent(itemGenerated)
+                            .texture("layer0", "item/circle_talisman/base");
+                    int count  = 1;
+                    if(i != 0){
+                        builder.texture("layer" + count, "item/circle_talisman/" + circles[i] + 1);
+                        count++;
+                    }
+                    if(x != 0){
+                        builder.texture("layer" + count, "item/circle_talisman/" + circles[x] + 2);
+                        count++;
+                    }
+                    if(z != 0){
+                        builder.texture("layer" + count, "item/circle_talisman/" + circles[z] + 3);
+                    }
+                }
+            }
+        }
+
+
+        ItemModelBuilder modelBuilder = getBuilder("circle_talisman").parent(itemGenerated).texture("layer0", "item/circle_talisman/base");
+        // Sigdigit mappings, 0 = none, 1 = ritual chalk, 2 = infernal chalk, 3 = otherwhere chalk, 1s = 1st circle, 10s = 2nd  circle, 100s = 3rd circle
+        for (int i = 0; i < 4; i++) {
+            for (int x = 0; x < 4; x++) {
+                for (int z = 0; z < 4; z++) {
+                    modelBuilder.override().predicate(new ResourceLocation(WitcheryRewitched.MODID, "circle"), ModItemModelProperties.getTalismanPredicate(circles[z] + "" + circles[x] + circles[i]))
+                            .model(new ModelFile.ExistingModelFile(new ResourceLocation(WitcheryRewitched.MODID, "item/circle_talisman_" + circles[z] + circles[x] + circles[i]), existingFileHelper)).end();
+                }
+            }
+        }
+        return modelBuilder;
+
     }
 }

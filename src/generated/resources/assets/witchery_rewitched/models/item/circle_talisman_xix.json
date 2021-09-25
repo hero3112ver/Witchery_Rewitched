@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "witchery_rewitched:item/circle_talisman/base",
+    "layer1": "witchery_rewitched:item/circle_talisman/i2"
+  }
+}

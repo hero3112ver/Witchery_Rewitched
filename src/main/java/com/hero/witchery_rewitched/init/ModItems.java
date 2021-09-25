@@ -71,6 +71,8 @@ public class ModItems {
     public static final RegistryObject<Item> BOUND_WAYSTONE =                   createItem("bound_waystone", () -> new BoundWaystone(new Item.Properties()));
     public static final RegistryObject<Item> ENDER_DEW =                        createItem("ender_dew");
 
+    public static final RegistryObject<Item> CIRCLE_TALISMAN =                  createItem("circle_talisman", () -> new CircleTalisman(getBaseProps()));
+
     public static RegistryObject<Item> createItem(String name)
     {
         return RegistryHandler.ITEMS.register(name,
