@@ -120,6 +120,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated, "waystone");
         builder(itemGenerated, "bound_waystone");
         builder(itemGenerated, "ender_dew");
+        builder(itemGenerated, "ent_twig");
+        builder(itemGenerated, "mutating_sprig");
     }
 
     private ItemModelBuilder builder(ModelFile itemGenerated, String name) {

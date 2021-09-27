@@ -70,6 +70,8 @@ public class ModItems {
     public static final RegistryObject<Item> WAYSTONE =                         createItem("waystone", () -> new Waystone(getBaseProps()));
     public static final RegistryObject<Item> BOUND_WAYSTONE =                   createItem("bound_waystone", () -> new BoundWaystone(new Item.Properties()));
     public static final RegistryObject<Item> ENDER_DEW =                        createItem("ender_dew");
+    public static final RegistryObject<Item> ENT_TWIG =                         createItem("ent_twig");
+    public static final RegistryObject<Item> MUTATING_SPRING =                  createItem("mutating_sprig", () -> new MutatingSprig(getBaseProps()));
 
     public static final RegistryObject<Item> CIRCLE_TALISMAN =                  createItem("circle_talisman", () -> new CircleTalisman(getBaseProps()));
 

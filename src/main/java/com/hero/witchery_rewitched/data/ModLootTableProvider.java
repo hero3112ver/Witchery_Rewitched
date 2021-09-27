@@ -176,7 +176,7 @@ public class ModLootTableProvider extends LootTableProvider {
         @Override
         protected void addTables() {
             add(ModEntities.MANDRAKE.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(3)).add(ItemLootEntry.lootTableItem(ModItems.MANDRAKE_ROOT.get())).add(ItemLootEntry.lootTableItem(ModItems.MANDRAKE_SEEDS.get()))));
-            add(ModEntities.ENT.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(3)).add(ItemLootEntry.lootTableItem(Items.STICK))));
+            add(ModEntities.ENT.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(3)).add(ItemLootEntry.lootTableItem(ModItems.ENT_TWIG.get()))));
             add(ModEntities.TOAD.get(), LootTable.lootTable());
         }
     }
