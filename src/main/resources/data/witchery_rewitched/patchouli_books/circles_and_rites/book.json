@@ -2,6 +2,6 @@
   "name": "The Lexicon of Witching",
   "landing_text": "First iteration of the book",
   "model": "witchery_rewitched:circles_and_rites",
-  "creative_tab": "witchrewitchedtab",
+  "creative_tab": "witchery_rewitched",
   "version": 1
 }
