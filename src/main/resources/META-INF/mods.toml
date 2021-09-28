@@ -5,7 +5,7 @@ license="All rights reserved"
 [[mods]] #mandatory
     modId="witchery_rewitched"
     version="${file.jarVersion}"
-    displayName="Witchery: The Rewitchening" #mandatory
+    displayName="Witchery: Rewitched" #mandatory
     logoFile="examplemod.png" #optional
     credits="Eminoph the original creator of witchery" #optional
     authors="hero3112" #optional
