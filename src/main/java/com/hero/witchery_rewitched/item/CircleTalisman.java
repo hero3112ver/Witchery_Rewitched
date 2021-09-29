@@ -58,7 +58,8 @@ public class CircleTalisman extends Item {
                         Block blockAt = world.getBlockState(pos.offset(posX,0,posZ)).getBlock();
                         if(circle[i].charAt(x) == '0' ){
                             if(simulate){
-                                if(blockAt != Blocks.AIR && !world.getBlockState(pos.offset(posX,-1,posZ)).isFaceSturdy(world,pos.offset(posX, -1, posZ), Direction.UP)) return false;
+                                if(blockAt != Blocks.AIR || !world.getBlockState(pos.offset(posX,-1,posZ)).isFaceSturdy(world,pos.offset(posX, -1, posZ), Direction.UP))
+                                    return false;
                             }else{
                                 if(nbt.charAt(z) == 'r')
                                     world.setBlockAndUpdate(pos.offset(posX, 0, posZ), ModBlocks.RITUAL_GLYPH.get().defaultBlockState().setValue(GlyphBlock.VARIANT,world.random.nextInt(9)).setValue(GlyphBlock.DIRECTION,dirs[world.random.nextInt(4)]));
