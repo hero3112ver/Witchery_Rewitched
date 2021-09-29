@@ -13,6 +13,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.OcelotEntity;
 import net.minecraft.inventory.IInventory;
@@ -65,7 +66,7 @@ public class MutatingSprig extends Item {
         }
 
         // This is hardcoded, and I really don't care right now
-        if(snared.size() > 1){
+        if(world.getBlockState(pos.offset(0,-1,0)).getBlock() == Blocks.WATER){
             if(tryToad(block, entities, snared, items, world)){
                 for(BlockPos grassperPos : items){
                     ((IInventory)world.getBlockEntity(grassperPos)).removeItem(0,1);
@@ -81,7 +82,22 @@ public class MutatingSprig extends Item {
                 }
                 entities.stream().map(entity -> entity instanceof CatEntity || entity instanceof OcelotEntity ? entity : null).collect(Collectors.toList()).get(0).remove();
             }
+            else if(tryCritterSnare(block, pos, entities, world)){
+                entities.stream().map(entity -> entity instanceof ZombieEntity ? entity : null).collect(Collectors.toList()).get(0).remove();
+                world.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
+                world.setBlockAndUpdate(pos.offset(0,0,1), ModBlocks.CRITTER_SNARE.get().defaultBlockState());
+                world.setBlockAndUpdate(pos.offset(0,0,-1), ModBlocks.CRITTER_SNARE.get().defaultBlockState());
+                world.setBlockAndUpdate(pos.offset(1,0,0), ModBlocks.CRITTER_SNARE.get().defaultBlockState());
+                world.setBlockAndUpdate(pos.offset(-1,0,0), ModBlocks.CRITTER_SNARE.get().defaultBlockState());
+            }
+            else if(tryGrassper(block, pos, world)){
+                world.setBlockAndUpdate(pos.offset(0,0,1), ModBlocks.GRASSPER.get().defaultBlockState());
+                world.setBlockAndUpdate(pos.offset(0,0,-1), ModBlocks.GRASSPER.get().defaultBlockState());
+                world.setBlockAndUpdate(pos.offset(1,0,0), ModBlocks.GRASSPER.get().defaultBlockState());
+                world.setBlockAndUpdate(pos.offset(-1,0,0), ModBlocks.GRASSPER.get().defaultBlockState());
+            }
         }
+
         return super.useOn(pContext);
     }
 
@@ -118,5 +134,31 @@ public class MutatingSprig extends Item {
         }
 
         return count >= 3;
+    }
+
+    private boolean tryGrassper(Block block, BlockPos pos, World world){
+        if(block != Blocks.CHEST) return false;
+
+        int[][] dirs = {{1,0},{0,1},{-1,0},{0,-1}};
+
+        for(int i = 0; i < 4; i++){
+            if(world.getBlockState(pos.offset(dirs[i][0], 0, dirs[i][1])).getBlock() != Blocks.GRASS) return false;
+        }
+        return true;
+    }
+
+    private boolean tryCritterSnare(Block block, BlockPos pos, List<Entity> entities, World world){
+        if(block != Blocks.COBWEB) return false;
+
+        int[][] dirs = {{1,0},{0,1},{-1,0},{0,-1}};
+
+        for(int i = 0; i < 4; i++){
+            if(world.getBlockState(pos.offset(dirs[i][0], 0, dirs[i][1])).getBlock() != ModBlocks.ALDER_SAPLING.get()) return false;
+        }
+
+        for(Entity entity : entities){
+            if(entity instanceof ZombieEntity) return true;
+        }
+        return false;
     }
 }
