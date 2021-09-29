@@ -104,7 +104,7 @@ dependencies {
 }
 
 jar {
-    /*manifest(({
+    manifest(({
         attributes([
                 "Specification-Title"     : "witchery_rewitched",
                 "Specification-Vendor"    : "",
@@ -114,7 +114,7 @@ jar {
                 "Implementation-Vendor"   : "examplemodsareus",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
-    } */
+    }))
 }
 
 
@@ -123,9 +123,9 @@ jar.finalizedBy('reobfJar')
 
 publishing {
     publications {
-        /*mavenJava(MavenPublication) {
+        mavenJava(MavenPublication) {
             artifact jar
-        }*/
+        }
     }
     repositories {
         maven {
