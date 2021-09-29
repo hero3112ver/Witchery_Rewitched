@@ -11,7 +11,12 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -20,6 +25,8 @@ public class GrassperTileEntity extends TileEntity implements IInventory {
 
     int INVENTORY_SIZE = 1;
     public NonNullList<ItemStack> items = NonNullList.withSize(INVENTORY_SIZE, ItemStack.EMPTY);
+    private LazyOptional<IItemHandlerModifiable> itemHandler;
+
     public GrassperTileEntity() {
         super(ModTileEntities.GRASSPER.get());
     }
@@ -137,5 +144,32 @@ public class GrassperTileEntity extends TileEntity implements IInventory {
     @Override
     public void clearContent() {
         setItem(0, ItemStack.EMPTY);
+    }
+
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+        if (!this.remove && cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            if (this.itemHandler == null)
+                this.itemHandler = net.minecraftforge.common.util.LazyOptional.of(this::newHandler);
+            return this.itemHandler.cast();
+        }
+        return super.getCapability(cap, side);
+    }
+
+    private net.minecraftforge.items.IItemHandlerModifiable newHandler() {
+        BlockState state = this.getBlockState();
+        if (!(state.getBlock() instanceof GrassperBlock)) {
+            return new net.minecraftforge.items.wrapper.InvWrapper(this);
+        }
+        IInventory inv = this;
+        return new net.minecraftforge.items.wrapper.InvWrapper(inv);
+    }
+
+    @Override
+    protected void invalidateCaps() {
+        super.invalidateCaps();
+        if (itemHandler != null)
+            itemHandler.invalidate();
     }
 }

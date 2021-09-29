@@ -23,7 +23,7 @@ public class CritterSnareTileEntity extends TileEntity {
         entity.save(entityData);
     }
 
-    public void releaseEntity(){
+    public void releaseEntity(boolean inWorld){
 
         Entity entity = null;
         String name = entityData.getString("id");
@@ -44,7 +44,8 @@ public class CritterSnareTileEntity extends TileEntity {
         }
         if(entity != null) {
             entity.setPos(worldPosition.getX(), worldPosition.getY(), worldPosition.getZ());
-            level.addFreshEntity(entity);
+            if(inWorld)
+                level.addFreshEntity(entity);
             entityData = new CompoundNBT();
             lastReleaseTime = level.getDayTime();
         }

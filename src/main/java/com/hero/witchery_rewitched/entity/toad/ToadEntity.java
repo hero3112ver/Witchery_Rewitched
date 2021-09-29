@@ -48,11 +48,16 @@ public class ToadEntity extends TameableEntity implements IAnimatable {
     private boolean wasOnGround;
 
     //TODO: Make tameable entity easier and implemented
+    public ToadEntity(World p_i48574_2_){
+        this(ModEntities.TOAD.get(), p_i48574_2_);
+    }
+
     public ToadEntity(EntityType<? extends TameableEntity> p_i48574_1_, World p_i48574_2_) {
         super(p_i48574_1_, p_i48574_2_);
         this.jumpControl = new ToadEntity.JumpHelperController(this);
         this.moveControl = new ToadEntity.MoveHelperController(this);
     }
+
     public ToadEntity(FMLPlayMessages.SpawnEntity message, World world) {
         this(ModEntities.TOAD.get(), world);
     }

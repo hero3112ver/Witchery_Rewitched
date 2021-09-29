@@ -49,9 +49,10 @@ public class CritterSnareBlock extends Block{
         return new CritterSnareTileEntity();
     }
 
-    private boolean hasEntity(BlockState state){
+    private static  boolean hasEntity(BlockState state){
         return state.getValue(HAS_ENTITY) != CritterEnum.NONE;
     }
+    public static CritterEnum getEntity(BlockState state) { return state.getValue(HAS_ENTITY);}
 
     @Override
     public ActionResultType use(BlockState pState, World pLevel, BlockPos pPos, PlayerEntity pPlayer, Hand pHand, BlockRayTraceResult pHit) {
@@ -61,7 +62,7 @@ public class CritterSnareBlock extends Block{
         if(pPlayer.isCrouching() && hasEntity(pState)){
             if(pLevel.getBlockEntity(pPos) instanceof CritterSnareTileEntity){
                 CritterSnareTileEntity te = (CritterSnareTileEntity) pLevel.getBlockEntity(pPos);
-                te.releaseEntity();
+                te.releaseEntity(true);
                 pLevel.setBlockAndUpdate(pPos, pState.setValue(HAS_ENTITY, CritterEnum.NONE));
             }
         }
