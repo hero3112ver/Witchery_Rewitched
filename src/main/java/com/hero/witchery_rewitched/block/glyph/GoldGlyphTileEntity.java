@@ -3,6 +3,7 @@ package com.hero.witchery_rewitched.block.glyph;
 import com.hero.witchery_rewitched.WitcheryRewitched;
 import com.hero.witchery_rewitched.api.rituals.AbstractRitual;
 import com.hero.witchery_rewitched.block.plants.grassper.GrassperTileEntity;
+import com.hero.witchery_rewitched.config.WitcheryRewitchedConfig;
 import com.hero.witchery_rewitched.crafting.recipe.ModRecipes;
 import com.hero.witchery_rewitched.crafting.recipe.RitualRecipe;
 import com.hero.witchery_rewitched.init.ModItems;
@@ -33,7 +34,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 public class GoldGlyphTileEntity extends TileEntity implements  ITickableTileEntity{
-    public final static int GATHER_TIME = WitcheryRewitched.DEBUG ? 1 : 20;
+    public final static int GATHER_TIME = WitcheryRewitchedConfig.Server.debug.get() ? 1 : 20;
     private boolean gathering = false;
     private UUID caster = null;
     private final List<List<Item>> gatherQueue = new ArrayList<>();

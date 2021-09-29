@@ -6,6 +6,7 @@ import com.hero.witchery_rewitched.api.capabilities.player.PlayerCapability;
 import com.hero.witchery_rewitched.api.capabilities.poppet_shelf.PoppetShelfCapability;
 import com.hero.witchery_rewitched.api.capabilities.poppet_worlds.PoppetWorldCapability;
 import com.hero.witchery_rewitched.block.plants.MandrakeBlock;
+import com.hero.witchery_rewitched.config.WitcheryRewitchedConfig;
 import com.hero.witchery_rewitched.data.DataGenerators;
 import com.hero.witchery_rewitched.data.loot.GrassDropModifier;
 import com.hero.witchery_rewitched.init.*;
@@ -41,6 +42,7 @@ public class SideProxy implements IProxy{
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(DataGenerators::gatherData);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
+        WitcheryRewitchedConfig.initialize();
 
         registerEvent(SideProxy::serverStarted);
         registerEvent(SideProxy::serverStopping);

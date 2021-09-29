@@ -1,6 +1,7 @@
 package com.hero.witchery_rewitched.block.witch_oven;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
+import com.hero.witchery_rewitched.config.WitcheryRewitchedConfig;
 import com.hero.witchery_rewitched.crafting.recipe.ModRecipes;
 import com.hero.witchery_rewitched.crafting.recipe.OvenCookingRecipe;
 import com.hero.witchery_rewitched.init.ModBlocks;
@@ -43,7 +44,7 @@ import java.util.List;
 
 
 public class WitchOvenTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerExtraData, ISidedInventory {
-    public static float WORKTIME = WitcheryRewitched.DEBUG ? 2*20 : 300;
+    public static float WORKTIME = WitcheryRewitchedConfig.Server.debug.get() ? 2*20 : 300;
     private int progress = 0;
     private int fuelTicks = 0;
     private int totalFuelTicks = 0;

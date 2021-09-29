@@ -3,6 +3,7 @@ package com.hero.witchery_rewitched.block.distillery;
 import com.hero.witchery_rewitched.WitcheryRewitched;
 import com.hero.witchery_rewitched.block.INamedContainerExtraData;
 import com.hero.witchery_rewitched.block.altar.AltarTileEntity;
+import com.hero.witchery_rewitched.config.WitcheryRewitchedConfig;
 import com.hero.witchery_rewitched.crafting.recipe.DistilleryRecipe;
 import com.hero.witchery_rewitched.crafting.recipe.ModRecipes;
 import com.hero.witchery_rewitched.init.ModItems;
@@ -42,8 +43,8 @@ import java.util.List;
 import java.util.Map;
 
 public class DistilleryTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerExtraData, ISidedInventory {
-    public static final float WORKTIME = WitcheryRewitched.DEBUG ?  2*20 : 150;
-    private static final float UPDATE_TIME = WitcheryRewitched.DEBUG ? 5 : 20;
+    public static final float WORKTIME = WitcheryRewitchedConfig.Server.debug.get() ?  2*20 : 150;
+    private static final float UPDATE_TIME = WitcheryRewitchedConfig.Server.debug.get() ? 5 : 20;
     private BlockPos altar;
     private int progress = 0;
 

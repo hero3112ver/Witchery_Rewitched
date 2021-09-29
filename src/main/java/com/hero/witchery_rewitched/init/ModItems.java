@@ -1,6 +1,7 @@
 package com.hero.witchery_rewitched.init;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
+import com.hero.witchery_rewitched.config.WitcheryRewitchedConfig;
 import com.hero.witchery_rewitched.item.*;
 import com.hero.witchery_rewitched.item.ChalkBase;
 import net.minecraft.item.*;
@@ -93,5 +94,5 @@ public class ModItems {
         return new Food.Builder().nutrition(hunger).saturationMod(saturation).build();
     }
 
-    public static void register(){if(WitcheryRewitched.DEBUG){createItem("debug", ()  -> new Debug(getBaseProps()));}};
+    public static void register(){if(WitcheryRewitchedConfig.Server.debug.get()){createItem("debug", ()  -> new Debug(getBaseProps()));}};
 }

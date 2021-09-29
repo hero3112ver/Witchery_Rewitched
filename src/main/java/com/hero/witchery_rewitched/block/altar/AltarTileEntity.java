@@ -4,12 +4,14 @@ import com.hero.witchery_rewitched.WitcheryRewitched;
 import com.hero.witchery_rewitched.api.capabilities.altar.AltarLocationCapability;
 import com.hero.witchery_rewitched.api.capabilities.altar.IAltarLocations;
 import com.hero.witchery_rewitched.block.INamedContainerExtraData;
+import com.hero.witchery_rewitched.config.WitcheryRewitchedConfig;
 import com.hero.witchery_rewitched.init.ModBlocks;
 import com.hero.witchery_rewitched.init.ModTags;
 import com.hero.witchery_rewitched.init.ModTileEntities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.WitherRoseBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -37,7 +39,7 @@ import java.util.*;
 import java.util.List;
 
 public class AltarTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerExtraData {
-    private final static int UPDATE_RATE = WitcheryRewitched.DEBUG ? 20 : 100;
+    private final static int UPDATE_RATE = WitcheryRewitchedConfig.Server.debug.get() ? 20 : 100;
 
     private int rechargeRate;
     private int maxEnergy;
@@ -179,7 +181,7 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
             return;
 
         int rate = 1;
-        int range = 16;
+        int range = WitcheryRewitchedConfig.Server.altarRadius.get();
         int power = 0;
         AltarPowerer powerer = new AltarPowerer();
         if(blocks.contains(Blocks.SKELETON_SKULL) && blocks.contains(Blocks.WITHER_SKELETON_SKULL))
@@ -239,7 +241,7 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
         if(!altarLocations.isPresent())
             return null;
 
-        for(BlockPos altar2 :altarLocations.orElse(new AltarLocationCapability()).getAltars() ) {
+        for(BlockPos altar2 : altarLocations.orElse(new AltarLocationCapability()).getAltars() ) {
             TileEntity te = world.getBlockEntity(altar2);
             if (te instanceof AltarTileEntity)
                 if (((AltarTileEntity) te).isInRange(pos)) {
@@ -265,9 +267,9 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
     }
 
     public boolean isInRange(BlockPos pos){
-        if(pos.closerThan(this.worldPosition, 16))
+        if(pos.closerThan(this.worldPosition, WitcheryRewitchedConfig.Server.altarRadius.get()))
             return true;
-        else return pos.closerThan(this.worldPosition, 32) && getBlocksAboveAltar().contains(ModBlocks.ARTHANA.get());
+        else return pos.closerThan(this.worldPosition, WitcheryRewitchedConfig.Server.altarRadius.get() * 2) && getBlocksAboveAltar().contains(ModBlocks.ARTHANA.get());
     }
 
     @Override

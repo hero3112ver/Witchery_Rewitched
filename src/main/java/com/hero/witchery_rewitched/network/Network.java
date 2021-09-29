@@ -1,6 +1,7 @@
 package com.hero.witchery_rewitched.network;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
+import com.hero.witchery_rewitched.config.WitcheryRewitchedConfig;
 import com.hero.witchery_rewitched.network.packets.CovenSyncPacket;
 import com.hero.witchery_rewitched.network.packets.WitchOvenLocationPacket;
 import net.minecraft.client.network.play.ClientPlayNetHandler;
@@ -21,7 +22,7 @@ public class Network {
     public static final String VERSION = "wrb-net-0";
     private static final Pattern NET_VERSION_PATTERN = Pattern.compile("wrb-net-\\d+$");
     private static final Pattern MOD_VERSION_PATTERN = Pattern.compile("^\\d+\\.\\d+\\.\\d+$");
-    private static final int SYNC_FREQUENCY = WitcheryRewitched.DEBUG? 20 : 600;
+    private static final int SYNC_FREQUENCY = WitcheryRewitchedConfig.Server.debug.get() ? 20 : 600;
 
     public static SimpleChannel channel;
 

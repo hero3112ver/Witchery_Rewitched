@@ -1,5 +1,6 @@
 package com.hero.witchery_rewitched;
 
+import com.hero.witchery_rewitched.config.WitcheryRewitchedConfig;
 import com.hero.witchery_rewitched.init.ModItems;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -14,7 +15,6 @@ import software.bernie.geckolib3.GeckoLib;
 @Mod(WitcheryRewitched.MODID)
 public class WitcheryRewitched
 {
-    public static final boolean DEBUG = false;
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "witchery_rewitched";
     public static IProxy PROXY;
