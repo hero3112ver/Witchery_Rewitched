@@ -253,6 +253,14 @@ public class ModRecipesProvider extends RecipeProviderHelper {
                 .unlockedBy("has_item", has(ModBlocks.FUME_FUNNEL.get()))
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(ModItems.CIRCLE_TALISMAN.get())
+                .define('g', Items.GOLD_NUGGET).define('i', Items.GOLD_INGOT).define('d', Items.DIAMOND)
+                .pattern("gig")
+                .pattern("idi")
+                .pattern("gig")
+                .unlockedBy("has_item", has(Items.DIAMOND))
+                .save(consumer);
+
         for(int i = 0; i < rawFood.length; i++) {
             WitchOvenRecipeBuilder.recipeBuilder(cookedFood[i], ModItems.FOUL_FUME.get())
                     .addIngredient(rawFood[i])
@@ -299,6 +307,11 @@ public class ModRecipesProvider extends RecipeProviderHelper {
                 .addIngredient(ModItems.MANDRAKE_ROOT.get())
                 .addIngredient(Items.GOLD_NUGGET)
                 .addIngredient(ModItems.RITUAL_CHALK.get())
+                .build(consumer);
+        WitchCauldronRecipeBuilder.recipeBuilder(ModItems.MUTATING_SPRING.get(), 1, 1800)
+                .addIngredient(Items.NETHER_WART)
+                .addIngredient(ModItems.ENT_TWIG.get())
+                .addIngredient(ModItems.MUTANDIS_EXTREMIS.get())
                 .build(consumer);
 
         // Distillery Recipes

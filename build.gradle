@@ -16,7 +16,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 
-version = '0.3.1'
+version = '0.3.2'
 group = 'com.hero.witchery_rewitched'
 archivesBaseName = 'witchery_rewitched'
 
