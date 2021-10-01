@@ -1,7 +1,7 @@
 package com.hero.witchery_rewitched;
 
 import com.hero.witchery_rewitched.api.capabilities.altar.AltarLocationCapability;
-import com.hero.witchery_rewitched.api.capabilities.coven.WitcheryDataCapability;
+import com.hero.witchery_rewitched.api.capabilities.witchery_data.WitcheryDataCapability;
 import com.hero.witchery_rewitched.api.capabilities.player.PlayerCapability;
 import com.hero.witchery_rewitched.api.capabilities.poppet_shelf.PoppetShelfCapability;
 import com.hero.witchery_rewitched.api.capabilities.poppet_worlds.PoppetWorldCapability;
@@ -9,6 +9,7 @@ import com.hero.witchery_rewitched.block.plants.MandrakeBlock;
 import com.hero.witchery_rewitched.config.WitcheryRewitchedConfig;
 import com.hero.witchery_rewitched.data.DataGenerators;
 import com.hero.witchery_rewitched.data.loot.GrassDropModifier;
+import com.hero.witchery_rewitched.entity.ent.EntEntity;
 import com.hero.witchery_rewitched.init.*;
 import com.hero.witchery_rewitched.item.PoppetBase;
 import com.hero.witchery_rewitched.network.Network;
@@ -48,6 +49,8 @@ public class SideProxy implements IProxy{
         registerEvent(SideProxy::serverStopping);
         registerEvent(PlayerCapability::playerSleepInBed);
         registerEvent(WitcheryDataCapability::cloneEvent);
+        registerEvent(WitcheryDataCapability::onBlockBreak);
+        registerEvent(EntEntity::damageEnt);
         registerEvent(MandrakeBlock::onBroken);
         registerEvent(PoppetBase::onDeath);
         registerEvent(PoppetBase::onItemDestroy);

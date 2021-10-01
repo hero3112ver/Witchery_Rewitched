@@ -51,7 +51,6 @@ public class RiteOfTotalEclipse extends AbstractRitual{
         LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(world);
         lightningboltentity.moveTo(Vector3d.atBottomCenterOf(pos));
         lightningboltentity.setVisualOnly(true);
-        world.addFreshEntity(lightningboltentity);
         ((ServerWorld)world).playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.LIGHTNING_BOLT_THUNDER, SoundCategory.WEATHER, .5f,1);
         this.active = false;
     }

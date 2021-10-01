@@ -37,7 +37,7 @@ public class ModEntities {
             EntEntity::new,
             EntityClassification.MONSTER,
             EntEntity::new,
-            3f, 3f);
+            1.5f, 3f);
 
     public static RegistryObject<EntityType<ToadEntity>> TOAD = register("toad",
             ToadEntity::new,

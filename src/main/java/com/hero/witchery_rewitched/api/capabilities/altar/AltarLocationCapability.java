@@ -1,8 +1,6 @@
 package com.hero.witchery_rewitched.api.capabilities.altar;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
-import com.hero.witchery_rewitched.api.capabilities.coven.IWitcheryData;
-import com.hero.witchery_rewitched.api.capabilities.coven.WitcheryDataCapability;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.NBTUtil;

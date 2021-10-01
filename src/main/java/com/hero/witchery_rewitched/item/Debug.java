@@ -1,17 +1,11 @@
 package com.hero.witchery_rewitched.item;
 
 import com.hero.witchery_rewitched.api.capabilities.altar.AltarLocationCapability;
-import com.hero.witchery_rewitched.api.capabilities.coven.WitcheryDataCapability;
-import com.hero.witchery_rewitched.api.capabilities.poppet_worlds.IPoppetWorlds;
-import com.hero.witchery_rewitched.api.capabilities.poppet_worlds.PoppetWorldCapability;
-import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.common.util.LazyOptional;
 
 public class Debug extends Item {
     public Debug(Properties properties) {

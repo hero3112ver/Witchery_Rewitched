@@ -1,11 +1,12 @@
-package com.hero.witchery_rewitched.api.capabilities.coven;
-
-import java.util.List;
-import java.util.UUID;
+package com.hero.witchery_rewitched.api.capabilities.witchery_data;
 
 public interface IWitcheryData {
     int getCovenSize();
     void setCovenSize(int size);
+
+    int getEntChance();
+    void setEntChance(int chance);
+    void copyData(IWitcheryData data);
 //    Implement curses like rituals
 //    List<AbstractCurse> getCurses();
 //    boolean addCurse(String curse, int intensity);

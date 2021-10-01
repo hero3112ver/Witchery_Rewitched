@@ -12,12 +12,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class ModBlockTagsProvider extends BlockTagsProvider {
-    @ObjectHolder("witchery_rewitched:rowan_sapling")
-    public static final Block ROWAN_SAPLING = null;
-    @ObjectHolder("witchery_rewitched:alder_sapling")
-    public static final Block ALDER_SAPLING = null;
-    @ObjectHolder("witchery_rewitched:hawthorn_sapling")
-    public static final Block HAWTHORN_SAPLING = null;
 
 
     public ModBlockTagsProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
@@ -59,10 +53,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 .addTag(BlockTags.SMALL_FLOWERS)
                 .addTag(BlockTags.SAPLINGS)
                 .add(Blocks.GRASS)
-                .add(ROWAN_SAPLING)
+                .add(ModBlocks.ROWAN_SAPLING.get())
                 .add(Blocks.TALL_GRASS)
-                .add(ALDER_SAPLING)
-                .add(HAWTHORN_SAPLING)
+                .add(ModBlocks.ALDER_SAPLING.get())
+                .add(ModBlocks.HAWTHORN_SAPLING.get())
                 .add(ModBlocks.SPANISH_MOSS.get())
                 .add(ModBlocks.EMBER_MOSS.get())
                 .add(ModBlocks.GLINTWEED.get());
