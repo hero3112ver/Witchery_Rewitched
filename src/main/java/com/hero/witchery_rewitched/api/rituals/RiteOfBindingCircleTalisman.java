@@ -38,6 +38,35 @@ public class RiteOfBindingCircleTalisman extends AbstractRitual{
     }
 
     @Override
+    public boolean checkStartConditions(List<ItemStack> items) {
+        for(String[] circle : circleShapes.values()){
+            Block blockType = null;
+            boolean failRing = false;
+            for(int i = 0; i < circle[0].length(); i++){
+                for(int x = 0; x < circle[0].length(); x++){
+                    if(failRing)
+                        break;
+                    int posX = i - circle[0].length()/2;
+                    int posZ = x - circle[0].length()/2;
+                    Block blockAt = world.getBlockState(pos.offset(posX,0,posZ)).getBlock();
+                    if(circle[i].charAt(x) == '0' && blockAt instanceof GlyphBlock && blockAt != ModBlocks.GOLD_GLYPH.get()){
+                        if(blockType == null)
+                            blockType = blockAt;
+                    }
+                    else if(circle[i].charAt(x) == '0' && blockAt != ModBlocks.GOLD_GLYPH.get())
+                    {
+                        blockType = null;
+                        failRing = true;
+                        break;
+                    }
+                }
+            }
+            if(!failRing) return true;
+        }
+        return false;
+    }
+
+    @Override
     public void start(ArrayList<ItemStack> items) {
         StringBuilder nbt = new StringBuilder();
         Direction[] dirs = {Direction.NORTH, Direction.EAST, Direction.WEST, Direction.SOUTH};
