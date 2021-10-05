@@ -87,4 +87,19 @@ public class RiteOfBindingCircleTalisman extends AbstractRitual{
         world.removeBlockEntity(pos);
         super.start(items);
     }
+
+    @Override
+    public String getName() {
+        return "Rite of Binding(Circle)";
+    }
+
+    @Override
+    public String getDescription() {
+        return "Binds the currently placed circles to the talisman, consuming the circles and gold glyph.";
+    }
+
+    @Override
+    public String getRequirements() {
+        return "Available circle to place into the talisman.";
+    }
 }
