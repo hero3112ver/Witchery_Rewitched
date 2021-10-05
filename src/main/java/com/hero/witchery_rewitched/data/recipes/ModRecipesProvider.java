@@ -343,7 +343,7 @@ public class ModRecipesProvider extends RecipeProviderHelper {
         RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.WOOD_ASH.get(), Items.BLAZE_ROD, Items.COAL), Rituals.RITE_OF_BROILING, false).build(consumer);
         RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.WOOD_ASH.get(), Items.BLAZE_ROD, Items.BLAZE_POWDER, ModItems.CHARGED_ATTUNED_STONE.get()), Rituals.RITE_OF_BROILING, true).build(consumer);
         RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.WAYSTONE.get(), ModItems.ENDER_DEW.get(), Items.GLOWSTONE_DUST), Rituals.RITE_OF_BINDING_WAYSTONE, false).build(consumer);
-        RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.WAYSTONE.get(), ModItems.ENDER_DEW.get(), ModItems.WOOD_ASH.get(), ModItems.ATTUNED_STONE.get()), Rituals.RITE_OF_BINDING_WAYSTONE, true).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.WAYSTONE.get(), ModItems.ENDER_DEW.get(), ModItems.WOOD_ASH.get(), ModItems.CHARGED_ATTUNED_STONE.get()), Rituals.RITE_OF_BINDING_WAYSTONE, true).build(consumer);
         RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.CIRCLE_TALISMAN.get(), ModItems.CHARGED_ATTUNED_STONE.get(), Items.GLOWSTONE_DUST), Rituals.RITE_OF_BINDING_CIRCLE_TALISMAN, true).build(consumer);
     }
 }
