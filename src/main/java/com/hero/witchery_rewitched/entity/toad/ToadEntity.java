@@ -1,6 +1,7 @@
 package com.hero.witchery_rewitched.entity.toad;
 
 import com.hero.witchery_rewitched.init.ModEntities;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -10,6 +11,7 @@ import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -38,6 +40,8 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
+import java.util.UUID;
 
 public class ToadEntity extends TameableEntity implements IAnimatable {
 
@@ -74,6 +78,7 @@ public class ToadEntity extends TameableEntity implements IAnimatable {
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.of(Items.ROTTEN_FLESH), false));
         this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(7, new BreedGoal(this, 1.0D));
         this.goalSelector.addGoal(10, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(10, new LookRandomlyGoal(this));
         super.registerGoals();
@@ -82,7 +87,26 @@ public class ToadEntity extends TameableEntity implements IAnimatable {
     @Nullable
     @Override
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-        return null;
+        ToadEntity toad = ModEntities.TOAD.get().create(p_241840_1_);
+        UUID uuid = this.getOwnerUUID();
+        if (uuid != null) {
+            toad.setOwnerUUID(uuid);
+            toad.setTame(true);
+        }
+        return toad;
+    }
+
+    public void setOwnerUUID(@Nullable UUID p_184754_1_) {
+        this.entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable(p_184754_1_));
+    }
+
+    public void tame(PlayerEntity pPlayer) {
+        this.setTame(true);
+        this.setOwnerUUID(pPlayer.getUUID());
+        if (pPlayer instanceof ServerPlayerEntity) {
+            CriteriaTriggers.TAME_ANIMAL.trigger((ServerPlayerEntity)pPlayer, this);
+        }
+
     }
 
     @Override
@@ -99,6 +123,10 @@ public class ToadEntity extends TameableEntity implements IAnimatable {
         }
     }
 
+    @Override
+    public boolean isFood(ItemStack pStack) {
+        return pStack.getItem() == Items.ROTTEN_FLESH;
+    }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
@@ -126,6 +154,7 @@ public class ToadEntity extends TameableEntity implements IAnimatable {
     public ActionResultType mobInteract(PlayerEntity pPlayer, Hand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         Item item = itemstack.getItem();
+        this.getAge();
         if (this.level.isClientSide) {
             boolean flag = this.isOwnedBy(pPlayer) || this.isTame() || item == Items.ROTTEN_FLESH && !this.isTame();
             return flag ? ActionResultType.CONSUME : ActionResultType.PASS;

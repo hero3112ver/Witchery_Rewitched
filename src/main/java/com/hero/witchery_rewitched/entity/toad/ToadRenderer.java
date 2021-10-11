@@ -4,6 +4,7 @@ import com.hero.witchery_rewitched.WitcheryRewitched;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
+import software.bernie.geckolib3.model.provider.GeoModelProvider;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
 public class ToadRenderer extends GeoEntityRenderer<ToadEntity> {
@@ -18,4 +19,6 @@ public class ToadRenderer extends GeoEntityRenderer<ToadEntity> {
     public ResourceLocation getTextureLocation(ToadEntity pEntity) {
         return TOAD_TEXTURE;
     }
+
+
 }

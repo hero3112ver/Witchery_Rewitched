@@ -17,7 +17,7 @@ public class ToadModel extends AnimatedGeoModel<ToadEntity> {
 
 	@Override
 	public ResourceLocation getModelLocation(ToadEntity object) {
-		return new ResourceLocation(WitcheryRewitched.MODID, "geo/toad.geo.json");
+		return object.getAge() < 0 ? new ResourceLocation(WitcheryRewitched.MODID, "geo/baby_toad.geo.json"): new ResourceLocation(WitcheryRewitched.MODID, "geo/toad.geo.json");
 	}
 
 	@Override
