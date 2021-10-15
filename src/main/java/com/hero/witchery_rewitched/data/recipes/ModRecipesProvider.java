@@ -345,5 +345,7 @@ public class ModRecipesProvider extends RecipeProviderHelper {
         RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.WAYSTONE.get(), ModItems.ENDER_DEW.get(), Items.GLOWSTONE_DUST), Rituals.RITE_OF_BINDING_WAYSTONE, false).build(consumer);
         RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.WAYSTONE.get(), ModItems.ENDER_DEW.get(), ModItems.WOOD_ASH.get(), ModItems.CHARGED_ATTUNED_STONE.get()), Rituals.RITE_OF_BINDING_WAYSTONE, true).build(consumer);
         RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.CIRCLE_TALISMAN.get(), ModItems.CHARGED_ATTUNED_STONE.get(), Items.GLOWSTONE_DUST), Rituals.RITE_OF_BINDING_CIRCLE_TALISMAN, true).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.REFINED_EVIL.get(), Items.BLAZE_POWDER, Items.ENDER_PEARL), Rituals.RITE_OF_SUMMONING_DEMON, false).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.REFINED_EVIL.get(), Items.BLAZE_ROD, Items.ENDER_PEARL, ModItems.ATTUNED_STONE.get()), Rituals.RITE_OF_SUMMONING_DEMON, true).build(consumer);
     }
 }

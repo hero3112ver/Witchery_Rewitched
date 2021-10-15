@@ -9,6 +9,7 @@ import com.hero.witchery_rewitched.crafting.recipe.RitualRecipe;
 import com.hero.witchery_rewitched.init.ModItems;
 import com.hero.witchery_rewitched.init.ModTileEntities;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -40,6 +41,7 @@ public class GoldGlyphTileEntity extends TileEntity implements  ITickableTileEnt
     private final List<List<Item>> gatherQueue = new ArrayList<>();
     private final List<RitualRecipe> ritualQueue = new ArrayList<>();
     private final List<AbstractRitual> activeRituals = new ArrayList<>();
+    private final List<List<EntityType<?>>> entityQueue = new ArrayList<>();
 
 
     public ArrayList<ItemStack> items = new ArrayList<>();
@@ -77,20 +79,21 @@ public class GoldGlyphTileEntity extends TileEntity implements  ITickableTileEnt
 
         if(gatherQueue.size() > 0 && level.getGameTime() % GATHER_TIME == 0) {
             if(gather()){
-                if(gatherQueue.get(0).size() == 0) {
+                if(gatherQueue.get(0).size() == 0 && entityQueue.get(0).size() == 0) {
 
                     gatherQueue.remove(0);
+                    entityQueue.remove(0);
                     RitualRecipe rec = ritualQueue.remove(0);
 
                     // Create a new ritual of the current ritual in queue and get er goin
                     AbstractRitual ritual = rec.getRitual()
                             .createRite(worldPosition, level, caster, rec.getIngredientItems().contains(ModItems.CHARGED_ATTUNED_STONE.get()));
                     // If a ritual succeeds its start checks, gun it and start running it
-                    if(ritual.checkStartConditions(items)) {
+                    if(ritual.checkStartConditions(items) ) {
                         ritual.start(items);
                         activeRituals.add(ritual);
                     }
-                    // If a ritual fails it's start checks dump it's items
+                    // If a ritual fails its start checks dump its items
                     else spitItems(rec, new ArrayList<>());
 
                     items.clear();
@@ -183,6 +186,7 @@ public class GoldGlyphTileEntity extends TileEntity implements  ITickableTileEnt
                 List<Item> gatherList = new ArrayList<>(recipe.getIngredientItems());
                 gatherQueue.add(gatherList);
                 ritualQueue.add(recipe);
+                entityQueue.add(recipe.getRitual().getRequiredEntites());
                 flag.set(true);
             }
         });
@@ -190,11 +194,13 @@ public class GoldGlyphTileEntity extends TileEntity implements  ITickableTileEnt
     }
 
 
+    private boolean why(){return true;}
     // Honestly kinda spaghetti but this function first checks for entities in range and yoinks them, then checks grasspers on ground level around it for items in queue
     // then it returns true if it takes an item, false if it does not take an item
     private boolean gather(){
         VoxelShape area = VoxelShapes.box(worldPosition.getX() - 3, worldPosition.getY() - 3, worldPosition.getZ() -3, worldPosition.getX() + 3, worldPosition.getY() + 3, worldPosition.getZ() +3);
         assert level != null;
+
         ItemEntity entity = level.getEntities(EntityType.ITEM, area.bounds(), (item) -> gatherQueue.size() > 0 && gatherQueue.get(0).contains(item.getItem().getItem())).stream().findFirst().orElse(null);
         if(entity != null ){
             items.add(entity.getItem().copy());
@@ -219,6 +225,15 @@ public class GoldGlyphTileEntity extends TileEntity implements  ITickableTileEnt
                         return true;
                     }
                 }
+            }
+        }
+
+        if(entityQueue.size() > 0 && entityQueue.get(0).size() > 0){
+            Entity mob = level.getEntities(entityQueue.get(0).get(0), area.bounds(), Entity::isAlive).stream().findFirst().orElse(null);
+            if(mob != null) {
+                mob.remove();
+                entityQueue.get(0).remove(0);
+                return true;
             }
         }
         return false;

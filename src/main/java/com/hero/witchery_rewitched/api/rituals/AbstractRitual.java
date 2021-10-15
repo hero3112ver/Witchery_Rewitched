@@ -10,6 +10,8 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
@@ -120,6 +122,20 @@ public class AbstractRitual extends ForgeRegistryEntry<AbstractRitual> {
             return false;
         else if(requiresAltar && (getAltar() == null || !getAltar().takePower(startPower)))
             return false;
+        else if(!findEntities())
+            return false;
+        return true;
+    }
+
+    public boolean findEntities(){
+        if(REQUIRED_ENTITIES.size() == 0)
+            return true;
+        else {
+            for (EntityType<?> type: REQUIRED_ENTITIES) {
+                VoxelShape area = VoxelShapes.box(pos.getX()- 3,pos.getY(), pos.getZ()-3, pos.getX()+3, pos.getY()+3, pos.getZ()+3);
+                if(world.getEntities(type, area.bounds(),  (entity) -> entity.isAlive()).size() == 0) return false;
+            }
+        }
         return true;
     }
 
@@ -180,5 +196,9 @@ public class AbstractRitual extends ForgeRegistryEntry<AbstractRitual> {
 
     public List<Pair<Integer, GlyphBlock>> getCircles() {
         return CIRCLES;
+    }
+
+    public List<EntityType<?>> getRequiredEntites() {
+        return REQUIRED_ENTITIES;
     }
 }
