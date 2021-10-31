@@ -5,6 +5,7 @@ import com.hero.witchery_rewitched.api.capabilities.witchery_data.WitcheryDataCa
 import com.hero.witchery_rewitched.api.capabilities.player.PlayerCapability;
 import com.hero.witchery_rewitched.api.capabilities.poppet_shelf.PoppetShelfCapability;
 import com.hero.witchery_rewitched.api.capabilities.poppet_worlds.PoppetWorldCapability;
+import com.hero.witchery_rewitched.block.altar.AltarTileEntity;
 import com.hero.witchery_rewitched.block.plants.MandrakeBlock;
 import com.hero.witchery_rewitched.config.WitcheryRewitchedConfig;
 import com.hero.witchery_rewitched.data.DataGenerators;
@@ -56,6 +57,8 @@ public class SideProxy implements IProxy{
         registerEvent(PoppetBase::onItemDestroy);
         registerEvent(PoppetBase::onArmorBreak);
         registerEvent(ModEntities::registerAttributes);
+        registerEvent(AltarTileEntity::blockBroken);
+        registerEvent(AltarTileEntity::blockPlaced);
 
         registerGenericEvent(Entity.class, WitcheryDataCapability::onAttachEntityCapabilities);
         registerGenericEvent(TileEntity.class, PlayerCapability::onAttachTileEntityCapabilities);

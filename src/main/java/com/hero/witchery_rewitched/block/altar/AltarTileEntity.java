@@ -29,7 +29,12 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -39,12 +44,12 @@ import java.util.*;
 import java.util.List;
 
 public class AltarTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerExtraData {
-    private final static int UPDATE_RATE = WitcheryRewitchedConfig.Server.debug.get() ? 20 : 100;
 
     private int rechargeRate;
     private int maxEnergy;
     private int energy;
     private int config;
+    public int recalculateTimer = 0;
 
     private final IIntArray fields = new IIntArray() {
         @Override
@@ -93,24 +98,30 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
 
     public int getConfig(){return config;}
 
+    public void queueRecalculation(){
+        if(recalculateTimer == -1)
+            recalculateTimer = 20;
+    }
+
     @Override
     public void tick() {
-        if(this.level == null || this.level.isClientSide)
+        if (this.level == null || this.level.isClientSide)
             return;
 
-        if(!level.getBlockState(worldPosition).getValue(AltarBlock.MULTIBLOCK_FORMED))
+        if (!level.getBlockState(worldPosition).getValue(AltarBlock.MULTIBLOCK_FORMED))
             return;
 
-        if(energy < maxEnergy)
+        if (energy < maxEnergy)
             energy += rechargeRate;
-        else if(energy > maxEnergy)
+        else if (energy > maxEnergy)
             energy = maxEnergy;
 
         List<Block> blocks = getBlocksAboveAltar();
-        if(level.getDayTime() % UPDATE_RATE == 0)
+        if (recalculateTimer == 0) {
             calculateMaxEnergy(blocks);
-
-        calculateRechargeRate(blocks);
+            calculateRechargeRate(blocks);
+        }
+        if(recalculateTimer >= 0) recalculateTimer--;
     }
 
     public boolean takePower(int amount){
@@ -384,6 +395,31 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
                 return pair.x;
             }
         }
-
     }
+
+    @SubscribeEvent
+    public static void blockBroken(BlockEvent.BreakEvent event){
+        ((Chunk)event.getWorld().getChunk(event.getPos())).getCapability(AltarLocationCapability.INSTANCE).ifPresent((source) -> {
+            for(BlockPos altar : source.getAltars()){
+                TileEntity te = event.getWorld().getBlockEntity(altar);
+                if(te instanceof AltarTileEntity){
+                    ((AltarTileEntity)te).queueRecalculation();
+                }
+            }
+        });
+    }
+
+    @SubscribeEvent
+    public static void blockPlaced(BlockEvent.EntityPlaceEvent event){
+        ((Chunk)event.getWorld().getChunk(event.getPos())).getCapability(AltarLocationCapability.INSTANCE).ifPresent((source) -> {
+            for(BlockPos altar : source.getAltars()){
+                TileEntity te = event.getWorld().getBlockEntity(altar);
+                if(te instanceof AltarTileEntity){
+                    ((AltarTileEntity)te).queueRecalculation();
+                }
+            }
+        });
+    }
+
+
 }
