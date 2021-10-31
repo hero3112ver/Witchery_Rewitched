@@ -1,6 +1,8 @@
 package com.hero.witchery_rewitched.init;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
+import com.hero.witchery_rewitched.entity.demon.DemonEntity;
+import com.hero.witchery_rewitched.entity.demon.DemonRenderer;
 import com.hero.witchery_rewitched.entity.ent.EntEntity;
 import com.hero.witchery_rewitched.entity.ent.EntRenderer;
 import com.hero.witchery_rewitched.entity.mandrake.MandrakeEntity;
@@ -45,6 +47,12 @@ public class ModEntities {
             ToadEntity::new,
             .5f, .5f);
 
+    public static RegistryObject<EntityType<DemonEntity>> DEMON = register("demon",
+            DemonEntity::new,
+            EntityClassification.MONSTER,
+            DemonEntity::new,
+            1.5f, 3);
+
     static void register() {}
 
     @SubscribeEvent
@@ -52,6 +60,7 @@ public class ModEntities {
         event.put(MANDRAKE.get(), MandrakeEntity.registerAttributes().build());
         event.put(ENT.get(), EntEntity.registerAttributes().build());
         event.put(TOAD.get(), ToadEntity.registerAttributes().build());
+        event.put(DEMON.get(), DemonEntity.registerAttributes().build());
     }
 
     @OnlyIn (Dist.CLIENT)
@@ -59,6 +68,7 @@ public class ModEntities {
         RenderingRegistry.registerEntityRenderingHandler(MANDRAKE.get(), MandrakeRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(ENT.get(), EntRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(TOAD.get(), ToadRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(DEMON.get(), DemonRenderer::new);
     }
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, EntityType.IFactory<T> factory, EntityClassification type, BiFunction<FMLPlayMessages.SpawnEntity, World, T> customClientFactory, float width, float height){
