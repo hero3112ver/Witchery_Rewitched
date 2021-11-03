@@ -178,6 +178,7 @@ public class ModLootTableProvider extends LootTableProvider {
             add(ModEntities.MANDRAKE.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(3)).add(ItemLootEntry.lootTableItem(ModItems.MANDRAKE_ROOT.get())).add(ItemLootEntry.lootTableItem(ModItems.MANDRAKE_SEEDS.get()))));
             add(ModEntities.ENT.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(3)).add(ItemLootEntry.lootTableItem(ModItems.ENT_TWIG.get()))));
             add(ModEntities.TOAD.get(), LootTable.lootTable());
+            add(ModEntities.DEMON.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(3)).add(ItemLootEntry.lootTableItem(ModItems.DEMON_HEART.get())).add(ItemLootEntry.lootTableItem(Items.GUNPOWDER)).add(ItemLootEntry.lootTableItem(Items.MAGMA_CREAM))));
         }
     }
 }

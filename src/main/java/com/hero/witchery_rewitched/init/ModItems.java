@@ -75,6 +75,8 @@ public class ModItems {
     public static final RegistryObject<Item> MUTATING_SPRING =                  createItem("mutating_sprig", () -> new MutatingSprig(getBaseProps()));
 
     public static final RegistryObject<Item> CIRCLE_TALISMAN =                  createItem("circle_talisman", () -> new CircleTalisman(getBaseProps()));
+    public static final RegistryObject<Item> DEMON_HEART =                      createItem("demon_heart");
+    public static final RegistryObject<Item> DEMON_BLOOD =                      createItem("demon_blood");
 
     public static RegistryObject<Item> createItem(String name)
     {

@@ -4,7 +4,6 @@ import com.hero.witchery_rewitched.WitcheryRewitched;
 import com.hero.witchery_rewitched.data.client.ModBlockStateProvider;
 import com.hero.witchery_rewitched.data.client.ModItemModelProvider;
 import com.hero.witchery_rewitched.data.loot.ModLootModifierProvider;
-import com.hero.witchery_rewitched.data.recipes.ModRecipesProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

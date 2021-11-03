@@ -122,6 +122,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         builder(itemGenerated, "ender_dew");
         builder(itemGenerated, "ent_twig");
         builder(itemGenerated, "mutating_sprig");
+        builder(itemGenerated, "demon_heart");
+        builder(itemGenerated, "demon_blood");
     }
 
     private ItemModelBuilder builder(ModelFile itemGenerated, String name) {

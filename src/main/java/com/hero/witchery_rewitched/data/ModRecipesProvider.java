@@ -1,5 +1,6 @@
-package com.hero.witchery_rewitched.data.recipes;
+package com.hero.witchery_rewitched.data;
 
+import com.hero.witchery_rewitched.data.recipes.*;
 import com.hero.witchery_rewitched.init.ModBlocks;
 import com.hero.witchery_rewitched.init.ModItems;
 import com.hero.witchery_rewitched.init.ModTags;
@@ -13,11 +14,10 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.Potions;
 import net.minecraft.tags.ItemTags;
 
-import java.util.ArrayList;
+import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 public class ModRecipesProvider extends RecipeProviderHelper {
 
@@ -33,7 +33,7 @@ public class ModRecipesProvider extends RecipeProviderHelper {
 
 
     @Override
-    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
+    protected void buildShapelessRecipes(@Nonnull Consumer<IFinishedRecipe> consumer) {
         // Crafting Recipes
         ShapelessRecipeBuilder.shapeless(ModBlocks.ROWAN_PLANKS.get(), 4)
                 .requires(ModTags.Items.ROWAN_LOG)
@@ -333,6 +333,10 @@ public class ModRecipesProvider extends RecipeProviderHelper {
         DistilleryRecipeBuilder.recipeBuilder(Arrays.asList(new ItemStack(ModItems.REFINED_EVIL.get()), new ItemStack(ModItems.ODOR_OF_PURITY.get()), new ItemStack(ModItems.REEK_OF_MISFORTUNE.get()), new ItemStack(ModItems.FOUL_FUME.get())),3)
                 .addIngredient(ModItems.DIAMOND_VAPOR.get())
                 .addIngredient2(Items.GHAST_TEAR)
+                .build(consumer);
+        DistilleryRecipeBuilder.recipeBuilder(Arrays.asList(new ItemStack(ModItems.DEMON_BLOOD.get(),4), new ItemStack(ModItems.REFINED_EVIL.get())), 4)
+                .addIngredient(ModItems.DEMON_HEART.get())
+                .addIngredient2(ModItems.DIAMOND_VAPOR.get())
                 .build(consumer);
 
 
