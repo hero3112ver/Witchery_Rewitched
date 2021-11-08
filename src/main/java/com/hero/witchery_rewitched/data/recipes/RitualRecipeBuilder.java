@@ -2,14 +2,14 @@ package com.hero.witchery_rewitched.data.recipes;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.hero.witchery_rewitched.api.rituals.AbstractRitual;
+import com.hero.witchery_rewitched.util.rituals.AbstractRitual;
 import com.hero.witchery_rewitched.crafting.recipe.ModRecipes;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
-import com.hero.witchery_rewitched.api.util.NameUtils;
+import com.hero.witchery_rewitched.util.util.NameUtils;
 
 import javax.annotation.Nullable;
 import java.util.List;

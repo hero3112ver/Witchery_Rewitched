@@ -1,4 +1,4 @@
-package com.hero.witchery_rewitched.api.capabilities.altar;
+package com.hero.witchery_rewitched.util.capabilities.altar;
 
 import net.minecraft.util.math.BlockPos;
 

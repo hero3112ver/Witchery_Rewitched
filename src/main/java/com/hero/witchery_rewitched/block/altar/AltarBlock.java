@@ -1,6 +1,6 @@
 package com.hero.witchery_rewitched.block.altar;
 
-import com.hero.witchery_rewitched.api.capabilities.altar.AltarLocationCapability;
+import com.hero.witchery_rewitched.util.capabilities.altar.AltarLocationCapability;
 import com.hero.witchery_rewitched.block.INamedContainerExtraData;
 import com.hero.witchery_rewitched.init.ModBlocks;
 import net.minecraft.block.AbstractBlock;

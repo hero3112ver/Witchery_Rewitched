@@ -1,6 +1,6 @@
 package com.hero.witchery_rewitched.init;
 
-import com.hero.witchery_rewitched.api.rituals.*;
+import com.hero.witchery_rewitched.util.rituals.*;
 import net.minecraftforge.fml.RegistryObject;
 import java.util.function.Supplier;
 

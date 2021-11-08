@@ -1,6 +1,6 @@
 package com.hero.witchery_rewitched.item;
 
-import com.hero.witchery_rewitched.api.capabilities.altar.AltarLocationCapability;
+import com.hero.witchery_rewitched.util.capabilities.altar.AltarLocationCapability;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;

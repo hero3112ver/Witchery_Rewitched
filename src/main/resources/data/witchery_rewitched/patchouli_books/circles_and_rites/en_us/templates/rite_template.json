@@ -1,5 +1,5 @@
 {
-  "processor": "com.hero.witchery_rewitched.api.processors.RiteProcessor",
+  "processor": "com.hero.witchery_rewitched.util.processors.RiteProcessor",
   "name": "Something I think",
   "icon": "minecraft:written_book",
   "components": [

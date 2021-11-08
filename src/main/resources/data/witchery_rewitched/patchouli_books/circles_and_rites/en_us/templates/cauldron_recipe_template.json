@@ -1,5 +1,5 @@
 {
-  "processor": "com.hero.witchery_rewitched.api.processors.CauldronRecipeProcessor",
+  "processor": "com.hero.witchery_rewitched.util.processors.CauldronRecipeProcessor",
   "name": "Something I think",
   "icon": "minecraft:written_book",
   "components": [

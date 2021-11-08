@@ -25,7 +25,6 @@ public class WitcheryRewitchedConfig {
                        .comment("Range of the altar, defualt: 16")
                        .translation("config.wrw.server.altarRadius")
                        .defineInRange("altarRadius", 16, 0, 100);
-
                builder.pop();
            }
            spec = builder.build();

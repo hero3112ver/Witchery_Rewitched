@@ -1,7 +1,7 @@
 package com.hero.witchery_rewitched.init;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
-import com.hero.witchery_rewitched.api.rituals.AbstractRitual;
+import com.hero.witchery_rewitched.util.rituals.AbstractRitual;
 import com.hero.witchery_rewitched.crafting.recipe.ModRecipes;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;

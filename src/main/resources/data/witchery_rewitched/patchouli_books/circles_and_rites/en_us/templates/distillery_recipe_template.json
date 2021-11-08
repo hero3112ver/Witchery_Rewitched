@@ -1,5 +1,5 @@
 {
-  "processor": "com.hero.witchery_rewitched.api.processors.DistilleryRecipeProcessor",
+  "processor": "com.hero.witchery_rewitched.util.processors.DistilleryRecipeProcessor",
   "name": "Something I think",
   "icon": "minecraft:written_book",
   "components": [

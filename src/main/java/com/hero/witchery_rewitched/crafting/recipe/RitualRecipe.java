@@ -3,19 +3,14 @@ package com.hero.witchery_rewitched.crafting.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.hero.witchery_rewitched.api.rituals.AbstractRitual;
-import com.hero.witchery_rewitched.block.glyph.GoldGlyphTileEntity;
+import com.hero.witchery_rewitched.util.rituals.AbstractRitual;
 import com.hero.witchery_rewitched.init.RegistryHandler;
-import com.hero.witchery_rewitched.init.Rituals;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
@@ -24,10 +19,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RitualRecipe implements IRecipe<IInventory> {
     private ResourceLocation id;

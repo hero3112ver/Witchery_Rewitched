@@ -1,8 +1,8 @@
 package com.hero.witchery_rewitched.item;
 
-import com.hero.witchery_rewitched.api.util.PlayerUtils;
-import com.hero.witchery_rewitched.api.capabilities.poppet_shelf.PoppetShelfCapability;
-import com.hero.witchery_rewitched.api.capabilities.poppet_worlds.PoppetWorldCapability;
+import com.hero.witchery_rewitched.util.util.PlayerUtils;
+import com.hero.witchery_rewitched.util.capabilities.poppet_shelf.PoppetShelfCapability;
+import com.hero.witchery_rewitched.util.capabilities.poppet_worlds.PoppetWorldCapability;
 import com.hero.witchery_rewitched.block.poppet_shelf.PoppetShelfTileEntity;
 import com.hero.witchery_rewitched.init.ModItems;
 import com.mojang.authlib.GameProfile;
@@ -28,7 +28,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.player.PlayerDestroyItemEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

@@ -1,6 +1,6 @@
 package com.hero.witchery_rewitched.network.packets;
 
-import com.hero.witchery_rewitched.api.capabilities.witchery_data.WitcheryDataCapability;
+import com.hero.witchery_rewitched.util.capabilities.witchery_data.WitcheryDataCapability;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;

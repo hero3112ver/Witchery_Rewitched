@@ -1,8 +1,8 @@
 package com.hero.witchery_rewitched.item;
 
-import com.hero.witchery_rewitched.api.util.PlayerUtils;
-import com.hero.witchery_rewitched.api.capabilities.player.IPlayer;
-import com.hero.witchery_rewitched.api.capabilities.player.PlayerCapability;
+import com.hero.witchery_rewitched.util.util.PlayerUtils;
+import com.hero.witchery_rewitched.util.capabilities.player.IPlayer;
+import com.hero.witchery_rewitched.util.capabilities.player.PlayerCapability;
 import com.hero.witchery_rewitched.init.ModItems;
 import net.minecraft.block.BedBlock;
 import net.minecraft.entity.LivingEntity;

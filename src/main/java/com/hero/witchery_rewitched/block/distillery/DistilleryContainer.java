@@ -1,6 +1,6 @@
 package com.hero.witchery_rewitched.block.distillery;
 
-import com.hero.witchery_rewitched.api.util.SlotUtils;
+import com.hero.witchery_rewitched.util.util.SlotUtils;
 import com.hero.witchery_rewitched.init.ModContainers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

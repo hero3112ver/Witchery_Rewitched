@@ -1,19 +1,15 @@
 package com.hero.witchery_rewitched.item;
 
-import com.hero.witchery_rewitched.WitcheryRewitched;
-import com.hero.witchery_rewitched.api.rituals.AbstractRitual;
-import com.hero.witchery_rewitched.api.util.PlayerUtils;
+import com.hero.witchery_rewitched.util.rituals.AbstractRitual;
+import com.hero.witchery_rewitched.util.util.PlayerUtils;
 import com.hero.witchery_rewitched.block.glyph.GlyphBlock;
 import com.hero.witchery_rewitched.init.ModBlocks;
 import com.hero.witchery_rewitched.init.ModItems;
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;

@@ -1,7 +1,6 @@
 package com.hero.witchery_rewitched.block.glyph;
 
-import com.hero.witchery_rewitched.WitcheryRewitched;
-import com.hero.witchery_rewitched.api.rituals.AbstractRitual;
+import com.hero.witchery_rewitched.util.rituals.AbstractRitual;
 import com.hero.witchery_rewitched.block.plants.grassper.GrassperTileEntity;
 import com.hero.witchery_rewitched.config.WitcheryRewitchedConfig;
 import com.hero.witchery_rewitched.crafting.recipe.ModRecipes;
