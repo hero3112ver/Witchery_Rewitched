@@ -75,6 +75,7 @@ public class AltarBlock extends Block {
                 if (tile instanceof INamedContainerExtraData && player instanceof ServerPlayerEntity) {
                     INamedContainerExtraData te = (INamedContainerExtraData) tile;
                     NetworkHooks.openGui((ServerPlayerEntity) player, te, te::encodeExtraData);
+                    ((AltarTileEntity)te).queueRecalculation();
                     return ActionResultType.CONSUME;
                 }
             }

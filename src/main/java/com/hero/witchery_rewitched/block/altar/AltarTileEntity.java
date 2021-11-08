@@ -97,8 +97,10 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
     public int getConfig(){return config;}
 
     public void queueRecalculation(){
-        if(recalculateTimer == -1)
-            recalculateTimer = 20;
+        List<Block> blocks = getBlocksAboveAltar();
+        maxEnergy = powerer.calculateMaxEnergy(blocks);
+        rechargeRate = powerer.calculateRechargeRate(blocks);
+        recalculateTimer = 0;
     }
 
     @Override
@@ -116,12 +118,8 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
         else if (energy > maxEnergy)
             energy = maxEnergy;
 
-        List<Block> blocks = getBlocksAboveAltar();
-        if (recalculateTimer == 0) {
-            maxEnergy = powerer.calculateMaxEnergy(blocks);
-            rechargeRate = powerer.calculateRechargeRate(blocks);
-        }
-        if(recalculateTimer >= 0) recalculateTimer--;
+
+        if(recalculateTimer <= 60) recalculateTimer++;
     }
 
     public boolean takePower(int amount){
@@ -235,8 +233,7 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
         ((Chunk)event.getWorld().getChunk(event.getPos())).getCapability(AltarLocationCapability.INSTANCE).ifPresent((source) -> {
             for(BlockPos altar : source.getAltars()){
                 TileEntity te = event.getWorld().getBlockEntity(altar);
-                if(te instanceof AltarTileEntity){
-                    ((AltarTileEntity)te).queueRecalculation();
+                if(te instanceof AltarTileEntity && ((AltarTileEntity) te).powerer != null){
                     ((AltarTileEntity)te).powerer.markDirty(event.getPos(), true, event.getState().getBlock(), ((AltarTileEntity) te).getBlocksAboveAltar());
                 }
             }
@@ -248,8 +245,7 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
         ((Chunk)event.getWorld().getChunk(event.getPos())).getCapability(AltarLocationCapability.INSTANCE).ifPresent((source) -> {
             for(BlockPos altar : source.getAltars()){
                 TileEntity te = event.getWorld().getBlockEntity(altar);
-                if(te instanceof AltarTileEntity){
-                    ((AltarTileEntity)te).queueRecalculation();
+                if(te instanceof AltarTileEntity && ((AltarTileEntity) te).powerer != null){
                     ((AltarTileEntity)te).powerer.markDirty(event.getPos(), false, event.getPlacedBlock().getBlock(), ((AltarTileEntity) te).getBlocksAboveAltar());
                 }
             }
