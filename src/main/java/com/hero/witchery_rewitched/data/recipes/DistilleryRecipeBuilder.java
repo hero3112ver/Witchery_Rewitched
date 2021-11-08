@@ -11,7 +11,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-import com.hero.witchery_rewitched.api.util.NameUtils;
+import com.hero.witchery_rewitched.util.util.NameUtils;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
