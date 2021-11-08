@@ -1,10 +1,10 @@
 package com.hero.witchery_rewitched;
 
-import com.hero.witchery_rewitched.api.capabilities.altar.AltarLocationCapability;
-import com.hero.witchery_rewitched.api.capabilities.witchery_data.WitcheryDataCapability;
-import com.hero.witchery_rewitched.api.capabilities.player.PlayerCapability;
-import com.hero.witchery_rewitched.api.capabilities.poppet_shelf.PoppetShelfCapability;
-import com.hero.witchery_rewitched.api.capabilities.poppet_worlds.PoppetWorldCapability;
+import com.hero.witchery_rewitched.util.capabilities.altar.AltarLocationCapability;
+import com.hero.witchery_rewitched.util.capabilities.witchery_data.WitcheryDataCapability;
+import com.hero.witchery_rewitched.util.capabilities.player.PlayerCapability;
+import com.hero.witchery_rewitched.util.capabilities.poppet_shelf.PoppetShelfCapability;
+import com.hero.witchery_rewitched.util.capabilities.poppet_worlds.PoppetWorldCapability;
 import com.hero.witchery_rewitched.block.altar.AltarTileEntity;
 import com.hero.witchery_rewitched.block.plants.MandrakeBlock;
 import com.hero.witchery_rewitched.config.WitcheryRewitchedConfig;
@@ -14,6 +14,7 @@ import com.hero.witchery_rewitched.entity.ent.EntEntity;
 import com.hero.witchery_rewitched.init.*;
 import com.hero.witchery_rewitched.item.PoppetBase;
 import com.hero.witchery_rewitched.network.Network;
+import com.hero.witchery_rewitched.util.listeners.ListenerEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -59,6 +60,8 @@ public class SideProxy implements IProxy{
         registerEvent(ModEntities::registerAttributes);
         registerEvent(AltarTileEntity::blockBroken);
         registerEvent(AltarTileEntity::blockPlaced);
+        registerEvent(ListenerEvents::addReloadListeners);
+
 
         registerGenericEvent(Entity.class, WitcheryDataCapability::onAttachEntityCapabilities);
         registerGenericEvent(TileEntity.class, PlayerCapability::onAttachTileEntityCapabilities);

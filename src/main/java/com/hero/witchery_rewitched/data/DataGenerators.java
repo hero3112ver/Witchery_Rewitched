@@ -1,6 +1,7 @@
 package com.hero.witchery_rewitched.data;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
+import com.hero.witchery_rewitched.data.altar.AltarDataProvider;
 import com.hero.witchery_rewitched.data.client.ModBlockStateProvider;
 import com.hero.witchery_rewitched.data.client.ModItemModelProvider;
 import com.hero.witchery_rewitched.data.loot.ModLootModifierProvider;
@@ -31,5 +32,7 @@ public final class DataGenerators {
         gen.addProvider(new ModLootTableProvider(gen));
         gen.addProvider(new ModLootTableProvider(gen));
         gen.addProvider(new ModLootModifierProvider(gen));
+
+        gen.addProvider(new AltarDataProvider(gen));
     }
 }

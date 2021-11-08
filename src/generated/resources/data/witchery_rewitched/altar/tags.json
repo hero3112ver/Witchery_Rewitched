@@ -1,0 +1,34 @@
+{
+  "witchery_rewitched:witch_log": {
+    "power": 3.0,
+    "max": 100.0
+  },
+  "minecraft:logs": {
+    "power": 2.0,
+    "max": 50.0
+  },
+  "minecraft:leaves": {
+    "power": 3.0,
+    "max": 100.0
+  },
+  "minecraft:flowers": {
+    "power": 4.0,
+    "max": 30.0
+  },
+  "minecraft:corals": {
+    "power": 3.0,
+    "max": 20.0
+  },
+  "witchery_rewitched:witch_leaves": {
+    "power": 4.0,
+    "max": 50.0
+  },
+  "minecraft:saplings": {
+    "power": 4.0,
+    "max": 20.0
+  },
+  "minecraft:coral_blocks": {
+    "power": 3.0,
+    "max": 20.0
+  }
+}
