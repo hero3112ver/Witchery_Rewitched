@@ -118,7 +118,6 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
         else if (energy > maxEnergy)
             energy = maxEnergy;
 
-
         if(recalculateTimer <= 60) recalculateTimer++;
     }
 
@@ -189,9 +188,11 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
     public void load(@Nonnull BlockState state, @Nonnull CompoundNBT nbt) {
         super.load(state, nbt);
         rechargeRate = nbt.getInt("rechargerate");
-        maxEnergy = nbt.getInt("maxenergy");
-        energy = nbt.getInt("energy");
         config = nbt.getInt("config");
+        powerer = AltarPowerer.fromNBT(nbt.getCompound("altarPowerer"), this.getLevel());
+        if(powerer != null)
+            maxEnergy = powerer.calculateMaxEnergy(getBlocksAboveAltar());
+        energy = nbt.getInt("energy");
     }
 
     @Nonnull
@@ -202,6 +203,7 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
         compound.putInt("maxenergy", maxEnergy);
         compound.putInt("energy", energy);
         compound.putInt("config", config);
+        compound.put("altarPowerer", powerer.getNBT());
         return compound;
     }
 
@@ -235,6 +237,7 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
                 TileEntity te = event.getWorld().getBlockEntity(altar);
                 if(te instanceof AltarTileEntity && ((AltarTileEntity) te).powerer != null){
                     ((AltarTileEntity)te).powerer.markDirty(event.getPos(), true, event.getState().getBlock(), ((AltarTileEntity) te).getBlocksAboveAltar());
+                    ((AltarTileEntity)te).queueRecalculation();
                 }
             }
         });
@@ -247,6 +250,7 @@ public class AltarTileEntity extends TileEntity implements ITickableTileEntity, 
                 TileEntity te = event.getWorld().getBlockEntity(altar);
                 if(te instanceof AltarTileEntity && ((AltarTileEntity) te).powerer != null){
                     ((AltarTileEntity)te).powerer.markDirty(event.getPos(), false, event.getPlacedBlock().getBlock(), ((AltarTileEntity) te).getBlocksAboveAltar());
+                    ((AltarTileEntity)te).queueRecalculation();
                 }
             }
         });

@@ -6,23 +6,26 @@ import com.hero.witchery_rewitched.util.listeners.AltarPowererReloadListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTUtil;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
 
 public class AltarPowerer{
     HashMap<Block, Integer> blockAmount;
     HashMap<ITag.INamedTag<Block>, Integer> tagsAmount;
-    int altarRange = WitcheryRewitchedConfig.Server.altarRadius.get();
+    int altarRange;
     int power = 0;
 
     final BlockPos pos;
-    World level;
 
     public AltarPowerer(BlockPos pos, World level, List <Block> blocks){
         blockAmount = new HashMap<>();
@@ -33,7 +36,6 @@ public class AltarPowerer{
             tagsAmount.put(tag, 0);
 
         this.pos = pos;
-        this.level = level;
 
         altarRange = WitcheryRewitchedConfig.Server.altarRadius.get() * (blocks.contains(ModBlocks.ARTHANA.get()) ? 2 : 1);
 
@@ -48,10 +50,15 @@ public class AltarPowerer{
         }
     }
 
-    public int calculateMaxEnergy(List<Block> blocks){
-        if(level == null)
-            return 0;
+    private AltarPowerer(BlockPos pos, int range, int power, HashMap<Block, Integer> blockAmount, HashMap<ITag.INamedTag<Block>, Integer> tagsAmount){
+        altarRange = range;
+        this.power = power;
+        this.blockAmount = blockAmount;
+        this.tagsAmount = tagsAmount;
+        this.pos = pos;
+    }
 
+    public int calculateMaxEnergy(List<Block> blocks){
         int rate = 1;
         if(blocks.contains(Blocks.SKELETON_SKULL) && blocks.contains(Blocks.WITHER_SKELETON_SKULL))
             blocks.remove(Blocks.SKELETON_SKULL);
@@ -132,5 +139,47 @@ public class AltarPowerer{
             int pow = getPower(block, remove);
             power += pow;
         }
+    }
+
+    public CompoundNBT getNBT(){
+        CompoundNBT nbt = new CompoundNBT();
+        nbt.put("pos", NBTUtil.writeBlockPos(pos));
+        nbt.putInt("power", power);
+        nbt.putInt("range", altarRange);
+
+        CompoundNBT blockNBT = new CompoundNBT();
+        for(Map.Entry<Block, Integer> entry : blockAmount.entrySet()){
+            blockNBT.putInt(entry.getKey().getRegistryName().toString(), entry.getValue());
+        }
+        CompoundNBT tagNBT = new CompoundNBT();
+        for(Map.Entry<ITag.INamedTag<Block>, Integer> entry : tagsAmount.entrySet()){
+            tagNBT.putInt(entry.getKey().getName().toString(), entry.getValue());
+        }
+        nbt.put("blockAmount", blockNBT);
+        nbt.put("tagsAmount", tagNBT);
+        return nbt;
+    }
+
+    public static AltarPowerer fromNBT(CompoundNBT nbt, World level){
+        if(!nbt.contains("pos"))
+            return null;
+        BlockPos pos = NBTUtil.readBlockPos((CompoundNBT) nbt.get("pos"));
+        int power = nbt.getInt("power");
+        int range = nbt.getInt("range");
+
+        CompoundNBT blockNBT = nbt.getCompound("blockAmount");
+        CompoundNBT tagNBT = nbt.getCompound("tagsAmount");
+        HashMap<Block, Integer> blockAmount = new HashMap<>();
+        HashMap<ITag.INamedTag<Block>, Integer> tagsAmount = new HashMap<>();
+
+        for(String key : blockNBT.getAllKeys()){
+            blockAmount.put(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(key)), blockNBT.getInt(key));
+        }
+
+        for(String key : tagNBT.getAllKeys()){
+            tagsAmount.put(BlockTags.createOptional(new ResourceLocation(key)), tagNBT.getInt(key));
+        }
+
+        return new AltarPowerer(pos, range, power, blockAmount, tagsAmount);
     }
 }
