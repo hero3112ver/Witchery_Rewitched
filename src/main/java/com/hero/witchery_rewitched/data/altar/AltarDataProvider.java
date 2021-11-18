@@ -67,7 +67,7 @@ public class AltarDataProvider implements IDataProvider {
 
     private void start(){
         add(Blocks.DRAGON_EGG,250, 1);
-        //add(Blocks.DEMON_HEART.get(), 40, 2);
+        add(ModBlocks.BOUND_DEMON_HEART.get(), 40, 2);
         add(ModBlocks.SPANISH_MOSS.get(), 3, 20);
         add(BlockTags.FLOWERS ,4, 30);
         add(Blocks.WHEAT,4, 20);

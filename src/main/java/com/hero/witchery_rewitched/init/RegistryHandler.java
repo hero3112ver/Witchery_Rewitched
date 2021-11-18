@@ -44,7 +44,7 @@ public class RegistryHandler {
         RITUALS.register(modEventBus);
 
         ModItems.register();
-        ModBlocks.reigster();
+        ModBlocks.register();
         ModContainers.register();
         ModRecipes.register();
         ModTileEntities.register();

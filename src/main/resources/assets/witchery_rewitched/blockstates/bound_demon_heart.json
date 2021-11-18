@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "witchery_rewitched:block/bound_demon_heart",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "witchery_rewitched:block/bound_demon_heart",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "witchery_rewitched:block/bound_demon_heart",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "witchery_rewitched:block/bound_demon_heart"
+    }
+  }
+}

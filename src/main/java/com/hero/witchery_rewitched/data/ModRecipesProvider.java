@@ -208,7 +208,6 @@ public class ModRecipesProvider extends RecipeProviderHelper {
                 .unlockedBy("has_item", has(ModItems.POPPET.get()))
                 .save(consumer);
 
-        // Clay Pot Recipes
         ShapedRecipeBuilder.shaped(ModItems.UNCOOKED_CLAY_POT.get(), 8)
                 .define('#', Items.CLAY_BALL)
                 .pattern(" # ")
@@ -218,6 +217,17 @@ public class ModRecipesProvider extends RecipeProviderHelper {
                 .save(consumer);
         CookingRecipeBuilder.smelting(Ingredient.of(ModItems.UNCOOKED_CLAY_POT.get()), ModItems.COOKED_CLAY_POT.get(), 0f, 200)
                 .unlockedBy("has_item", has(ModItems.UNCOOKED_CLAY_POT.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(ModBlocks.BOUND_DEMON_HEART.get())
+                .define('i', Items.IRON_INGOT)
+                .define('a', ModItems.ATTUNED_STONE.get())
+                .define('c', Items.CHAIN)
+                .define('h', ModItems.DEMON_HEART.get())
+                .pattern("ici")
+                .pattern("chc")
+                .pattern("iai")
+                .unlockedBy("has_item", has(ModItems.DEMON_HEART.get()))
                 .save(consumer);
 
         // Witch Oven Recipes

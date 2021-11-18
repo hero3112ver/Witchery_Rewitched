@@ -100,6 +100,7 @@ public class ModLootTableProvider extends LootTableProvider {
             dropOther(ModBlocks.ARTHANA.get(), ModItems.ARTHANA.get());
             // TODO: this needs to be fixed
             add(ModBlocks.CRITTER_SNARE.get(), noDrop());
+            dropSelf(ModBlocks.BOUND_DEMON_HEART.get());
         }
 
 

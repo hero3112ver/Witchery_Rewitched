@@ -1,67 +1,11 @@
 {
-  "witchery_rewitched:belladonna_crop": {
-    "power": 4.0,
-    "max": 20.0
-  },
-  "witchery_rewitched:snowbell_crop": {
-    "power": 4.0,
-    "max": 20.0
-  },
-  "minecraft:cocoa": {
-    "power": 3.0,
-    "max": 20.0
-  },
-  "minecraft:dirt": {
-    "power": 1.0,
-    "max": 80.0
-  },
-  "minecraft:pumpkin_stem": {
-    "power": 3.0,
-    "max": 20.0
-  },
-  "minecraft:twisting_vines": {
-    "power": 2.0,
-    "max": 50.0
-  },
-  "minecraft:farmland": {
-    "power": 1.0,
-    "max": 100.0
-  },
   "minecraft:brown_mushroom": {
     "power": 3.0,
     "max": 20.0
   },
-  "minecraft:melon_stem": {
-    "power": 3.0,
-    "max": 20.0
-  },
-  "minecraft:crimson_fungus": {
+  "witchery_rewitched:glintweed": {
     "power": 2.0,
-    "max": 80.0
-  },
-  "minecraft:seagrass": {
-    "power": 2.0,
-    "max": 80.0
-  },
-  "minecraft:bamboo": {
-    "power": 3.0,
-    "max": 50.0
-  },
-  "minecraft:carrots": {
-    "power": 4.0,
     "max": 20.0
-  },
-  "minecraft:mycelium": {
-    "power": 1.0,
-    "max": 80.0
-  },
-  "witchery_rewitched:ember_moss": {
-    "power": 4.0,
-    "max": 20.0
-  },
-  "minecraft:water": {
-    "power": 1.0,
-    "max": 50.0
   },
   "minecraft:pumpkin": {
     "power": 4.0,
@@ -71,55 +15,59 @@
     "power": 4.0,
     "max": 20.0
   },
+  "minecraft:red_mushroom_block": {
+    "power": 3.0,
+    "max": 20.0
+  },
+  "minecraft:water": {
+    "power": 1.0,
+    "max": 50.0
+  },
   "witchery_rewitched:water_artichoke_crop": {
     "power": 4.0,
     "max": 20.0
   },
-  "minecraft:red_mushroom": {
-    "power": 3.0,
+  "witchery_rewitched:belladonna_crop": {
+    "power": 4.0,
+    "max": 20.0
+  },
+  "witchery_rewitched:ember_moss": {
+    "power": 4.0,
+    "max": 20.0
+  },
+  "minecraft:melon": {
+    "power": 4.0,
     "max": 20.0
   },
   "minecraft:brown_mushroom_block": {
     "power": 3.0,
     "max": 20.0
   },
-  "minecraft:vine": {
+  "minecraft:crimson_fungus": {
     "power": 2.0,
-    "max": 50.0
-  },
-  "minecraft:melon": {
-    "power": 4.0,
-    "max": 20.0
+    "max": 80.0
   },
   "minecraft:grass_block": {
     "power": 2.0,
     "max": 80.0
   },
-  "witchery_rewitched:glintweed": {
+  "minecraft:dragon_egg": {
+    "power": 250.0,
+    "max": 1.0
+  },
+  "minecraft:vine": {
     "power": 2.0,
-    "max": 20.0
-  },
-  "minecraft:potatoes": {
-    "power": 4.0,
-    "max": 20.0
-  },
-  "minecraft:tall_grass": {
-    "power": 3.0,
     "max": 50.0
-  },
-  "minecraft:warped_fungus": {
-    "power": 2.0,
-    "max": 80.0
-  },
-  "minecraft:wheat": {
-    "power": 4.0,
-    "max": 20.0
   },
   "minecraft:weeping_vines": {
     "power": 2.0,
     "max": 50.0
   },
-  "minecraft:sugar_cane": {
+  "minecraft:red_mushroom": {
+    "power": 3.0,
+    "max": 20.0
+  },
+  "minecraft:tall_grass": {
     "power": 3.0,
     "max": 50.0
   },
@@ -127,20 +75,72 @@
     "power": 3.0,
     "max": 20.0
   },
-  "minecraft:red_mushroom_block": {
+  "witchery_rewitched:mandrake_crop": {
+    "power": 4.0,
+    "max": 20.0
+  },
+  "minecraft:cocoa": {
     "power": 3.0,
+    "max": 20.0
+  },
+  "minecraft:potatoes": {
+    "power": 4.0,
     "max": 20.0
   },
   "minecraft:cactus": {
     "power": 3.0,
     "max": 50.0
   },
-  "minecraft:dragon_egg": {
-    "power": 250.0,
-    "max": 1.0
+  "minecraft:sugar_cane": {
+    "power": 3.0,
+    "max": 50.0
   },
-  "witchery_rewitched:mandrake_crop": {
+  "minecraft:warped_fungus": {
+    "power": 2.0,
+    "max": 80.0
+  },
+  "witchery_rewitched:snowbell_crop": {
     "power": 4.0,
     "max": 20.0
+  },
+  "minecraft:bamboo": {
+    "power": 3.0,
+    "max": 50.0
+  },
+  "minecraft:dirt": {
+    "power": 1.0,
+    "max": 80.0
+  },
+  "minecraft:seagrass": {
+    "power": 2.0,
+    "max": 80.0
+  },
+  "minecraft:carrots": {
+    "power": 4.0,
+    "max": 20.0
+  },
+  "minecraft:farmland": {
+    "power": 1.0,
+    "max": 100.0
+  },
+  "minecraft:mycelium": {
+    "power": 1.0,
+    "max": 80.0
+  },
+  "minecraft:wheat": {
+    "power": 4.0,
+    "max": 20.0
+  },
+  "minecraft:pumpkin_stem": {
+    "power": 3.0,
+    "max": 20.0
+  },
+  "minecraft:melon_stem": {
+    "power": 3.0,
+    "max": 20.0
+  },
+  "minecraft:twisting_vines": {
+    "power": 2.0,
+    "max": 50.0
   }
 }
