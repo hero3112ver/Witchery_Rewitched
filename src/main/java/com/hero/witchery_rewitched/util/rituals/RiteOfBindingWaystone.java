@@ -7,10 +7,12 @@ import com.hero.witchery_rewitched.item.BoundWaystone;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.UUID;
 
@@ -19,6 +21,8 @@ public class RiteOfBindingWaystone extends AbstractRitual{
         super(pos, world, caster, null,
                 Collections.singletonList(new Pair<>(1, (GlyphBlock) ModBlocks.RITUAL_GLYPH.get())),
                 new ArrayList<>(),
+                Arrays.asList(ModItems.WAYSTONE.get(), ModItems.ENDER_DEW.get(), Items.GLOWSTONE_DUST),
+                Arrays.asList(ModItems.WAYSTONE.get(), ModItems.ENDER_DEW.get(), ModItems.WOOD_ASH.get(), ModItems.CHARGED_ATTUNED_STONE.get()),
                 stone ? 0 : 500,
                 0,
                 stone

@@ -13,6 +13,7 @@ public class Rituals {
     public static RegistryObject<AbstractRitual> RITE_OF_BINDING_WAYSTONE = register("rite_of_binding_waystone", RiteOfBindingWaystone::new);
     public static RegistryObject<AbstractRitual> RITE_OF_BINDING_CIRCLE_TALISMAN = register("rite_of_binding_talisman", RiteOfBindingCircleTalisman::new);
     public static RegistryObject<AbstractRitual> RITE_OF_SUMMONING_DEMON = register("rite_of_summoning_demon", RiteOfSummoningDemon::new);
+    public static RegistryObject<AbstractRitual> RITE_OF_BANISHING_DEMON = register("rite_of_banishing_demon", RiteOfBanishing::new);
 
     private static <T extends AbstractRitual> RegistryObject<T> register(String name, Supplier<T> ritual) {
         return RegistryHandler.RITUALS.register(name, ritual);

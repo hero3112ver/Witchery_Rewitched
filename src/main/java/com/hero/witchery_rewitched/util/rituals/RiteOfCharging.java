@@ -6,6 +6,7 @@ import com.hero.witchery_rewitched.init.ModItems;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -19,6 +20,8 @@ public class RiteOfCharging extends AbstractRitual{
         super(pos, world, caster, null,
                 Arrays.asList(new Pair<>(1, (GlyphBlock) ModBlocks.RITUAL_GLYPH.get()),
                               new Pair<>(2, (GlyphBlock) ModBlocks.RITUAL_GLYPH.get())),
+                new ArrayList<>(),
+                Arrays.asList(Items.GLOWSTONE_DUST, Items.REDSTONE, ModItems.WOOD_ASH.get(), ModItems.QUICKLIME.get(), ModItems.ATTUNED_STONE.get()),
                 new ArrayList<>(),
                 2000,
                 0,

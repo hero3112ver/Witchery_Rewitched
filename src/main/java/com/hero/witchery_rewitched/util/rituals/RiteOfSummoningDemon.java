@@ -2,9 +2,11 @@ package com.hero.witchery_rewitched.util.rituals;
 
 import com.hero.witchery_rewitched.block.glyph.GlyphBlock;
 import com.hero.witchery_rewitched.init.ModBlocks;
+import com.hero.witchery_rewitched.init.ModItems;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -19,6 +21,8 @@ public class RiteOfSummoningDemon extends AbstractRitual{
                 null,
                 Collections.singletonList(new Pair<>(3, (GlyphBlock)ModBlocks.RITUAL_GLYPH.get())),
                 stone ? Collections.singletonList(EntityType.VILLAGER) : new ArrayList<>(),
+                Arrays.asList(ModItems.REFINED_EVIL.get(), Items.BLAZE_POWDER, Items.ENDER_PEARL),
+                Arrays.asList(ModItems.REFINED_EVIL.get(), Items.BLAZE_ROD, Items.ENDER_PEARL, ModItems.ATTUNED_STONE.get()),
                 3000,
                 0,
                 stone

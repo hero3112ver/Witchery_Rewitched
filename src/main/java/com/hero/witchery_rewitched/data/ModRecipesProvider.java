@@ -350,16 +350,19 @@ public class ModRecipesProvider extends RecipeProviderHelper {
                 .build(consumer);
 
 
-        RitualRecipeBuilder.recipeBuilder(Arrays.asList(Items.STONE_AXE, ModItems.QUICKLIME.get()), Rituals.RITE_OF_TOTAL_ECLIPSE, false).build(consumer);
-        RitualRecipeBuilder.recipeBuilder(Arrays.asList(Items.IRON_AXE, ModItems.QUICKLIME.get(), ModItems.CHARGED_ATTUNED_STONE.get()), Rituals.RITE_OF_TOTAL_ECLIPSE, true).build(consumer);
-        RitualRecipeBuilder.recipeBuilder(Arrays.asList(Items.GLOWSTONE_DUST, Items.REDSTONE, ModItems.WOOD_ASH.get(), ModItems.QUICKLIME.get(), ModItems.ATTUNED_STONE.get()), Rituals.RITE_OF_CHARGING,  false).build(consumer);
-        RitualRecipeBuilder.recipeBuilder(Collections.singletonList(ModItems.BOUND_WAYSTONE.get()), Rituals.RITE_OF_TRANSPORTATION_PLAYER, false).build(consumer);
-        RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.WOOD_ASH.get(), Items.BLAZE_ROD, Items.COAL), Rituals.RITE_OF_BROILING, false).build(consumer);
-        RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.WOOD_ASH.get(), Items.BLAZE_ROD, Items.BLAZE_POWDER, ModItems.CHARGED_ATTUNED_STONE.get()), Rituals.RITE_OF_BROILING, true).build(consumer);
-        RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.WAYSTONE.get(), ModItems.ENDER_DEW.get(), Items.GLOWSTONE_DUST), Rituals.RITE_OF_BINDING_WAYSTONE, false).build(consumer);
-        RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.WAYSTONE.get(), ModItems.ENDER_DEW.get(), ModItems.WOOD_ASH.get(), ModItems.CHARGED_ATTUNED_STONE.get()), Rituals.RITE_OF_BINDING_WAYSTONE, true).build(consumer);
-        RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.CIRCLE_TALISMAN.get(), ModItems.CHARGED_ATTUNED_STONE.get(), Items.GLOWSTONE_DUST), Rituals.RITE_OF_BINDING_CIRCLE_TALISMAN, true).build(consumer);
-        RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.REFINED_EVIL.get(), Items.BLAZE_POWDER, Items.ENDER_PEARL), Rituals.RITE_OF_SUMMONING_DEMON, false).build(consumer);
-        RitualRecipeBuilder.recipeBuilder(Arrays.asList(ModItems.REFINED_EVIL.get(), Items.BLAZE_ROD, Items.ENDER_PEARL, ModItems.ATTUNED_STONE.get()), Rituals.RITE_OF_SUMMONING_DEMON, true).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_TOTAL_ECLIPSE, false).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_TOTAL_ECLIPSE, true).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_CHARGING,  false).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_TRANSPORTATION_PLAYER, false).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_BROILING, false).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_BROILING, true).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_BINDING_WAYSTONE, false).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_BINDING_WAYSTONE, true).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_BINDING_CIRCLE_TALISMAN, false).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_BINDING_CIRCLE_TALISMAN, true).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_SUMMONING_DEMON, false).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_SUMMONING_DEMON, true).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_BANISHING_DEMON, false).build(consumer);
+        RitualRecipeBuilder.recipeBuilder(Rituals.RITE_OF_BANISHING_DEMON, true).build(consumer);
     }
 }

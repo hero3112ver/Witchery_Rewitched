@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -15,25 +16,27 @@ import net.minecraft.world.World;
 import java.util.*;
 
 public class RiteOfBindingCircleTalisman extends AbstractRitual{
-    public RiteOfBindingCircleTalisman(BlockPos pos, World world, UUID caster) {
+    public RiteOfBindingCircleTalisman(BlockPos pos, World world, UUID caster, boolean stone) {
         super(pos, world, caster, null,
                 new ArrayList<Pair<Integer, GlyphBlock>>() {},
                 new ArrayList<>(),
-                0,
+                Arrays.asList(ModItems.CIRCLE_TALISMAN.get(), Items.REDSTONE),
+                Arrays.asList(ModItems.CIRCLE_TALISMAN.get(), ModItems.CHARGED_ATTUNED_STONE.get(), Items.GLOWSTONE_DUST),
+                stone ? 0 : 1000,
                 0,
                 true
         );
     }
 
-    public RiteOfBindingCircleTalisman() {this(null, null, null);}
+    public RiteOfBindingCircleTalisman() {this(null, null, null, false);}
 
     @Override
     public AbstractRitual createRite(BlockPos pos, World world, UUID caster, boolean stone) {
-        return new RiteOfBindingCircleTalisman(pos, world, caster);
+        return new RiteOfBindingCircleTalisman(pos, world, caster, stone);
     }
 
     @Override
-    public boolean checkStartConditions(List<ItemStack> items) {
+    public String checkStartConditions(List<ItemStack> items) {
         for(String[] circle : circleShapes.values()){
             Block blockType = null;
             boolean failRing = false;
@@ -56,9 +59,9 @@ public class RiteOfBindingCircleTalisman extends AbstractRitual{
                     }
                 }
             }
-            if(!failRing) return true;
+            if(!failRing) return "";
         }
-        return false;
+        return "ritual.witchery_rewitched.broken_circles";
     }
 
     @Override

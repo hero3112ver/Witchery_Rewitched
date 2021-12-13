@@ -2,10 +2,12 @@ package com.hero.witchery_rewitched.util.rituals;
 
 import com.hero.witchery_rewitched.block.glyph.GlyphBlock;
 import com.hero.witchery_rewitched.init.ModBlocks;
+import com.hero.witchery_rewitched.init.ModItems;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -21,6 +23,8 @@ public class RiteOfTotalEclipse extends AbstractRitual{
         super(pos, world, caster, null,
                 Arrays.asList(new Pair<>(1, (GlyphBlock) ModBlocks.RITUAL_GLYPH.get())),
                 new ArrayList<>(),
+                Arrays.asList(Items.STONE_AXE, ModItems.QUICKLIME.get()),
+                Arrays.asList(Items.IRON_AXE, ModItems.QUICKLIME.get(), ModItems.CHARGED_ATTUNED_STONE.get()),
                 stone ? 0 : 3000,
                 0,
                 stone
@@ -37,9 +41,9 @@ public class RiteOfTotalEclipse extends AbstractRitual{
     }
 
     @Override
-    public boolean checkStartConditions(List<ItemStack> items) {
+    public String checkStartConditions(List<ItemStack> items) {
         if(world.getDayTime() <= 23000 && world.getDayTime() >= 13000){
-            return false;
+            return "ritual.witchery_rewitched.cast_time";
         }
         return super.checkStartConditions(items);
     }

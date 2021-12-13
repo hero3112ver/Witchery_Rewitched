@@ -24,9 +24,14 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.text.Color;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -88,12 +93,16 @@ public class GoldGlyphTileEntity extends TileEntity implements  ITickableTileEnt
                     AbstractRitual ritual = rec.getRitual()
                             .createRite(worldPosition, level, caster, rec.getIngredientItems().contains(ModItems.CHARGED_ATTUNED_STONE.get()));
                     // If a ritual succeeds its start checks, gun it and start running it
-                    if(ritual.checkStartConditions(items) ) {
+                    String msg = ritual.checkStartConditions(items);
+                    if( msg.equals("")) {
                         ritual.start(items);
                         activeRituals.add(ritual);
                     }
                     // If a ritual fails its start checks dump its items
-                    else spitItems(rec, new ArrayList<>());
+                    else {
+                        spitItems(rec, new ArrayList<>());
+                        level.getPlayerByUUID(ritual.caster).displayClientMessage((new TranslationTextComponent(msg)).withStyle(TextFormatting.RED), false);
+                    }
 
                     items.clear();
                     caster = null;

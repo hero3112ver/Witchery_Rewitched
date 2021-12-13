@@ -27,7 +27,19 @@ import java.util.UUID;
 
 public class RiteOfTransposition extends AbstractRitual {
     public RiteOfTransposition(BlockPos pos, World world, UUID caster) {
-        super(pos, world, caster, null, Collections.singletonList(new Pair<>(1, (GlyphBlock) ModBlocks.OTHERWHERE_GLYPH.get())), new ArrayList<>(), 0, 0, false);
+        super(
+                pos,
+                world,
+                caster,
+                null,
+                Collections.singletonList(new Pair<>(1, (GlyphBlock) ModBlocks.OTHERWHERE_GLYPH.get())),
+                new ArrayList<>(),
+                Collections.singletonList(ModItems.BOUND_WAYSTONE.get()),
+                new ArrayList<>(),
+                0,
+                0,
+                false
+        );
     }
     public RiteOfTransposition(){
         this( null, null, null);
@@ -39,11 +51,11 @@ public class RiteOfTransposition extends AbstractRitual {
     }
 
     @Override
-    public boolean checkStartConditions(List<ItemStack> items) {
+    public String checkStartConditions(List<ItemStack> items) {
         for(ItemStack item : items) {
             if (item.getItem() == ModItems.BOUND_WAYSTONE.get()) {
                 if(BoundWaystone.getDimension(item) == null)
-                    return false;
+                    return "ritual.witchery_rewitched.invalid_waystone";
             }
         }
         return super.checkStartConditions(items);

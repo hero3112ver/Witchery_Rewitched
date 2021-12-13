@@ -1,16 +1,16 @@
 {
-  "name": "Rite Of Binding(Circle)",
+  "name": "Rite Of Banishing Demon",
   "category": "rites",
   "icon": "minecraft:gold_ingot",
   "priority": true,
   "pages":[
     {
       "type": "witchery_rewitched:rite_item_template",
-      "recipe": "witchery_rewitched:ritual/rite_of_binding_talisman"
+      "recipe": "witchery_rewitched:ritual/rite_of_banishing_demon_charged"
     },
     {
       "type": "witchery_rewitched:rite_template",
-      "recipe": "witchery_rewitched:ritual/rite_of_binding_talisman"
+      "recipe": "witchery_rewitched:ritual/rite_of_banishing_demon_charged"
     }
   ]
 }

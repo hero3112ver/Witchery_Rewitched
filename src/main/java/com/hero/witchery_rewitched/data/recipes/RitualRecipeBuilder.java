@@ -28,8 +28,8 @@ public class RitualRecipeBuilder {
         this.stone = stone;
     }
 
-    public static RitualRecipeBuilder recipeBuilder(List<Item> ingredients, RegistryObject<AbstractRitual> name, boolean stone){
-        return new RitualRecipeBuilder(ModRecipes.Serializers.RITUAL.get(), ingredients, name.get().getRegistryName().toString(), stone);
+    public static RitualRecipeBuilder recipeBuilder(RegistryObject<AbstractRitual> name, boolean stone){
+        return new RitualRecipeBuilder(ModRecipes.Serializers.RITUAL.get(), stone ? name.get().getRequiredItemsCharged() : name.get().getRequiredItems(), name.get().getRegistryName().toString(), stone);
     }
 
     public void build(Consumer<IFinishedRecipe> consumer) {

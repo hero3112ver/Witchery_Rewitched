@@ -96,5 +96,14 @@
   "block.witchery_rewitched.critter_snare": "Critter Snare",
   "item.witchery_rewitched.circle_talisman": "Circle Talisman",
   "item.witchery_rewitched.ent_twig": "Ent Twig",
-  "item.witchery_rewitched.mutating_sprig": "Mutating Sprig"
+  "item.witchery_rewitched.mutating_sprig": "Mutating Sprig",
+  "ritual.witchery_rewitched.invalid_circles": "Invalid ritual circles present.",
+  "ritual.witchery_rewitched.altar_not_found": "Ritual requires power and altar was not found.",
+  "ritual.witchery_rewitched.insufficient_power": "Altar contains insufficient power.",
+  "ritual.witchery_rewitched.entities_not_found": "Required entities not found.",
+  "ritual.witchery_rewitched.cast_time": "Invalid casting time.",
+  "ritual.witchery_rewitched.invalid_waystone": "Invalid or missing bound waystone.",
+  "ritual.witchery_rewitched.broken_circles": "Circles broken during casting."
+
+
 }

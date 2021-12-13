@@ -7,6 +7,7 @@ import com.hero.witchery_rewitched.init.ModItems;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -23,6 +24,8 @@ public class AbstractRitual extends ForgeRegistryEntry<AbstractRitual> {
 
     private final List<Pair<Integer, GlyphBlock>> CIRCLES = new ArrayList<>(3);
     private final List<EntityType<?>> REQUIRED_ENTITIES = new ArrayList<>();
+    private final List<Item> REQUIRED_ITEMS = new ArrayList<>();
+    private final List<Item> REQUIRED_ITEMS_CHARGED = new ArrayList<>();
 
     public final BlockPos pos;
     public final World world;
@@ -76,9 +79,11 @@ public class AbstractRitual extends ForgeRegistryEntry<AbstractRitual> {
 
     }
 
-    public AbstractRitual(BlockPos pos, World world, UUID caster, @Nullable UUID target,List<Pair<Integer, GlyphBlock>> circles, List<EntityType<?>> requiredEntities, int startPower,int powerPerTick, boolean stone){
+    public AbstractRitual(BlockPos pos, World world, UUID caster, @Nullable UUID target, List<Pair<Integer, GlyphBlock>> circles, List<EntityType<?>> requiredEntities, List<Item> items, List<Item> itemsCharged, int startPower,int powerPerTick, boolean stone){
         this.CIRCLES.addAll(validateCircleInput(circles));
         this.REQUIRED_ENTITIES.addAll(requiredEntities);
+        this.REQUIRED_ITEMS.addAll(items);
+        this.REQUIRED_ITEMS_CHARGED.addAll(itemsCharged);
         this.world = world;
         this.pos = pos;
         this.caster = caster;
@@ -90,7 +95,7 @@ public class AbstractRitual extends ForgeRegistryEntry<AbstractRitual> {
     }
 
     public AbstractRitual createRite(BlockPos pos, World world, UUID caster, boolean stone){
-        return new AbstractRitual( null, null, null, null, null, null,0,0, false);
+        return new AbstractRitual( null, null, null, null, null, null, null, null, 0,0, false);
     }
 
     private List<Pair<Integer, GlyphBlock>> validateCircleInput(List<Pair<Integer, GlyphBlock>> circles){
@@ -115,16 +120,16 @@ public class AbstractRitual extends ForgeRegistryEntry<AbstractRitual> {
     }
 
     // Check if required entities are within the area, time, weather
-    public boolean checkStartConditions(List<ItemStack> items){
+    public String checkStartConditions(List<ItemStack> items){
         if(!checkForCircles())
-            return false;
+            return "ritual.witchery_rewitched.invalid_circles";
         else if( requiresAltar && !findAltar())
-            return false;
+            return "ritual.witchery_rewitched.altar_not_found";
         else if(requiresAltar && (getAltar() == null || !getAltar().takePower(startPower)))
-            return false;
+            return "ritual.witchery_rewitched.insufficient_power";
         else if(!findEntities())
-            return false;
-        return true;
+            return "ritual.witchery_rewitched.entities_not_found";
+        return "";
     }
 
     public boolean findEntities(){
@@ -200,5 +205,12 @@ public class AbstractRitual extends ForgeRegistryEntry<AbstractRitual> {
 
     public List<EntityType<?>> getRequiredEntites() {
         return REQUIRED_ENTITIES;
+    }
+
+    public List<Item> getRequiredItems(){
+        return REQUIRED_ITEMS;
+    }
+    public List<Item> getRequiredItemsCharged(){
+        return REQUIRED_ITEMS_CHARGED;
     }
 }

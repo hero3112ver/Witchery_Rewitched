@@ -2,6 +2,7 @@ package com.hero.witchery_rewitched.util.rituals;
 
 import com.hero.witchery_rewitched.block.glyph.GlyphBlock;
 import com.hero.witchery_rewitched.init.ModBlocks;
+import com.hero.witchery_rewitched.init.ModItems;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.ItemEntity;
@@ -30,6 +31,8 @@ public class RiteOfBroiling extends AbstractRitual{
         super(pos, world, caster, null,
                 Collections.singletonList(new Pair<>(1, (GlyphBlock) ModBlocks.INFERNAL_GLYPH.get())),
                 Arrays.asList(new EntityType<?>[]{EntityType.ITEM}),
+                Arrays.asList(ModItems.WOOD_ASH.get(), Items.BLAZE_ROD, Items.COAL),
+                Arrays.asList(ModItems.WOOD_ASH.get(), Items.BLAZE_ROD, Items.BLAZE_POWDER, ModItems.CHARGED_ATTUNED_STONE.get()),
                 stone ? 0 : 1000,
                 0,
                 stone
