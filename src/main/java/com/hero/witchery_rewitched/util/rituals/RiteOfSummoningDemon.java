@@ -5,6 +5,7 @@ import com.hero.witchery_rewitched.init.ModBlocks;
 import com.hero.witchery_rewitched.init.ModItems;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
@@ -13,11 +14,11 @@ import net.minecraft.world.World;
 import java.util.*;
 
 public class RiteOfSummoningDemon extends AbstractRitual{
-    public RiteOfSummoningDemon(BlockPos pos, World world, boolean stone) {
+    public RiteOfSummoningDemon(BlockPos pos, World world, UUID caster, boolean stone) {
         super(
                 pos,
                 world,
-                null,
+                caster,
                 null,
                 Collections.singletonList(new Pair<>(3, (GlyphBlock)ModBlocks.RITUAL_GLYPH.get())),
                 stone ? Collections.singletonList(EntityType.VILLAGER) : new ArrayList<>(),
@@ -30,12 +31,12 @@ public class RiteOfSummoningDemon extends AbstractRitual{
     }
 
 
-    public RiteOfSummoningDemon(){this(null, null, false);}
+    public RiteOfSummoningDemon(){this(null, null, null, false);}
 
 
     @Override
     public AbstractRitual createRite(BlockPos pos, World world, UUID caster, boolean stone) {
-        return super.createRite(pos, world, caster, stone);
+        return new RiteOfSummoningDemon(pos, world, caster, stone);
     }
 
 
