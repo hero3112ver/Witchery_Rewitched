@@ -103,7 +103,8 @@
   "ritual.witchery_rewitched.entities_not_found": "Required entities not found.",
   "ritual.witchery_rewitched.cast_time": "Invalid casting time.",
   "ritual.witchery_rewitched.invalid_waystone": "Invalid or missing bound waystone.",
-  "ritual.witchery_rewitched.broken_circles": "Circles broken during casting."
-
-
+  "ritual.witchery_rewitched.broken_circles": "Circles broken during casting.",
+  "item.witchery_rewitched.demon_heart": "Demon Heart",
+  "item.witchery_rewitched.demon_blood": "Demon Blood",
+  "item.witchery_rewitched.bound_demon_heart": "Bound Demon Heart"
 }
