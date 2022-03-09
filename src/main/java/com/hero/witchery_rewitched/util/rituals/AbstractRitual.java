@@ -5,6 +5,7 @@ import com.hero.witchery_rewitched.block.glyph.GlyphBlock;
 import com.hero.witchery_rewitched.init.ModBlocks;
 import com.hero.witchery_rewitched.init.ModItems;
 import com.mojang.datafixers.util.Pair;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
@@ -125,10 +126,10 @@ public class AbstractRitual extends ForgeRegistryEntry<AbstractRitual> {
             return "ritual.witchery_rewitched.invalid_circles";
         else if( requiresAltar && !findAltar())
             return "ritual.witchery_rewitched.altar_not_found";
-        else if(requiresAltar && (getAltar() == null || !getAltar().takePower(startPower)))
-            return "ritual.witchery_rewitched.insufficient_power";
         else if(!findEntities())
             return "ritual.witchery_rewitched.entities_not_found";
+        else if(requiresAltar && (getAltar() == null || !getAltar().takePower(startPower)))
+            return "ritual.witchery_rewitched.insufficient_power";
         return "";
     }
 
@@ -136,9 +137,23 @@ public class AbstractRitual extends ForgeRegistryEntry<AbstractRitual> {
         if(REQUIRED_ENTITIES.size() == 0)
             return true;
         else {
+            boolean fail =false;
+            ArrayList<Entity> entities = new ArrayList<>();
             for (EntityType<?> type: REQUIRED_ENTITIES) {
                 VoxelShape area = VoxelShapes.box(pos.getX()- 3,pos.getY(), pos.getZ()-3, pos.getX()+3, pos.getY()+3, pos.getZ()+3);
-                if(world.getEntities(type, area.bounds(),  (entity) -> entity.isAlive()).size() == 0) return false;
+                if(world.getEntities(type, area.bounds(), Entity::isAlive).size() == 0) fail = true;
+                else{
+                    Entity entity = world.getEntities(type, area.bounds(), Entity::isAlive).get(0);
+                    entities.add(entity);
+                    entity.remove();
+                    // TODO: particles or somethin
+                }
+            }
+            if(fail){
+                for(Entity entity : entities){
+                    world.addFreshEntity(entity);
+                }
+                return false;
             }
         }
         return true;
