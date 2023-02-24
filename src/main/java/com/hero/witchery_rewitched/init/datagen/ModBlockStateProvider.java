@@ -1,0 +1,76 @@
+package com.hero.witchery_rewitched.init.datagen;
+
+import com.hero.witchery_rewitched.WitcheryRewitched;
+import com.hero.witchery_rewitched.block.ThreeStageCrop;
+import com.hero.witchery_rewitched.init.WitcheryBlocks;
+import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.RegistryObject;
+
+public class ModBlockStateProvider extends BlockStateProvider {
+    public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+        super(output, WitcheryRewitched.MODID, exFileHelper);
+    }
+
+    @Override
+    protected void registerStatesAndModels() {
+        logWithItem(WitcheryBlocks.ROWAN_LOG);
+        blockWithItem(WitcheryBlocks.ROWAN_PLANKS);
+        logWithItem(WitcheryBlocks.STRIPPED_ROWAN_LOG);
+
+        logWithItem(WitcheryBlocks.HAWTHORN_LOG);
+        blockWithItem(WitcheryBlocks.HAWTHORN_PLANKS);
+        logWithItem(WitcheryBlocks.STRIPPED_HAWTHORN_LOG);
+
+        logWithItem(WitcheryBlocks.ALDER_LOG);
+        blockWithItem(WitcheryBlocks.ALDER_PLANKS);
+        logWithItem(WitcheryBlocks.STRIPPED_ALDER_LOG);
+
+        blockWithItem(WitcheryBlocks.ROWAN_LEAVES);
+        blockWithItem(WitcheryBlocks.HAWTHORN_LEAVES);
+        blockWithItem(WitcheryBlocks.ALDER_LEAVES);
+
+        createPlant(WitcheryBlocks.BELLADONNA, false);
+        createPlant(WitcheryBlocks.GARLIC, false);
+        createPlant(WitcheryBlocks.SNOWBELL, true);
+        createPlant(WitcheryBlocks.WOLFSBANE, false);
+        createPlant(WitcheryBlocks.WATER_ARTICHOKE, false);
+        createPlant(WitcheryBlocks.MANDRAKE, false);
+    }
+
+    private <T extends Block> void blockWithItem(RegistryObject<T> blockRegistryObject){
+        simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
+    }
+
+    private void logWithItem(RegistryObject<RotatedPillarBlock> blockRegistryObject){
+        logBlock(blockRegistryObject.get());
+
+        // To generate an item during this phase of generation call item models and create from a parent of a block
+        itemModels().getBuilder(blockRegistryObject.getId().getPath()).parent(models().getBuilder(blockRegistryObject.getId().getPath()));
+    }
+
+    private void createPlant(RegistryObject<Block> plant, boolean cross){
+        VariantBlockStateBuilder builder = getVariantBuilder(plant.get());
+        String name = plant.getKey().location().getPath();
+        for(int i = 0; i < 3; i++) {
+            ModelFile model;
+            if(cross) {
+                model = models().cross("block/" + name + "/age" + i,
+                        new ResourceLocation(WitcheryRewitched.MODID, "block/" + name + "/age" + i)).renderType("cutout");
+            }
+            else {
+                model = models().withExistingParent("block/" + name + "/age" + i,
+                                new ResourceLocation("block/crop"))
+                        .texture("crop", new ResourceLocation(WitcheryRewitched.MODID, "block/" + name + "/age" + i)).renderType("cutout");
+            }
+            builder.partialState().with(ThreeStageCrop.AGE, i).setModels(new ConfiguredModel(model));
+        }
+    }
+}

@@ -1,0 +1,1 @@
+This mod is a current WIP revival of Witchery from mineacraft 1.7.10 to 1.16+

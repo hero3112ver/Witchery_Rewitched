@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/crop",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "crop": "witchery_rewitched:block/wolfsbane_crop/age0"
+  }
+}
