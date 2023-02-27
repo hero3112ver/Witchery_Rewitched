@@ -75,6 +75,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void createVine(RegistryObject<Block> vine){
+        // Created based around minecraft's vine block
         MultiPartBlockStateBuilder builder = getMultipartBuilder(vine.get());
         String name = vine.getKey().location().getPath();
         ModelFile model = models()
