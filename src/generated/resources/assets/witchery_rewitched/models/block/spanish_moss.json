@@ -1,0 +1,38 @@
+{
+  "elements": [
+    {
+      "faces": {
+        "north": {
+          "texture": "#vine",
+          "tintindex": 0,
+          "uv": [
+            16.0,
+            0.0,
+            0.0,
+            16.0
+          ]
+        },
+        "south": {
+          "texture": "#vine",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        0,
+        0,
+        0.8
+      ],
+      "shade": false,
+      "to": [
+        16,
+        16,
+        0.8
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "particle": "witchery_rewitched:block/spanish_moss",
+    "vine": "witchery_rewitched:block/spanish_moss"
+  }
+}

@@ -70,7 +70,7 @@ public class WitcheryBlocks {
     //TODO: Mandrakes in general
     public static RegistryObject<Block> MANDRAKE = registerBlock("mandrake_crop", () -> new ThreeStageCrop(WitcheryItems.MANDRAKE_SEEDS), false);
 //    public static RegistryObject<Block> MANDRAKE = registerBlock("mandrake_crop", MandrakeBlock::new);
-//    public static RegistryObject<Block> SPANISH_MOSS = registerBlock("spanish_moss", () -> new VineBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
+    public static RegistryObject<Block> SPANISH_MOSS = registerBlock("spanish_moss", () -> new VineBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
 //    public static RegistryObject<Block> EMBER_MOSS = registerBlock("ember_moss", EmberMossBlock::new);
 //    public static RegistryObject<Block> GLINTWEED = registerBlock("glintweed", GlintWeedBlock::new);
 //

@@ -3,14 +3,13 @@ package com.hero.witchery_rewitched.init.datagen;
 import com.hero.witchery_rewitched.WitcheryRewitched;
 import com.hero.witchery_rewitched.block.ThreeStageCrop;
 import com.hero.witchery_rewitched.init.WitcheryBlocks;
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
+import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -43,6 +42,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         createPlant(WitcheryBlocks.WOLFSBANE, false);
         createPlant(WitcheryBlocks.WATER_ARTICHOKE, false);
         createPlant(WitcheryBlocks.MANDRAKE, false);
+        createVine(WitcheryBlocks.SPANISH_MOSS);
     }
 
     private <T extends Block> void blockWithItem(RegistryObject<T> blockRegistryObject){
@@ -72,5 +72,71 @@ public class ModBlockStateProvider extends BlockStateProvider {
             }
             builder.partialState().with(ThreeStageCrop.AGE, i).setModels(new ConfiguredModel(model));
         }
+    }
+
+    private void createVine(RegistryObject<Block> vine){
+        MultiPartBlockStateBuilder builder = getMultipartBuilder(vine.get());
+        String name = vine.getKey().location().getPath();
+        ModelFile model = models()
+            .getBuilder("block/"  + name)
+            .texture("vine", "block/" + name)
+            .texture("particle", "block/" + name)
+            .renderType("cutout_mipped")
+            .element()
+                .from(0,0,0.8f)
+                .to(16,16,0.8f)
+                .shade(false)
+                .face(Direction.NORTH)
+                    .texture("#vine")
+                    .uvs(16,0,0,16)
+                    .tintindex(0)
+                    .end()
+                .face(Direction.SOUTH)
+                    .texture("#vine")
+                    .uvs(0,0,16,16)
+                    .tintindex(0)
+                    .end()
+                .end();
+
+        builder.part()
+                .modelFile(model)
+                .addModel()
+                .condition(PipeBlock.NORTH,  true)
+                .end()
+            .part()
+                .modelFile(model)
+                .rotationY(180)
+                .addModel()
+                .condition(PipeBlock.SOUTH,  true)
+                .end()
+            .part()
+                .modelFile(model)
+                .rotationY(90)
+                .addModel()
+                .condition(PipeBlock.EAST,  true)
+                .end()
+            .part()
+                .modelFile(model)
+                .rotationY(270)
+                .addModel()
+                .condition(PipeBlock.WEST,  true)
+                .end()
+            .part()
+                .modelFile(model)
+                .rotationX(270)
+                .addModel()
+                .condition(PipeBlock.UP,  true)
+                .end()
+            .part()
+                .modelFile(model)
+                .addModel()
+                .condition(PipeBlock.EAST, false)
+                .condition(PipeBlock.WEST, false)
+                .condition(PipeBlock.SOUTH,  false)
+                .condition(PipeBlock.NORTH, false)
+                .condition(PipeBlock.UP, false)
+            .end();
+        itemModels().withExistingParent(vine.getId().getPath(), new ResourceLocation("item/generated"))
+                .texture("layer0", new ResourceLocation(WitcheryRewitched.MODID, "block/" + vine.getId().getPath()));
     }
 }

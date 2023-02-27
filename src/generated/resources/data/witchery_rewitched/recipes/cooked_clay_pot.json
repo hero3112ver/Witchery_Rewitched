@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.0,
+  "ingredient": {
+    "item": "witchery_rewitched:uncooked_clay_pot"
+  },
+  "result": "witchery_rewitched:cooked_clay_pot"
+}
