@@ -59,8 +59,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(WitcheryItems.MANDRAKE_SEEDS);
     }
 
-    private ItemModelBuilder simpleItem(RegistryObject<Item> item){
-        return withExistingParent(item.getId().getPath(), new ResourceLocation("item/generated"))
+    private void simpleItem(RegistryObject<Item> item){
+        withExistingParent(item.getId().getPath(), new ResourceLocation("item/generated"))
                 .texture("layer0", new ResourceLocation(WitcheryRewitched.MODID, "item/" + item.getId().getPath()));
     }
     private ItemModelBuilder handheldItem(RegistryObject<Item> item){

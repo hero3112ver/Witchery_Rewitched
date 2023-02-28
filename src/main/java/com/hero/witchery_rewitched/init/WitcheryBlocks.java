@@ -8,12 +8,15 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -29,17 +32,17 @@ public class WitcheryBlocks {
      *  TODO:: If I wasn't an idiot I would realize adding these to the proper tags would make it such that these items to the proper
      *   this wouldn't need to be added as flammable item
      */
-    public static final RegistryObject<RotatedPillarBlock> ROWAN_LOG = registerFuel("rowan_log", WitcheryBlocks::log, 200);
+    public static final RegistryObject<RotatedPillarBlock> STRIPPED_ROWAN_LOG = registerFuel("stripped_rowan_log", () -> log(null, false),200);
+    public static final RegistryObject<RotatedPillarBlock> ROWAN_LOG = registerFuel("rowan_log", () -> log(STRIPPED_ROWAN_LOG, true), 200);
     public static final RegistryObject<Block> ROWAN_PLANKS = registerFuel("rowan_planks", WitcheryBlocks::plank,200);
-    public static final RegistryObject<RotatedPillarBlock> STRIPPED_ROWAN_LOG = registerFuel("stripped_rowan_log", WitcheryBlocks::log,200);
 
-    public static final RegistryObject<RotatedPillarBlock> HAWTHORN_LOG = registerFuel("hawthorn_log", WitcheryBlocks::log,200);
+    public static final RegistryObject<RotatedPillarBlock> STRIPPED_HAWTHORN_LOG = registerFuel("stripped_hawthorn_log", () -> log(null, false),200);
+    public static final RegistryObject<RotatedPillarBlock> HAWTHORN_LOG = registerFuel("hawthorn_log", () -> log(STRIPPED_HAWTHORN_LOG, true),200);
     public static final RegistryObject<Block> HAWTHORN_PLANKS = registerFuel("hawthorn_planks", WitcheryBlocks::plank,200);
-    public static final RegistryObject<RotatedPillarBlock> STRIPPED_HAWTHORN_LOG = registerFuel("stripped_hawthorn_log", WitcheryBlocks::log,200);
 
-    public static final RegistryObject<RotatedPillarBlock> ALDER_LOG = registerFuel("alder_log", WitcheryBlocks::log,200);
+    public static final RegistryObject<RotatedPillarBlock> STRIPPED_ALDER_LOG = registerFuel("stripped_alder_log", () -> log(null, false),200);
+    public static final RegistryObject<RotatedPillarBlock> ALDER_LOG = registerFuel("alder_log", () -> log(STRIPPED_ALDER_LOG, true),200);
     public static final RegistryObject<Block> ALDER_PLANKS = registerFuel("alder_planks", WitcheryBlocks::plank,200);
-    public static final RegistryObject<RotatedPillarBlock> STRIPPED_ALDER_LOG = registerFuel("stripped_alder_log", WitcheryBlocks::log,200);
 
     public static final RegistryObject<LeavesBlock> ROWAN_LEAVES = registerFuel("rowan_leaves", WitcheryBlocks::leaves,10);
     public static final RegistryObject<LeavesBlock> HAWTHORN_LEAVES = registerFuel("hawthorn_leaves", WitcheryBlocks::leaves,10);
@@ -153,7 +156,7 @@ public class WitcheryBlocks {
             }
         };
     }
-    private static RotatedPillarBlock log() {
+    private static RotatedPillarBlock log(RegistryObject<RotatedPillarBlock> strippedLog, boolean strippable) {
         return new RotatedPillarBlock(BlockBehaviour.Properties
                 .of(Material.WOOD)
                 .strength(2.0F)
@@ -161,6 +164,14 @@ public class WitcheryBlocks {
             @Override
             public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
                 return true;
+            }
+
+            @Override
+            public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
+                if(toolAction == ToolActions.AXE_STRIP && strippable){
+                    return strippedLog.get().defaultBlockState().trySetValue(RotatedPillarBlock.AXIS, state.getValue(RotatedPillarBlock.AXIS));
+                }
+                return super.getToolModifiedState(state, context, toolAction, simulate);
             }
 
             @Override
