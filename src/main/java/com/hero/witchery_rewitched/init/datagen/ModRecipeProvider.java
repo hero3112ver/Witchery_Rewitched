@@ -1,11 +1,13 @@
 package com.hero.witchery_rewitched.init.datagen;
 
+import com.hero.witchery_rewitched.init.WitcheryBlocks;
 import com.hero.witchery_rewitched.init.WitcheryItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.ShapelessRecipe;
 
 import java.util.function.Consumer;
 
@@ -32,6 +34,18 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     private void shapelessRecipes(Consumer<FinishedRecipe> pWriter){
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, WitcheryBlocks.ROWAN_PLANKS.get(), 4)
+                .requires(ModItemTags.ROWAN_LOG)
+                .unlockedBy("has_item", has(ModItemTags.ROWAN_LOG))
+                .save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, WitcheryBlocks.ALDER_PLANKS.get(), 4)
+                .requires(ModItemTags.ALDER_LOG)
+                .unlockedBy("has_item", has(ModItemTags.ALDER_LOG))
+                .save(pWriter);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, WitcheryBlocks.HAWTHORN_PLANKS.get(), 4)
+                .requires(ModItemTags.HAWTHORN_LOG)
+                .unlockedBy("has_item", has(ModItemTags.HAWTHORN_LOG))
+                .save(pWriter);
 
     }
 
