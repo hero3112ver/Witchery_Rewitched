@@ -42,6 +42,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(WitcheryBlocks.ALDER_PLANKS.get());
         dropSelf(WitcheryBlocks.HAWTHORN_PLANKS.get());
         add(WitcheryBlocks.SPANISH_MOSS.get(), createShearsOnlyDrop(WitcheryBlocks.SPANISH_MOSS.get()));
+        add(WitcheryBlocks.GLINTWEED.get(), createShearsOnlyDrop(WitcheryBlocks.GLINTWEED.get()));
+        add(WitcheryBlocks.EMBER_MOSS.get(), createShearsOnlyDrop(WitcheryBlocks.EMBER_MOSS.get()));
 
         // TODO: FIX THIS SHIT
         dropSelf(WitcheryBlocks.ROWAN_LEAVES.get());

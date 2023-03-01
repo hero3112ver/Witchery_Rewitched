@@ -1,20 +1,27 @@
 package com.hero.witchery_rewitched.init;
 
+import com.google.common.collect.ImmutableMap;
 import com.hero.witchery_rewitched.WitcheryRewitched;
+import com.hero.witchery_rewitched.block.SpreadingPlant;
 import com.hero.witchery_rewitched.block.ThreeStageCrop;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -74,8 +81,24 @@ public class WitcheryBlocks {
     public static RegistryObject<Block> MANDRAKE = registerBlock("mandrake_crop", () -> new ThreeStageCrop(WitcheryItems.MANDRAKE_SEEDS), false);
 //    public static RegistryObject<Block> MANDRAKE = registerBlock("mandrake_crop", MandrakeBlock::new);
     public static RegistryObject<Block> SPANISH_MOSS = registerBlock("spanish_moss", () -> new VineBlock(BlockBehaviour.Properties.of(Material.REPLACEABLE_PLANT).noCollission().randomTicks().strength(0.2F).sound(SoundType.VINE)));
-//    public static RegistryObject<Block> EMBER_MOSS = registerBlock("ember_moss", EmberMossBlock::new);
-//    public static RegistryObject<Block> GLINTWEED = registerBlock("glintweed", GlintWeedBlock::new);
+    public static RegistryObject<Block> EMBER_MOSS = registerBlock("ember_moss", () -> new SpreadingPlant(false, false){
+        @Override
+        public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+            return Block.box(1.0D,0.0D,1.0D,15.0D,6.0D,15.0D);
+        }
+
+        @Override
+        public void entityInside(BlockState pState, Level pLevel, BlockPos pPos, Entity pEntity) {
+            if(pEntity instanceof LivingEntity)
+                pEntity.setSecondsOnFire(1);
+        }
+    });
+    public static RegistryObject<Block> GLINTWEED = registerBlock("glintweed", () -> new SpreadingPlant(true,  true){
+        @Override
+        public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos) {
+            return 12;
+        }
+    });
 //
 //    public static RegistryObject<Block> WITCH_CAULDRON = register("witch_cauldron", () ->
 //            new WitchCauldronBlock(BlockBehaviour.Properties

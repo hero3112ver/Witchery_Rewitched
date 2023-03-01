@@ -43,6 +43,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         createPlant(WitcheryBlocks.WATER_ARTICHOKE, false);
         createPlant(WitcheryBlocks.MANDRAKE, false);
         createVine(WitcheryBlocks.SPANISH_MOSS);
+
+        createCross(WitcheryBlocks.GLINTWEED);
+        createCross(WitcheryBlocks.EMBER_MOSS);
     }
 
     private <T extends Block> void blockWithItem(RegistryObject<T> blockRegistryObject){
@@ -54,6 +57,18 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         // To generate an item during this phase of generation call item models and create from a parent of a block
         itemModels().getBuilder(blockRegistryObject.getId().getPath()).parent(models().getBuilder(blockRegistryObject.getId().getPath()));
+    }
+
+    private  void  createCross(RegistryObject<Block> block){
+        String name = block.getKey().location().getPath();
+        getVariantBuilder(block.get()).partialState().setModels(
+                new ConfiguredModel(models()
+                        .cross("block/"  + name, new ResourceLocation(WitcheryRewitched.MODID, "block/" + name))
+                        .renderType("cutout")
+                        .texture("cross", new ResourceLocation(WitcheryRewitched.MODID, "block/" + name) ))
+        );
+        itemModels().withExistingParent(name, new ResourceLocation("item/generated"))
+                .texture("layer0", new ResourceLocation(WitcheryRewitched.MODID, "block/" + name));
     }
 
     private void createPlant(RegistryObject<Block> plant, boolean cross){
