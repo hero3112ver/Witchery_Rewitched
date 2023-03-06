@@ -9,17 +9,17 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.block.BeetrootBlock;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.PotatoBlock;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
@@ -45,10 +45,16 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         add(WitcheryBlocks.GLINTWEED.get(), createShearsOnlyDrop(WitcheryBlocks.GLINTWEED.get()));
         add(WitcheryBlocks.EMBER_MOSS.get(), createShearsOnlyDrop(WitcheryBlocks.EMBER_MOSS.get()));
 
-        // TODO: FIX THIS SHIT
-        dropSelf(WitcheryBlocks.ROWAN_LEAVES.get());
-        dropSelf(WitcheryBlocks.ALDER_LEAVES.get());
-        dropSelf(WitcheryBlocks.HAWTHORN_LEAVES.get());
+        add(WitcheryBlocks.ROWAN_LEAVES.get(), createLeavesDrops(WitcheryBlocks.ROWAN_LEAVES.get(), WitcheryBlocks.ROWAN_SAPLING.get(),
+                BlockLootSubProvider.NORMAL_LEAVES_SAPLING_CHANCES).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(BlockLootSubProvider.HAS_SHEARS.or(BlockLootSubProvider.HAS_SILK_TOUCH).invert()).add(this.applyExplosionCondition(WitcheryBlocks.ROWAN_SAPLING.get(), LootItem.lootTableItem(WitcheryItems.ROWAN_BERRY.get())).when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE,  .1F, .2F, .4F, .8F, 1.2F)))));
+        add(WitcheryBlocks.ALDER_LEAVES.get(), createLeavesDrops(WitcheryBlocks.ALDER_LEAVES.get(), WitcheryBlocks.ALDER_SAPLING.get(),
+                BlockLootSubProvider.NORMAL_LEAVES_SAPLING_CHANCES));
+        add(WitcheryBlocks.HAWTHORN_LEAVES.get(), createLeavesDrops(WitcheryBlocks.HAWTHORN_LEAVES.get(), WitcheryBlocks.HAWTHORN_SAPLING.get(),
+                BlockLootSubProvider.NORMAL_LEAVES_SAPLING_CHANCES));
+
+        dropSelf(WitcheryBlocks.ROWAN_SAPLING.get());
+        dropSelf(WitcheryBlocks.ALDER_SAPLING.get());
+        dropSelf(WitcheryBlocks.HAWTHORN_SAPLING.get());
 
         createCrop(WitcheryBlocks.BELLADONNA.get(), WitcheryItems.BELLADONNA_SEEDS.get(), WitcheryItems.BELLADONNA.get());
         createCrop(WitcheryBlocks.WATER_ARTICHOKE.get(), WitcheryItems.WATER_ARTICHOKE_SEEDS.get(), WitcheryItems.WATER_ARTICHOKE_BULB.get());
@@ -89,7 +95,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     }
 
     @Override
-    protected Iterable<Block> getKnownBlocks() {
+    protected @NotNull Iterable<Block> getKnownBlocks() {
         return WitcheryBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
     }
 

@@ -1,14 +1,18 @@
 package com.hero.witchery_rewitched.init.datagen;
 
 import com.hero.witchery_rewitched.WitcheryRewitched;
+import com.hero.witchery_rewitched.init.WitcheryBlocks;
 import com.hero.witchery_rewitched.init.WitcheryItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.Objects;
 
 
 public class ModItemModelProvider extends ItemModelProvider {
@@ -57,6 +61,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(WitcheryItems.MANDRAKE_ROOT);
         simpleItem(WitcheryItems.WATER_ARTICHOKE_SEEDS);
         simpleItem(WitcheryItems.MANDRAKE_SEEDS);
+
+        createBlockItems();
     }
 
     private void simpleItem(RegistryObject<Item> item){
@@ -66,5 +72,20 @@ public class ModItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder handheldItem(RegistryObject<Item> item){
         return withExistingParent(item.getId().getPath(), new ResourceLocation("item/handheld"))
                 .texture("layer0", new ResourceLocation(WitcheryRewitched.MODID, "item/" + item.getId().getPath()));
+    }
+
+    private void simpleBlockItem(RegistryObject<Item> item){
+        withExistingParent(item.getId().getPath(), new ResourceLocation("item/generated"))
+                .texture("layer0", new ResourceLocation(WitcheryRewitched.MODID, "block/" + item.getId().getPath()));
+    }
+
+    private void createBlockItems(){
+        simpleBlockItem(getItem(WitcheryBlocks.ROWAN_SAPLING));
+        simpleBlockItem(getItem(WitcheryBlocks.ALDER_SAPLING));
+        simpleBlockItem(getItem(WitcheryBlocks.HAWTHORN_SAPLING));
+    }
+
+    private RegistryObject<Item> getItem(RegistryObject< ? extends Block> block){
+        return Objects.requireNonNull(WitcheryItems.ITEMS.getEntries().stream().filter((item) -> item.get() == block.get().asItem()).findFirst().orElse(null));
     }
 }

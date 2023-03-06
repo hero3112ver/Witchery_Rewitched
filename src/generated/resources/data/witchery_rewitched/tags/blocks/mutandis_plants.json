@@ -3,7 +3,12 @@
     "#minecraft:small_flowers",
     "#minecraft:saplings",
     "minecraft:grass",
+    "witchery_rewitched:rowan_sapling",
     "minecraft:tall_grass",
-    "witchery_rewitched:spanish_moss"
+    "witchery_rewitched:alder_sapling",
+    "witchery_rewitched:hawthorn_sapling",
+    "witchery_rewitched:spanish_moss",
+    "witchery_rewitched:ember_moss",
+    "witchery_rewitched:glintweed"
   ]
 }

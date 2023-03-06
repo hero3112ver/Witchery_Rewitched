@@ -4,6 +4,9 @@ import com.google.common.collect.ImmutableMap;
 import com.hero.witchery_rewitched.WitcheryRewitched;
 import com.hero.witchery_rewitched.block.SpreadingPlant;
 import com.hero.witchery_rewitched.block.ThreeStageCrop;
+import com.hero.witchery_rewitched.worldgen.trees.AlderTreeGrower;
+import com.hero.witchery_rewitched.worldgen.trees.HawthornTreeGrower;
+import com.hero.witchery_rewitched.worldgen.trees.RowanTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
@@ -55,12 +58,12 @@ public class WitcheryBlocks {
     public static final RegistryObject<LeavesBlock> HAWTHORN_LEAVES = registerFuel("hawthorn_leaves", WitcheryBlocks::leaves,10);
     public static final RegistryObject<LeavesBlock> ALDER_LEAVES = registerFuel("alder_leaves", WitcheryBlocks::leaves,10);
 
-//    public static final RegistryObject<SaplingBlock> ROWAN_SAPLING = registerFuel("rowan_sapling", () ->
-//            new SaplingBlock(new ModSaplings.RowanTree(), ModSaplings.getTreeProps()), 100);
-//    public static final RegistryObject<SaplingBlock> HAWTHORN_SAPLING = registerFuel("hawthorn_sapling", () ->
-//            new SaplingBlock(new ModSaplings.HawthornTree(), ModSaplings.getTreeProps()), 100);
-//    public static final RegistryObject<SaplingBlock> ALDER_SAPLING = registerFuel("alder_sapling", () ->
-//            new SaplingBlock(new ModSaplings.AlderTree(), ModSaplings.getTreeProps()), 100);
+    public static final RegistryObject<SaplingBlock> ROWAN_SAPLING = registerBlock("rowan_sapling", () ->
+            new SaplingBlock(new RowanTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<SaplingBlock> HAWTHORN_SAPLING = registerBlock("hawthorn_sapling", () ->
+            new SaplingBlock(new HawthornTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<SaplingBlock> ALDER_SAPLING = registerBlock("alder_sapling", () ->
+            new SaplingBlock(new AlderTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 //
 //    public static final RegistryObject<WitchOvenBlock> WITCH_OVEN = register("witch_oven", () ->
 //            new WitchOvenBlock(BlockBehaviour.Properties.of(Material.METAL)
@@ -201,6 +204,11 @@ public class WitcheryBlocks {
             public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
                 return 5;
             }
+
+            @Override
+            public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                return 5;
+            }
         };
     }
 
@@ -223,6 +231,11 @@ public class WitcheryBlocks {
 
             @Override
             public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                return 5;
+            }
+
+            @Override
+            public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
                 return 5;
             }
         };

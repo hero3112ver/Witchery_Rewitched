@@ -46,6 +46,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         createCross(WitcheryBlocks.GLINTWEED);
         createCross(WitcheryBlocks.EMBER_MOSS);
+        createCross(WitcheryBlocks.ROWAN_SAPLING);
+        createCross(WitcheryBlocks.ALDER_SAPLING);
+        createCross(WitcheryBlocks.HAWTHORN_SAPLING);
     }
 
     private <T extends Block> void blockWithItem(RegistryObject<T> blockRegistryObject){
@@ -59,7 +62,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         itemModels().getBuilder(blockRegistryObject.getId().getPath()).parent(models().getBuilder(blockRegistryObject.getId().getPath()));
     }
 
-    private  void  createCross(RegistryObject<Block> block){
+    private  void  createCross(RegistryObject<? extends Block> block){
         String name = block.getKey().location().getPath();
         getVariantBuilder(block.get()).partialState().setModels(
                 new ConfiguredModel(models()

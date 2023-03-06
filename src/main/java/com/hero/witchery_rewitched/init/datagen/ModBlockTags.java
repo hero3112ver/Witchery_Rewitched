@@ -55,23 +55,22 @@ public class ModBlockTags extends BlockTagsProvider {
                 .add(WitcheryBlocks.ALDER_LEAVES.get())
                 .add(WitcheryBlocks.HAWTHORN_LEAVES.get());
 
-        /*tag(BlockTags.SAPLINGS)
+        tag(BlockTags.SAPLINGS)
                 .add(WitcheryBlocks.ROWAN_SAPLING.get())
                 .add(WitcheryBlocks.ALDER_SAPLING.get())
-                .add(WitcheryBlocks.HAWTHORN_SAPLING.get());*/
+                .add(WitcheryBlocks.HAWTHORN_SAPLING.get());
 
         tag(ModBlockTags.MUTANDIS_PLANTS)
                 .addTag(BlockTags.SMALL_FLOWERS)
                 .addTag(BlockTags.SAPLINGS)
                 .add(Blocks.GRASS)
-                //.add(WitcheryBlocks.ROWAN_SAPLING.get())
+                .add(WitcheryBlocks.ROWAN_SAPLING.get())
                 .add(Blocks.TALL_GRASS)
-                //.add(WitcheryBlocks.ALDER_SAPLING.get())
-                //.add(WitcheryBlocks.HAWTHORN_SAPLING.get())
+                .add(WitcheryBlocks.ALDER_SAPLING.get())
+                .add(WitcheryBlocks.HAWTHORN_SAPLING.get())
                 .add(WitcheryBlocks.SPANISH_MOSS.get())
-                //.add(WitcheryBlocks.EMBER_MOSS.get())
-                //.add(WitcheryBlocks.GLINTWEED.get())
-                ;
+                .add(WitcheryBlocks.EMBER_MOSS.get())
+                .add(WitcheryBlocks.GLINTWEED.get());
 
         tag(ModBlockTags.WITCH_LEAVES)
                 .add(WitcheryBlocks.ROWAN_LEAVES.get())
